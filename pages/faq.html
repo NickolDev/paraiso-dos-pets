@@ -1,0 +1,216 @@
+<!-- ============================================================
+     ARQUIVO: faq.html
+     DESCRIÇÃO: Perguntas frequentes (FAQ) da ONG Paraíso dos Pets.
+                15 perguntas em 4 categorias com accordion interativo.
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perguntas frequentes sobre adoção, doações, voluntariado e a ONG Paraíso dos Pets em Ribeirão Preto, SP.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ongparaisodospets.org.br/pages/faq.html">
+  <meta property="og:title" content="FAQ | ONG Paraíso dos Pets">
+  <meta property="og:description" content="Tire suas dúvidas sobre adoção, doações, voluntariado e a ONG Paraíso dos Pets.">
+  <meta property="og:locale" content="pt_BR">
+  <title>Perguntas Frequentes | ONG Paraíso dos Pets</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo-link" aria-label="Página inicial"><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+        <a href="../index.html" class="nav-link">Home</a><a href="nossa-missao.html" class="nav-link">Nossa Missão</a><a href="transparencia.html" class="nav-link">Transparência</a>
+        <div class="nav-item--submenu"><a href="adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a><div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a></div></div>
+        <a href="blog.html" class="nav-link">Blog</a><a href="contato.html" class="nav-link">Contato</a>
+        <a href="doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      </nav>
+      <a href="doar.html" class="btn-doar-header" id="btn-doar-desktop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span class="hamburger__linha"></span><span class="hamburger__linha"></span><span class="hamburger__linha"></span></button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <main role="main">
+
+    <!-- =================== BANNER =========================== -->
+    <section class="banner-pagina" aria-label="Banner FAQ">
+      <img src="https://placedog.net/1920/500?r=96" alt="Cão curioso" class="banner-pagina__bg" loading="eager">
+      <div class="banner-pagina__overlay" aria-hidden="true"></div>
+      <div class="banner-pagina__conteudo">
+        <h1 class="banner-pagina__titulo">Perguntas Frequentes</h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb__separador">›</span><span>FAQ</span></nav>
+      </div>
+    </section>
+
+    <!-- ============= FAQ ===================================== -->
+    <section class="secao" aria-label="Perguntas frequentes">
+      <div class="container">
+
+        <!-- ---- SOBRE ADOÇÃO ---- -->
+        <h2 style="margin-bottom:var(--espaco-md);" data-animate="fade-up">🐾 Sobre Adoção</h2>
+        <div class="accordion" data-animate="fade-up" style="margin-bottom:var(--espaco-xl);">
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Posso adotar morando em apartamento?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Sim, avaliamos cada caso individualmente. O essencial é garantir espaço adequado ao porte do animal e comprometimento com exercícios e passeios diários. Muitos dos nossos cães se adaptam muito bem a apartamentos, especialmente os de porte pequeno e médio.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Os animais são vacinados e castrados?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Todos os nossos cães são vacinados conforme o protocolo veterinário. A castração é realizada sempre que possível antes da adoção. Quando não é viável por questões de saúde, a castração é condicionada ao processo de adoção — ou seja, o adotante se compromete a realizá-la em prazo combinado.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Posso escolher qual animal quero adotar?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Sim! Você pode navegar pela nossa página de adoção e indicar o animal de sua preferência na ficha de interesse. Também recomendamos visitar o abrigo para conhecer todos pessoalmente — muitas vezes a conexão acontece com um pet que você não esperava.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Qual o prazo para aprovação da ficha?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Geralmente 48 horas úteis após o preenchimento completo da ficha de interesse. Nossa equipe analisa as informações, entra em contato por WhatsApp e agenda uma visita ao abrigo. Em períodos de alta demanda, como após feiras de adoção, o prazo pode ser um pouco maior.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Posso devolver o animal se não me adaptar?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Pedimos que entre em contato conosco antes de tomar qualquer decisão. O período de adaptação pode levar de 2 a 4 semanas, e muitas dificuldades iniciais se resolvem com orientação. Trabalhamos juntos para encontrar a melhor solução — sempre priorizando o bem-estar do animal.</div></div>
+          </div>
+
+        </div>
+
+        <!-- ---- SOBRE DOAÇÕES ---- -->
+        <h2 style="margin-bottom:var(--espaco-md);" data-animate="fade-up">💛 Sobre Doações</h2>
+        <div class="accordion" data-animate="fade-up" style="margin-bottom:var(--espaco-xl);">
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Minha doação é dedutível no Imposto de Renda?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Atualmente não somos qualificados como OSCIP (Organização da Sociedade Civil de Interesse Público), portanto as doações não são dedutíveis no IR. Estamos trabalhando nessa certificação. Fique atento às atualizações em nossas redes sociais.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Como sei que minha doação foi recebida?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Enviamos confirmação por e-mail para todas as doações identificadas. Além disso, publicamos balanços financeiros mensais em nossas redes sociais e na página de Transparência do site, onde você pode acompanhar como cada real é utilizado.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Posso doar ração, remédios ou outros itens?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Sim! Doações de ração, medicamentos, cobertores, brinquedos e outros suprimentos são muito bem-vindas. Entre em contato pelo WhatsApp (16) 99999-9999 para combinar a entrega. Pedimos que verifique a validade dos produtos antes de doar.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Como funciona o apadrinhamento?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Você contribui com R$ 200 por mês e se torna padrinho ou madrinha de um cão específico do abrigo. O valor cobre alimentação, vacinas, remédios e consultas veterinárias. Você recebe fotos e atualizações mensais sobre o seu afilhado por WhatsApp.</div></div>
+          </div>
+
+        </div>
+
+        <!-- ---- SOBRE VOLUNTARIADO ---- -->
+        <h2 style="margin-bottom:var(--espaco-md);" data-animate="fade-up">🙌 Sobre Voluntariado</h2>
+        <div class="accordion" data-animate="fade-up" style="margin-bottom:var(--espaco-xl);">
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Preciso ter experiência com animais para ser voluntário?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Não! Temos funções para todos os perfis — desde cuidados diretos com os animais até fotografia, redes sociais, organização de eventos e captação de recursos. Oferecemos uma orientação inicial para todos os novos voluntários antes de começarem as atividades.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Qual é a frequência mínima de idas ao abrigo?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">A partir de uma vez por semana já é possível contribuir de forma significativa. Combinamos a frequência conforme sua disponibilidade. Algumas atividades, como redes sociais e design, podem ser feitas remotamente, sem necessidade de ir presencialmente ao abrigo.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Menores de 18 anos podem ser voluntários?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Sim, com autorização formal dos pais ou responsáveis legais e acompanhamento de um adulto durante as atividades no abrigo. Jovens voluntários são muito bem-vindos e aprendem muito sobre empatia e responsabilidade com os animais.</div></div>
+          </div>
+
+        </div>
+
+        <!-- ---- SOBRE A ONG ---- -->
+        <h2 style="margin-bottom:var(--espaco-md);" data-animate="fade-up">🏢 Sobre a ONG</h2>
+        <div class="accordion" data-animate="fade-up" style="margin-bottom:var(--espaco-xl);">
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>A ONG tem CNPJ registrado?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Sim. A ONG Paraíso dos Pets é uma organização legalmente registrada com CNPJ: XX.XXX.XXX/0001-XX (substituir pelo real). Todos os documentos de constituição, estatuto social e atas estão disponíveis na página de Transparência do site.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>A ONG atende outros animais além de cães?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">No momento atendemos exclusivamente cães. É uma decisão estratégica para concentrar nossos recursos e oferecer o melhor cuidado possível. Estamos crescendo e, no futuro, esperamos ampliar nosso atendimento para outros animais.</div></div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Como visitar o abrigo?</span><span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo"><div class="accordion__conteudo">Agende sua visita pelo WhatsApp (16) 99999-9999 ou pelo e-mail contato@ongparaisodospets.org.br. Nosso atendimento para visitas funciona de segunda a sexta, das 9h às 18h, e aos sábados, das 9h às 13h. Por segurança dos animais, não recebemos visitas sem agendamento prévio.</div></div>
+          </div>
+
+        </div>
+
+        <!-- Link para contato -->
+        <div style="text-align:center;margin-top:var(--espaco-lg);" data-animate="fade-up">
+          <p style="color:var(--cor-cinza-medio);margin-bottom:var(--espaco-sm);">Não encontrou sua dúvida? Fale com a gente!</p>
+          <a href="contato.html" class="btn btn--primario">Entrar em contato</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="logo-link"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px;"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a><p class="footer__slogan">Ajudando quem não tem voz desde 2017.</p></div>
+        <div><h4 class="footer__titulo">Links Rápidos</h4><a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="transparencia.html" class="footer__link">Transparência</a><a href="blog.html" class="footer__link">Blog</a><a href="faq.html" class="footer__link">FAQ</a></div>
+        <div><h4 class="footer__titulo">Como Ajudar</h4><a href="doar.html" class="footer__link">Apadrinhar</a><a href="voluntario.html" class="footer__link">Voluntariar</a><a href="doar.html#associar" class="footer__link">Associar-se</a></div>
+        <div><h4 class="footer__titulo">Contato</h4><a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a><a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a></div>
+      </div>
+      <div class="footer__bottom"><p>ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br><a href="politica-privacidade.html">Política de Privacidade</a> | <a href="termos-de-uso.html">Termos de Uso</a></p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5516999999999" class="btn-whatsapp" id="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg><span class="btn-whatsapp__tooltip">Fale conosco</span></a>
+  <button class="btn-topo" id="btn-topo" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <div class="cookie-banner" id="cookie-banner" role="dialog"><div class="cookie-banner__inner"><p class="cookie-banner__texto">Usamos cookies para melhorar sua experiência. <a href="politica-privacidade.html">Política de Privacidade</a>.</p><div class="cookie-banner__btns"><button class="btn btn--primario btn--sm" id="cookie-aceitar-todos">Aceitar todos</button><button class="btn btn--branco btn--sm" id="cookie-aceitar-essenciais" style="color:var(--cor-branco);border-color:rgba(255,255,255,0.4);">Apenas essenciais</button></div></div></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/cookies.js"></script>
+</body>
+</html>

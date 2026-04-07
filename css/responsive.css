@@ -1,0 +1,651 @@
+/* ============================================================
+   ARQUIVO: responsive.css
+   DESCRIÇÃO: Media queries e responsividade para todas as páginas
+              do site ONG Paraíso dos Pets
+   ÚLTIMA ATUALIZAÇÃO: 2025
+
+   BREAKPOINTS:
+     - Desktop:       1024px+ (layout completo)
+     - Tablet:        768px – 1023px (layout em 2 colunas)
+     - Mobile:        até 767px (coluna única)
+     - Mobile pequeno: até 480px (ajustes finos)
+   ============================================================ */
+
+/* ============================================================
+   TABLET (768px – 1023px)
+   Layout adaptado para telas médias — 2 colunas na maioria
+   ============================================================ */
+@media (max-width: 1023px) {
+
+  /* --- HEADER / NAVEGAÇÃO --- */
+  /* Esconde o menu desktop e mostra o hamburguer */
+  .nav-principal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: var(--cor-branco);
+    flex-direction: column;
+    padding: 5rem var(--espaco-md) var(--espaco-lg);
+    box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    z-index: 1001;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  /* Menu mobile aberto — desliza para dentro */
+  .nav-principal.ativo {
+    display: flex;
+    transform: translateX(0);
+  }
+
+  /* Links do menu em coluna */
+  .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: var(--tamanho-base);
+    width: 100%;
+    border-bottom: 1px solid var(--cor-bege-medio);
+  }
+
+  /* Submenu no mobile: aparece abaixo do link (não absoluto) */
+  .submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+
+  .nav-item--submenu.ativo .submenu {
+    max-height: 500px;
+  }
+
+  .submenu__link {
+    padding-left: 2rem;
+  }
+
+  /* Botão DOAR no menu mobile */
+  .btn-doar-header {
+    margin-top: var(--espaco-sm);
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Mostra o hamburguer */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Esconde o botão DOAR desktop (o do mobile fica dentro do nav) */
+  #btn-doar-desktop {
+    display: none;
+  }
+
+  /* Mostra o botão DOAR dentro do nav no mobile */
+  .nav-principal .btn-doar-header {
+    display: inline-flex;
+  }
+
+  /* --- HERO --- */
+  .hero {
+    min-height: 80vh;
+  }
+
+  .hero__titulo {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .hero__conteudo {
+    padding: var(--espaco-xl) var(--espaco-md);
+  }
+
+  /* --- NÚMEROS DE IMPACTO --- */
+  .numeros-impacto__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- QUEM SOMOS --- */
+  .quem-somos__grid {
+    grid-template-columns: 1fr;
+    gap: var(--espaco-lg);
+  }
+
+  .quem-somos__imagem {
+    order: -1; /* Imagem primeiro no tablet */
+  }
+
+  /* --- COMO AJUDAR --- */
+  .como-ajudar__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- GRID DE ANIMAIS --- */
+  .grid-animais {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .favoritos-secao__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* --- BLOG LAYOUT --- */
+  .blog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Sidebar vai para baixo no tablet */
+  .blog-sidebar {
+    order: 2;
+  }
+
+  /* Posts relacionados */
+  .posts-relacionados .grid-posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- FOOTER --- */
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espaco-lg);
+  }
+
+  /* --- CONTATO --- */
+  .contato-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- TRANSPARÊNCIA --- */
+  .grid-resumo-financeiro {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .barra-item {
+    grid-template-columns: 150px 1fr 80px;
+  }
+
+  /* --- DOAÇÃO --- */
+  .grid-valores {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* --- REDES SOCIAIS --- */
+  .grid-redes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- EQUIPE --- */
+  .grid-equipe {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- TIMELINE --- */
+  /* Versão vertical centralizada */
+  .timeline__item:nth-child(odd),
+  .timeline__item:nth-child(even) {
+    padding-left: 60px;
+    padding-right: 0;
+    text-align: left;
+    flex-direction: row;
+  }
+
+  .timeline__marker {
+    left: 20px;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+}
+
+/* ============================================================
+   MOBILE (até 767px)
+   Layout em coluna única — tudo empilhado verticalmente
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* --- GERAL --- */
+  .container {
+    padding: 0 var(--espaco-sm);
+  }
+
+  .secao {
+    padding: var(--espaco-xl) 0;
+  }
+
+  /* --- HEADER --- */
+  .logo-texto {
+    font-size: var(--tamanho-xl);
+  }
+
+  .logo-link svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Menu mobile: largura total */
+  .nav-principal {
+    width: 100%;
+  }
+
+  /* --- HERO --- */
+  .hero {
+    min-height: 90vh;
+  }
+
+  .hero__titulo {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .hero__subtitulo {
+    font-size: var(--tamanho-xl);
+  }
+
+  .hero__texto {
+    font-size: var(--tamanho-base);
+  }
+
+  .hero__botoes {
+    flex-direction: column;
+  }
+
+  .hero__botoes .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Esconde o indicador de scroll no mobile */
+  .hero__scroll-indicator {
+    display: none;
+  }
+
+  /* --- NÚMEROS DE IMPACTO --- */
+  .numeros-impacto__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espaco-sm);
+  }
+
+  .numero-item__valor {
+    font-size: var(--tamanho-4xl);
+  }
+
+  /* --- QUEM SOMOS --- */
+  .quem-somos__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quem-somos__imagem img {
+    height: 280px;
+  }
+
+  /* --- COMO AJUDAR --- */
+  .como-ajudar__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- FILTROS --- */
+  .filtros {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filtros__busca {
+    width: 100%;
+  }
+
+  /* --- GRID DE ANIMAIS --- */
+  .grid-animais {
+    grid-template-columns: 1fr;
+    gap: var(--espaco-md);
+  }
+
+  .favoritos-secao__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- CARROSSEL --- */
+  .carrossel__seta {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carrossel__texto {
+    font-size: var(--tamanho-base);
+  }
+
+  /* --- BLOG --- */
+  .grid-posts {
+    grid-template-columns: 1fr;
+  }
+
+  .posts-relacionados .grid-posts {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar oculta no mobile */
+  .blog-sidebar {
+    display: none;
+  }
+
+  /* Tabs de categoria: scroll horizontal */
+  .tabs-categorias {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+
+  .tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Post individual */
+  .post-hero {
+    height: 250px;
+  }
+
+  /* --- CTA DOAÇÃO --- */
+  .cta-doacao {
+    padding: var(--espaco-2xl) 0;
+  }
+
+  .cta-doacao p {
+    font-size: var(--tamanho-lg);
+  }
+
+  .cta-doacao__botoes {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-doacao__botoes .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* --- FOOTER --- */
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--espaco-lg);
+    text-align: center;
+  }
+
+  .footer__redes {
+    justify-content: center;
+  }
+
+  .footer__brand {
+    align-items: center;
+  }
+
+  /* --- FORMULÁRIOS --- */
+  /* Campos empilhados no mobile (nunca lado a lado) */
+  .campos-linha {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- STEPPER --- */
+  .stepper__texto {
+    display: none; /* Mostra apenas o número no mobile */
+  }
+
+  .stepper__linha {
+    width: 30px;
+  }
+
+  /* --- TRANSPARÊNCIA --- */
+  .grid-resumo-financeiro {
+    grid-template-columns: 1fr;
+  }
+
+  /* Gráfico de barras: layout vertical */
+  .barra-item {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .barra-item__label {
+    text-align: left;
+    font-size: var(--tamanho-xs);
+  }
+
+  /* Gráfico de pizza */
+  .grafico-pizza-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grafico-pizza {
+    width: 200px;
+    height: 200px;
+  }
+
+  .grafico-pizza::after {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* Período selector */
+  .periodo-selector {
+    flex-wrap: wrap;
+  }
+
+  /* --- DOAÇÃO --- */
+  .grid-valores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- REDES SOCIAIS --- */
+  .grid-redes {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- EQUIPE --- */
+  .grid-equipe {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- CONTATO --- */
+  .contato-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- TIMELINE --- */
+  .timeline__item:nth-child(odd),
+  .timeline__item:nth-child(even) {
+    padding-left: 50px;
+    padding-right: 0;
+    text-align: left;
+    flex-direction: row;
+  }
+
+  .timeline__marker {
+    left: 10px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline__marker svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* --- BANNER PÁGINA INTERNA --- */
+  .banner-pagina {
+    padding: var(--espaco-2xl) 0 var(--espaco-lg);
+  }
+
+  /* --- COOKIES BANNER --- */
+  .cookie-banner__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cookie-banner__texto {
+    min-width: auto;
+  }
+
+  .cookie-banner__btns {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- LIGHTBOX --- */
+  .lightbox__conteudo {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .lightbox__imagem {
+    height: 250px;
+  }
+
+  .lightbox__info {
+    padding: var(--espaco-md);
+  }
+
+  /* --- 404 --- */
+  .pagina-404 svg {
+    width: 150px;
+    height: 150px;
+  }
+
+  .pagina-404 h1 {
+    font-size: var(--tamanho-3xl);
+  }
+
+  .pagina-404__btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .pagina-404__btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- ETAPAS DE ADOÇÃO --- */
+  .etapas-adocao {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .etapa-item {
+    max-width: 100%;
+    flex-direction: row;
+    text-align: left;
+    gap: var(--espaco-sm);
+  }
+
+  .etapa-item__numero {
+    flex-shrink: 0;
+  }
+
+  /* --- COMPARTILHAR BOTÕES --- */
+  .compartilhar-btns {
+    flex-direction: column;
+  }
+
+  .compartilhar-btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- TOAST --- */
+  .toast-container {
+    left: var(--espaco-sm);
+    right: var(--espaco-sm);
+    max-width: none;
+  }
+}
+
+/* ============================================================
+   MOBILE PEQUENO (até 480px)
+   Ajustes finos para telas muito pequenas
+   ============================================================ */
+@media (max-width: 480px) {
+
+  /* Fontes um pouco menores */
+  body {
+    font-size: var(--tamanho-sm);
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  h2 {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+
+  /* Hero mais compacto */
+  .hero__badge {
+    font-size: var(--tamanho-xs);
+  }
+
+  /* Números de impacto */
+  .numero-item__valor {
+    font-size: var(--tamanho-3xl);
+  }
+
+  /* Doação: 1 coluna de valores */
+  .grid-valores {
+    grid-template-columns: 1fr;
+  }
+
+  /* Cards de valor */
+  .card-valor {
+    padding: var(--espaco-sm);
+  }
+
+  .card-valor__montante {
+    font-size: var(--tamanho-2xl);
+  }
+
+  /* Favoritados: coluna única */
+  .favoritos-secao__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Stepper: apenas números, sem linhas */
+  .stepper__linha {
+    width: 20px;
+  }
+
+  /* Botões menores */
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: var(--tamanho-sm);
+  }
+
+  /* PIX card */
+  .pix-card__chave {
+    font-size: var(--tamanho-base);
+    word-break: break-all;
+  }
+
+  /* Accordion */
+  .accordion__header {
+    font-size: var(--tamanho-sm);
+    padding: 0.85rem 1rem;
+  }
+}
+
+/* ============================================================
+   FIM DO ARQUIVO responsive.css
+   ============================================================ */

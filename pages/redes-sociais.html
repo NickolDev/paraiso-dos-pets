@@ -1,0 +1,148 @@
+<!-- ============================================================
+     ARQUIVO: redes-sociais.html
+     DESCRIÇÃO: Página de redes sociais da ONG Paraíso dos Pets.
+                Cards de cada rede e seção de compartilhamento.
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Siga a ONG Paraíso dos Pets nas redes sociais. Instagram, Threads, YouTube e WhatsApp — acompanhe nossas histórias e ajude a divulgar.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ongparaisodospets.org.br/pages/redes-sociais.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ONG Paraíso dos Pets">
+  <meta property="og:title" content="Redes Sociais | ONG Paraíso dos Pets">
+  <meta property="og:description" content="Siga a ONG Paraíso dos Pets nas redes sociais e ajude a divulgar nossa causa.">
+  <meta property="og:image" content="https://placedog.net/1200/630?r=95">
+  <meta property="og:locale" content="pt_BR">
+  <title>Redes Sociais | ONG Paraíso dos Pets</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo-link" aria-label="Página inicial"><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+        <a href="../index.html" class="nav-link">Home</a><a href="nossa-missao.html" class="nav-link">Nossa Missão</a><a href="transparencia.html" class="nav-link">Transparência</a>
+        <div class="nav-item--submenu"><a href="adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a><div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a></div></div>
+        <a href="blog.html" class="nav-link">Blog</a><a href="contato.html" class="nav-link">Contato</a>
+        <a href="doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      </nav>
+      <a href="doar.html" class="btn-doar-header" id="btn-doar-desktop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span class="hamburger__linha"></span><span class="hamburger__linha"></span><span class="hamburger__linha"></span></button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <main role="main">
+
+    <!-- =================== BANNER =========================== -->
+    <section class="banner-pagina" aria-label="Banner de redes sociais">
+      <img src="https://placedog.net/1920/600?r=95" alt="Cães alegres no abrigo" class="banner-pagina__bg" loading="eager">
+      <div class="banner-pagina__overlay" aria-hidden="true"></div>
+      <div class="banner-pagina__conteudo">
+        <h1 class="banner-pagina__titulo">Nossas Redes Sociais</h1>
+        <p style="color:rgba(255,255,255,0.85);margin-top:0.5rem;">Siga, curta, compartilhe — cada interação nos ajuda a salvar mais vidas</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb__separador">›</span><span>Redes Sociais</span></nav>
+      </div>
+    </section>
+
+    <!-- ============= CARDS DE REDES ========================= -->
+    <section class="secao" aria-label="Redes sociais da ONG">
+      <div class="container">
+        <div class="grid-redes">
+
+          <!-- Instagram -->
+          <div class="card-rede card-rede--instagram" data-animate="fade-up" data-animate-delay="1">
+            <div class="card-rede__icone">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+            </div>
+            <h3>Instagram</h3>
+            <p style="font-weight:600;color:var(--cor-primaria);margin-bottom:0.5rem;">@ongparaisodospets</p>
+            <p>Fotos e vídeos diários dos nossos pets, histórias de adoção emocionantes e bastidores do dia a dia no abrigo. É por lá que você vai se apaixonar.</p>
+            <a href="https://www.instagram.com/ongparaisodospets" class="btn btn--primario btn--sm" target="_blank" rel="noopener noreferrer">Seguir no Instagram ↗</a>
+          </div>
+
+          <!-- Threads -->
+          <div class="card-rede card-rede--threads" data-animate="fade-up" data-animate-delay="2">
+            <div class="card-rede__icone">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.784 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.748-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.265 1.33-3.084.88-.78 2.104-1.237 3.542-1.324 1.054-.063 2.04.035 2.94.282-.086-.798-.344-1.413-.777-1.836-.545-.533-1.39-.807-2.505-.816l-.05-.002c-.906 0-1.74.254-2.353.716l-1.31-1.57c.96-.722 2.21-1.12 3.612-1.146h.075c1.682.015 3.015.555 3.965 1.608.836.926 1.303 2.175 1.392 3.716.533.282 1.023.62 1.466 1.012 1.105.978 1.834 2.31 2.11 3.858.347 1.945-.046 4.378-2.087 6.378-1.784 1.749-4.043 2.549-7.108 2.572z"/></svg>
+            </div>
+            <h3>Threads</h3>
+            <p style="font-weight:600;color:var(--cor-primaria);margin-bottom:0.5rem;">@ongparaisodospets</p>
+            <p>Reflexões sobre proteção animal, atualizações rápidas e conversas com nossa comunidade.</p>
+            <a href="https://www.threads.com/@ongparaisodospets" class="btn btn--primario btn--sm" target="_blank" rel="noopener noreferrer">Acompanhar no Threads ↗</a>
+          </div>
+
+          <!-- YouTube -->
+          <div class="card-rede card-rede--youtube" data-animate="fade-up" data-animate-delay="3">
+            <div class="card-rede__icone">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+            </div>
+            <h3>YouTube</h3>
+            <p style="font-weight:600;color:var(--cor-primaria);margin-bottom:0.5rem;">@ONGParaísodosPets</p>
+            <p>Documentários dos nossos resgates, feiras de adoção e histórias completas de cães que encontraram um lar. Se emocione com cada vídeo.</p>
+            <a href="https://www.youtube.com/@ONGParaísodosPets" class="btn btn--primario btn--sm" target="_blank" rel="noopener noreferrer">Ver no YouTube ↗</a>
+          </div>
+
+          <!-- WhatsApp -->
+          <div class="card-rede card-rede--whatsapp" data-animate="fade-up" data-animate-delay="4">
+            <div class="card-rede__icone">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+            </div>
+            <h3>WhatsApp</h3>
+            <p style="font-weight:600;color:var(--cor-primaria);margin-bottom:0.5rem;">(16) 99999-9999</p>
+            <p>Fale diretamente com a ONG. Tire dúvidas sobre adoção, voluntariado, doações ou agendamento de visita ao abrigo.</p>
+            <a href="https://wa.me/5516999999999" class="btn btn--primario btn--sm" target="_blank" rel="noopener noreferrer">Falar no WhatsApp ↗</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= COMPARTILHAR É AJUDAR ================== -->
+    <section class="secao secao--bege" aria-label="Compartilhar é ajudar">
+      <div class="container" style="text-align:center;">
+        <h2 class="secao__titulo" data-animate="fade-up">Compartilhar também é uma forma de ajudar</h2>
+        <p style="color:var(--cor-cinza-medio);max-width:600px;margin:var(--espaco-sm) auto var(--espaco-lg);font-size:var(--tamanho-lg);" data-animate="fade-up">
+          Mesmo sem poder adotar ou fazer uma doação agora, ao compartilhar nossas publicações
+          você aumenta as chances de um cão encontrar um lar. Isso não custa nada — e pode mudar uma vida.
+        </p>
+        <div style="display:flex;gap:var(--espaco-sm);justify-content:center;flex-wrap:wrap;" data-animate="fade-up">
+          <a href="https://wa.me/?text=Conhe%C3%A7a%20a%20ONG%20Para%C3%ADso%20dos%20Pets%20%E2%80%94%20mais%20de%20130%20c%C3%A3es%20precisam%20de%20ajuda%20em%20Ribeir%C3%A3o%20Preto!%20https%3A%2F%2Fongparaisodospets.org.br" class="btn btn--primario" target="_blank" rel="noopener noreferrer">Compartilhar no WhatsApp</a>
+          <button class="btn btn--secundario" onclick="navigator.clipboard.writeText('https://ongparaisodospets.org.br').then(()=>{if(typeof showToast==='function')showToast('Link copiado!','sucesso')})">
+            📋 Copiar link do site
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="logo-link"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px;"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a><p class="footer__slogan">Ajudando quem não tem voz desde 2017.</p></div>
+        <div><h4 class="footer__titulo">Links Rápidos</h4><a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="transparencia.html" class="footer__link">Transparência</a><a href="blog.html" class="footer__link">Blog</a><a href="faq.html" class="footer__link">FAQ</a></div>
+        <div><h4 class="footer__titulo">Como Ajudar</h4><a href="doar.html" class="footer__link">Apadrinhar</a><a href="voluntario.html" class="footer__link">Voluntariar</a><a href="doar.html#associar" class="footer__link">Associar-se</a></div>
+        <div><h4 class="footer__titulo">Contato</h4><a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a><a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a></div>
+      </div>
+      <div class="footer__bottom"><p>ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br><a href="politica-privacidade.html">Política de Privacidade</a> | <a href="termos-de-uso.html">Termos de Uso</a></p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5516999999999" class="btn-whatsapp" id="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg><span class="btn-whatsapp__tooltip">Fale conosco</span></a>
+  <button class="btn-topo" id="btn-topo" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <div class="cookie-banner" id="cookie-banner" role="dialog"><div class="cookie-banner__inner"><p class="cookie-banner__texto">Usamos cookies para melhorar sua experiência. <a href="politica-privacidade.html">Política de Privacidade</a>.</p><div class="cookie-banner__btns"><button class="btn btn--primario btn--sm" id="cookie-aceitar-todos">Aceitar todos</button><button class="btn btn--branco btn--sm" id="cookie-aceitar-essenciais" style="color:var(--cor-branco);border-color:rgba(255,255,255,0.4);">Apenas essenciais</button></div></div></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/cookies.js"></script>
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!-- ============================================================
+     ARQUIVO: index.html
+     DESCRIÇÃO: Página inicial (Home) do site da ONG Paraíso dos Pets.
+                Contém hero, números de impacto, quem somos, como ajudar,
+                animais em destaque, histórias de adoção, blog e CTA.
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO — descrição da página para mecanismos de busca -->
+  <meta name="description" content="ONG Paraíso dos Pets — Resgatamos, cuidamos e encontramos lares para cães abandonados em Ribeirão Preto, SP. Mais de 130 vidas precisam do seu amor.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ongparaisodospets.org.br/">
+
+  <!-- Open Graph — preview no WhatsApp, Instagram e Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ONG Paraíso dos Pets">
+  <meta property="og:title" content="ONG Paraíso dos Pets — Ajudando quem não tem voz">
+  <meta property="og:description" content="Resgatamos, cuidamos e encontramos lares para cães abandonados em Ribeirão Preto, SP. Mais de 130 vidas precisam do seu amor.">
+  <meta property="og:image" content="https://placedog.net/1200/630?r=99">
+  <meta property="og:url" content="https://ongparaisodospets.org.br/">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Schema.org — dados estruturados para o Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "ONG Paraíso dos Pets",
+    "description": "ONG de proteção animal em Ribeirão Preto, SP. Resgate, cuidado e adoção de cães abandonados.",
+    "foundingDate": "2017",
+    "founder": { "@type": "Person", "name": "Luiz Moraes" },
+    "email": "contato@ongparaisodospets.org.br",
+    "url": "https://ongparaisodospets.org.br",
+    "sameAs": [
+      "https://www.instagram.com/ongparaisodospets",
+      "https://www.youtube.com/@ONGParaísodosPets",
+      "https://www.threads.com/@ongparaisodospets"
+    ],
+    "areaServed": {
+      "@type": "City",
+      "name": "Ribeirão Preto",
+      "containedInPlace": { "@type": "State", "name": "São Paulo" }
+    }
+  }
+  </script>
+
+  <title>ONG Paraíso dos Pets — Ajudando quem não tem voz</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <!-- Barra de navegação fixa no topo com logo, menu e botão DOAR -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+
+      <!-- Logo: ícone de patinha SVG + nome da ONG -->
+      <a href="index.html" class="logo-link" aria-label="Página inicial – Paraíso dos Pets">
+        <!-- SVG inline: ícone de patinha de cachorro -->
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <ellipse cx="20" cy="14" rx="8" ry="10"/>
+          <ellipse cx="44" cy="14" rx="8" ry="10"/>
+          <ellipse cx="10" cy="32" rx="7" ry="9"/>
+          <ellipse cx="54" cy="32" rx="7" ry="9"/>
+          <path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/>
+        </svg>
+        <span class="logo-texto">Paraíso dos <span>Pets</span></span>
+      </a>
+
+      <!-- Navegação principal — links do menu central -->
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+
+        <a href="index.html" class="nav-link ativo">Home</a>
+        <a href="pages/nossa-missao.html" class="nav-link">Nossa Missão</a>
+        <a href="pages/transparencia.html" class="nav-link">Transparência</a>
+
+        <!-- Link com submenu dropdown: "Adote" -->
+        <div class="nav-item--submenu">
+          <a href="pages/adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">
+            Adote
+            <!-- Seta indicando submenu -->
+            <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+            </svg>
+          </a>
+          <!-- Submenu com sublinks de Adote -->
+          <div class="submenu" role="menu">
+            <a href="pages/adote.html" class="submenu__link" role="menuitem">Adoção</a>
+            <a href="pages/doar.html" class="submenu__link" role="menuitem">Apadrinhar</a>
+            <a href="pages/voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a>
+            <a href="pages/doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a>
+            <a href="pages/contato.html" class="submenu__link" role="menuitem">Parcerias</a>
+          </div>
+        </div>
+
+        <a href="pages/blog.html" class="nav-link">Blog</a>
+        <a href="pages/contato.html" class="nav-link">Contato</a>
+
+        <!-- Botão DOAR dentro do menu mobile -->
+        <a href="pages/doar.html" class="btn-doar-header">
+          <!-- SVG: ícone de coração -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          DOAR
+        </a>
+      </nav>
+
+      <!-- Botão DOAR no desktop (fora do nav mobile) -->
+      <a href="pages/doar.html" class="btn-doar-header" id="btn-doar-desktop">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        DOAR
+      </a>
+
+      <!-- Botão hamburguer — menu mobile (3 linhas → X animado) -->
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-principal">
+        <span class="hamburger__linha"></span>
+        <span class="hamburger__linha"></span>
+        <span class="hamburger__linha"></span>
+      </button>
+
+    </div>
+  </header>
+  <!-- ===================== FIM HEADER ======================= -->
+
+  <!-- Overlay escuro atrás do menu mobile -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <!-- ======================== MAIN ========================== -->
+  <main role="main">
+
+    <!-- ======================== HERO ======================== -->
+    <!-- Banner principal com imagem de fundo, frase emocional e CTAs -->
+    <section class="hero" aria-label="Banner principal">
+
+      <!-- Imagem de fundo (placeholder placedog.net) -->
+      <img src="https://placedog.net/1920/900?r=1" alt="Cão feliz correndo em um gramado" class="hero__bg" loading="eager">
+
+      <!-- Overlay gradiente escuro sobre a imagem -->
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <!-- Conteúdo textual do hero -->
+      <div class="hero__conteudo container">
+
+        <!-- Badge de localização -->
+        <div class="hero__badge">
+          🐾 Ribeirão Preto, SP
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="hero__titulo">Ajudando quem não tem voz</h1>
+
+        <!-- Subtítulo -->
+        <p class="hero__subtitulo">Transforme vidas com carinho e cuidado</p>
+
+        <!-- Parágrafo descritivo -->
+        <p class="hero__texto">
+          Somos a ONG Paraíso dos Pets. Resgatamos, cuidamos e encontramos
+          lares para cães abandonados em Ribeirão Preto (SP). Mais de 130 vidas
+          dependem do seu amor todos os dias.
+        </p>
+
+        <!-- Botões de ação (CTAs) -->
+        <div class="hero__botoes">
+          <a href="pages/adote.html" class="btn btn--primario">
+            🐾 Quero Adotar
+          </a>
+          <a href="pages/nossa-missao.html" class="btn btn--branco">
+            Nossa Missão →
+          </a>
+        </div>
+      </div>
+
+      <!-- Indicador de scroll — seta pulsando no rodapé do hero -->
+      <div class="hero__scroll-indicator" aria-hidden="true">
+        <span>Role para baixo</span>
+        <svg viewBox="0 0 24 24">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z" fill="currentColor"/>
+        </svg>
+      </div>
+
+    </section>
+    <!-- ====================== FIM HERO ====================== -->
+
+
+    <!-- ============== SEÇÃO 2: NÚMEROS DE IMPACTO =========== -->
+    <!-- 4 contadores animados sobre fundo laranja -->
+    <section class="numeros-impacto" aria-label="Números de impacto da ONG">
+      <div class="container">
+        <div class="numeros-impacto__grid">
+
+          <!-- Contador 1: Animais no abrigo -->
+          <div class="numero-item">
+            <div class="numero-item__valor" data-valor="130">0</div>
+            <div class="numero-item__label">animais no abrigo</div>
+          </div>
+
+          <!-- Contador 2: Adoções realizadas -->
+          <div class="numero-item">
+            <div class="numero-item__valor" data-valor="500">0</div>
+            <div class="numero-item__label">adoções realizadas</div>
+          </div>
+
+          <!-- Contador 3: Voluntários envolvidos -->
+          <div class="numero-item">
+            <div class="numero-item__valor" data-valor="200">0</div>
+            <div class="numero-item__label">voluntários envolvidos</div>
+          </div>
+
+          <!-- Contador 4: Anos de história -->
+          <div class="numero-item">
+            <div class="numero-item__valor" data-valor="8">0</div>
+            <div class="numero-item__label">anos de história</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- =========== FIM SEÇÃO 2: NÚMEROS DE IMPACTO ========== -->
+
+
+    <!-- ================ SEÇÃO 3: QUEM SOMOS ================= -->
+    <!-- Texto à esquerda + imagem à direita -->
+    <section class="secao" aria-label="Quem somos">
+      <div class="container">
+        <div class="quem-somos__grid">
+
+          <!-- Coluna de texto -->
+          <div class="quem-somos__texto" data-animate="fade-up">
+            <h2>Quem Somos</h2>
+            <p>
+              A ONG Paraíso dos Pets foi fundada por <strong>Luiz Moraes</strong>
+              em Ribeirão Preto (SP). O que começou como uma ação individual —
+              resgatar um cão aqui, outro ali — transformou-se em uma causa
+              coletiva que hoje abriga <strong>mais de 130 cães</strong> vítimas
+              de abandono.
+            </p>
+            <p>
+              Nossa missão é garantir dignidade, alimentação, cuidados médicos
+              e muito amor a cada animal. Através da Loja Solidária e de outras
+              ações, sustentamos o abrigo e seguimos firmes em dar uma segunda
+              chance a cada vida.
+            </p>
+            <a href="pages/nossa-missao.html" class="btn btn--secundario">
+              Conheça nossa história completa →
+            </a>
+          </div>
+
+          <!-- Coluna de imagem -->
+          <div class="quem-somos__imagem" data-animate="fade-up" data-animate-delay="2">
+            <img src="https://placedog.net/500/400?r=2" alt="Cão resgatado pela ONG Paraíso dos Pets descansando no abrigo">
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- ============== FIM SEÇÃO 3: QUEM SOMOS =============== -->
+
+
+    <!-- ============== SEÇÃO 4: COMO AJUDAR ================== -->
+    <!-- 4 cards com ícone, título, texto e botão -->
+    <section class="secao secao--bege" aria-label="Como você pode ajudar">
+      <div class="container">
+
+        <h2 class="secao__titulo" data-animate="fade-up">Como Você Pode Ajudar</h2>
+        <p class="secao__subtitulo" data-animate="fade-up">
+          Toda forma de ajuda faz diferença na vida dos nossos cãezinhos
+        </p>
+
+        <div class="como-ajudar__grid">
+
+          <!-- Card 1 — Apadrinhe -->
+          <div class="card-ajudar" data-animate="fade-up" data-animate-delay="1">
+            <div class="card-ajudar__icone">
+              <!-- SVG: Coração com patinha -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <h3>Apadrinhe um Pet</h3>
+            <p>
+              Com R$ 200/mês, você cobre todos os cuidados de um cão por um mês
+              inteiro: alimentação, vacinas, remédios e amor.
+            </p>
+            <a href="pages/doar.html" class="btn btn--primario btn--sm">Saiba mais</a>
+          </div>
+
+          <!-- Card 2 — Voluntariar -->
+          <div class="card-ajudar" data-animate="fade-up" data-animate-delay="2">
+            <div class="card-ajudar__icone">
+              <!-- SVG: Duas mãos -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16.5 3C14.76 3 13.09 3.81 12 5.09 10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z" opacity="0.3"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z" opacity="0"/>
+                <path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zM18.28 11.09c-.42-.36-.98-.59-1.54-.59h-1.43c-.56 0-1.12.23-1.54.59L12 13.24V22h8v-8.76l-1.72-2.15zM6 13.24V22h4v-8.76L8.23 11.09c-.42-.36-.98-.59-1.54-.59H5.26c-.56 0-1.12.23-1.54.59L2 13.24V22h4z"/>
+              </svg>
+            </div>
+            <h3>Seja Voluntário</h3>
+            <p>
+              Doe tempo e amor. Ajude nos banhos, passeios, feirinhas de adoção
+              e campanhas nas redes sociais.
+            </p>
+            <a href="pages/voluntario.html" class="btn btn--primario btn--sm">Quero me voluntariar</a>
+          </div>
+
+          <!-- Card 3 — Associar-se -->
+          <div class="card-ajudar" data-animate="fade-up" data-animate-delay="3">
+            <div class="card-ajudar__icone">
+              <!-- SVG: Estrela/emblema -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h3>Torne-se Associado</h3>
+            <p>
+              Com R$ 50/mês, você garante comida, remédios e vacinas de forma
+              contínua para os animais do abrigo.
+            </p>
+            <a href="pages/doar.html#associar" class="btn btn--primario btn--sm">Quero me associar</a>
+          </div>
+
+          <!-- Card 4 — Parcerias -->
+          <div class="card-ajudar" data-animate="fade-up" data-animate-delay="4">
+            <div class="card-ajudar__icone">
+              <!-- SVG: Aperto de mão / empresa -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.22 19.85c-.18.18-.5.18-.67 0l-3.08-3.08c-.18-.18-.18-.5 0-.67l.67-.67c.18-.18.5-.18.67 0L12 17.63l5.19-5.19c.18-.18.5-.18.67 0l.67.67c.18.18.18.5 0 .67l-6.31 6.07zM19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/>
+              </svg>
+            </div>
+            <h3>Parcerias Empresariais</h3>
+            <p>
+              Sua empresa pode transformar responsabilidade social em ação real.
+              Divulgamos sua marca como parceira oficial do Paraíso dos Pets.
+            </p>
+            <a href="pages/contato.html" class="btn btn--primario btn--sm">Propor parceria</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- ============ FIM SEÇÃO 4: COMO AJUDAR ================ -->
+
+
+    <!-- =========== SEÇÃO 5: ANIMAIS EM DESTAQUE ============= -->
+    <!-- 3 cards de animais disponíveis para adoção (renderizados via JS) -->
+    <section class="secao" aria-label="Animais em destaque para adoção">
+      <div class="container">
+
+        <h2 class="secao__titulo" data-animate="fade-up">Eles estão esperando por você</h2>
+        <p class="secao__subtitulo" data-animate="fade-up">
+          Conheça alguns dos nossos cãezinhos disponíveis para adoção
+        </p>
+
+        <!-- Grid de 3 cards — preenchido por JavaScript (adote.js) -->
+        <div class="grid-animais" id="grid-animais-destaque" data-animate="fade-up">
+          <!-- Os cards serão inseridos aqui pelo JS -->
+        </div>
+
+        <!-- Botão para ver todos -->
+        <div style="text-align: center; margin-top: var(--espaco-xl);">
+          <a href="pages/adote.html" class="btn btn--secundario" data-animate="fade-up">
+            Ver todos os animais →
+          </a>
+        </div>
+
+      </div>
+    </section>
+    <!-- ======== FIM SEÇÃO 5: ANIMAIS EM DESTAQUE ============ -->
+
+
+    <!-- ======== SEÇÃO 6: HISTÓRIAS DE ADOÇÃO (CARROSSEL) ==== -->
+    <!-- Carrossel automático com depoimentos de adotantes -->
+    <section class="secao secao--bege" aria-label="Histórias de adoção">
+      <div class="container">
+
+        <h2 class="secao__titulo" data-animate="fade-up">Histórias que aquecem o coração</h2>
+        <p class="secao__subtitulo" data-animate="fade-up">
+          Veja o que dizem as famílias que adotaram nossos cãezinhos
+        </p>
+
+        <!-- Componente de carrossel -->
+        <div class="carrossel" data-animate="fade-up">
+
+          <!-- Trilha de slides -->
+          <div class="carrossel__trilha">
+
+            <!-- Slide 1 -->
+            <div class="carrossel__slide">
+              <div class="carrossel__aspas">"</div>
+              <img src="https://placedog.net/200/200?r=20" alt="Bob, cão adotado por Maria" class="carrossel__foto">
+              <p class="carrossel__texto">
+                Adotei o Bob há 6 meses e ele mudou minha vida completamente.
+                Ele chegou assustado, mas hoje é o cão mais alegre e carinhoso
+                que já conheci. Obrigada, Paraíso dos Pets!
+              </p>
+              <p class="carrossel__autor">Maria Silva — Ribeirão Preto</p>
+              <p class="carrossel__data">Adoção em janeiro/2025</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carrossel__slide">
+              <div class="carrossel__aspas">"</div>
+              <img src="https://placedog.net/200/200?r=21" alt="Luna, cã adotada por Carlos" class="carrossel__foto">
+              <p class="carrossel__texto">
+                A Luna é a melhor companheira que eu poderia ter. Ela veio
+                debilitada, mas com muito amor e cuidado se recuperou totalmente.
+                Adotar é o ato mais bonito que existe.
+              </p>
+              <p class="carrossel__autor">Carlos Oliveira — Ribeirão Preto</p>
+              <p class="carrossel__data">Adoção em março/2025</p>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carrossel__slide">
+              <div class="carrossel__aspas">"</div>
+              <img src="https://placedog.net/200/200?r=22" alt="Thor, cão adotado pela família Lima" class="carrossel__foto">
+              <p class="carrossel__texto">
+                O Thor conquistou toda a família em minutos. Nossos filhos
+                adoram brincar com ele no quintal. Ele trouxe ainda mais alegria
+                para nossa casa. Recomendo a todos que considerem a adoção!
+              </p>
+              <p class="carrossel__autor">Família Lima — Sertãozinho</p>
+              <p class="carrossel__data">Adoção em novembro/2024</p>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carrossel__slide">
+              <div class="carrossel__aspas">"</div>
+              <img src="https://placedog.net/200/200?r=23" alt="Mel, cã adotada por Ana" class="carrossel__foto">
+              <p class="carrossel__texto">
+                A Mel era tão tímida que quase não saía da casinha. Hoje ela
+                corre pela casa inteira, dorme na minha cama e me espera na
+                porta todo dia. Gratidão por essa ONG incrível!
+              </p>
+              <p class="carrossel__autor">Ana Paula Mendes — Ribeirão Preto</p>
+              <p class="carrossel__data">Adoção em setembro/2024</p>
+            </div>
+
+          </div>
+
+          <!-- Seta de navegação: anterior -->
+          <button class="carrossel__seta carrossel__seta--esq" aria-label="História anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
+
+          <!-- Seta de navegação: próximo -->
+          <button class="carrossel__seta carrossel__seta--dir" aria-label="Próxima história">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+            </svg>
+          </button>
+
+          <!-- Dots indicadores de posição -->
+          <div class="carrossel__dots" aria-label="Indicadores de slide">
+            <!-- Dots são criados dinamicamente pelo JS (main.js) -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- ==== FIM SEÇÃO 6: HISTÓRIAS DE ADOÇÃO (CARROSSEL) ==== -->
+
+
+    <!-- ============= SEÇÃO 7: ÚLTIMAS DO BLOG =============== -->
+    <!-- Grid de 3 posts mais recentes -->
+    <section class="secao" aria-label="Últimas novidades do blog">
+      <div class="container">
+
+        <h2 class="secao__titulo" data-animate="fade-up">Novidades e Histórias</h2>
+        <p class="secao__subtitulo" data-animate="fade-up">
+          Fique por dentro de tudo que acontece no Paraíso dos Pets
+        </p>
+
+        <!-- Grid de 3 posts — preenchido por JavaScript (blog.js) -->
+        <div class="grid-posts" id="grid-posts-home" style="grid-template-columns: repeat(3, 1fr);" data-animate="fade-up">
+          <!-- Os cards de posts serão inseridos aqui pelo JS -->
+        </div>
+
+        <!-- Botão para ver todos os posts -->
+        <div style="text-align: center; margin-top: var(--espaco-xl);">
+          <a href="pages/blog.html" class="btn btn--secundario" data-animate="fade-up">
+            Ver todos os posts →
+          </a>
+        </div>
+
+      </div>
+    </section>
+    <!-- ========== FIM SEÇÃO 7: ÚLTIMAS DO BLOG ============== -->
+
+
+    <!-- ============= SEÇÃO 8: CTA DE DOAÇÃO ================= -->
+    <!-- Chamada para ação com imagem de fundo e overlay -->
+    <section class="cta-doacao" aria-label="Faça uma doação">
+
+      <!-- Imagem de fundo -->
+      <img src="https://placedog.net/1920/800?r=3" alt="Cão olhando para a câmera com olhar carinhoso" class="cta-doacao__bg" loading="lazy">
+
+      <!-- Overlay escuro laranja/marrom -->
+      <div class="cta-doacao__overlay" aria-hidden="true"></div>
+
+      <!-- Conteúdo textual -->
+      <div class="cta-doacao__conteudo container">
+        <h2 data-animate="fade-up">Cada doação alimenta, cuida e salva uma vida</h2>
+        <p data-animate="fade-up">Com apenas R$ 20, você alimenta um cão por uma semana inteira.</p>
+        <div class="cta-doacao__botoes" data-animate="fade-up">
+          <a href="pages/doar.html" class="btn btn--primario">
+            💛 Fazer uma doação
+          </a>
+          <a href="https://loja.ongparaisodospets.org.br" class="btn btn--branco" target="_blank" rel="noopener noreferrer">
+            Conhecer a Loja Solidária ↗
+          </a>
+        </div>
+      </div>
+
+    </section>
+    <!-- ========== FIM SEÇÃO 8: CTA DE DOAÇÃO ================ -->
+
+  </main>
+  <!-- ====================== FIM MAIN ======================== -->
+
+
+  <!-- ======================== FOOTER ======================== -->
+  <!-- Rodapé completo com links, redes sociais e informações legais -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+
+      <!-- Grid principal do footer: 4 colunas -->
+      <div class="footer__grid">
+
+        <!-- Coluna 1: Logo + slogan + redes -->
+        <div class="footer__brand">
+          <a href="index.html" class="logo-link">
+            <svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px;">
+              <ellipse cx="20" cy="14" rx="8" ry="10"/>
+              <ellipse cx="44" cy="14" rx="8" ry="10"/>
+              <ellipse cx="10" cy="32" rx="7" ry="9"/>
+              <ellipse cx="54" cy="32" rx="7" ry="9"/>
+              <path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/>
+            </svg>
+            <span class="logo-texto">Paraíso dos <span>Pets</span></span>
+          </a>
+          <p class="footer__slogan">
+            Ajudando quem não tem voz desde 2017.<br>
+            Ribeirão Preto, SP — Brasil.
+          </p>
+
+          <!-- Ícones de redes sociais -->
+          <div class="footer__redes">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/ongparaisodospets" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram da ONG">
+              <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+            </a>
+            <!-- Threads -->
+            <a href="https://www.threads.com/@ongparaisodospets" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="Threads da ONG">
+              <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.784 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.748-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.265 1.33-3.084.88-.78 2.104-1.237 3.542-1.324 1.054-.063 2.04.035 2.94.282-.086-.798-.344-1.413-.777-1.836-.545-.533-1.39-.807-2.505-.816l-.05-.002c-.906 0-1.74.254-2.353.716l-1.31-1.57c.96-.722 2.21-1.12 3.612-1.146h.075c1.682.015 3.015.555 3.965 1.608.836.926 1.303 2.175 1.392 3.716.533.282 1.023.62 1.466 1.012 1.105.978 1.834 2.31 2.11 3.858.347 1.945-.046 4.378-2.087 6.378-1.784 1.749-4.043 2.549-7.108 2.572zM10.79 15.49c.025.452.249.836.633 1.084.482.312 1.146.474 1.863.436.985-.054 1.74-.397 2.316-1.05.406-.462.707-1.08.907-1.856-.67-.171-1.386-.26-2.14-.218-.978.059-1.742.33-2.273.808-.384.345-.527.6-.506.796z"/></svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@ONGParaísodosPets" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube da ONG">
+              <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/5516999999999" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp da ONG">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Coluna 2: Links Rápidos -->
+        <div>
+          <h4 class="footer__titulo">Links Rápidos</h4>
+          <a href="pages/nossa-missao.html" class="footer__link">Nossa Missão</a>
+          <a href="pages/transparencia.html" class="footer__link">Transparência</a>
+          <a href="pages/blog.html" class="footer__link">Blog</a>
+          <a href="pages/faq.html" class="footer__link">FAQ</a>
+          <a href="pages/politica-privacidade.html" class="footer__link">Política de Privacidade</a>
+          <a href="pages/termos-de-uso.html" class="footer__link">Termos de Uso</a>
+        </div>
+
+        <!-- Coluna 3: Como Ajudar -->
+        <div>
+          <h4 class="footer__titulo">Como Ajudar</h4>
+          <a href="pages/doar.html" class="footer__link">Apadrinhar</a>
+          <a href="pages/voluntario.html" class="footer__link">Voluntariar</a>
+          <a href="pages/doar.html#associar" class="footer__link">Associar-se</a>
+          <a href="pages/contato.html" class="footer__link">Parcerias</a>
+          <a href="https://loja.ongparaisodospets.org.br" class="footer__link" target="_blank" rel="noopener noreferrer">Loja Solidária ↗</a>
+        </div>
+
+        <!-- Coluna 4: Contato -->
+        <div>
+          <h4 class="footer__titulo">Contato</h4>
+          <a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a>
+          <a href="https://www.instagram.com/ongparaisodospets" class="footer__link" target="_blank" rel="noopener noreferrer">@ongparaisodospets</a>
+          <a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a>
+          <a href="https://www.youtube.com/@ONGParaísodosPets" class="footer__link" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <p class="footer__link" style="cursor:default; margin-top:0.5rem;">
+            Seg a Sex: 9h–18h<br>Sábado: 9h–13h
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Barra inferior: copyright e links legais -->
+      <div class="footer__bottom">
+        <p>
+          ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br>
+          Este site respeita sua privacidade.
+          <a href="pages/politica-privacidade.html">Política de Privacidade</a> |
+          <a href="pages/termos-de-uso.html">Termos de Uso</a>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+  <!-- ===================== FIM FOOTER ======================= -->
+
+
+  <!-- ============ BOTÃO WHATSAPP FLUTUANTE ================== -->
+  <!-- Aparece após 2 segundos com animação de fade-in + pulse -->
+  <a href="https://wa.me/5516999999999" class="btn-whatsapp" id="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco pelo WhatsApp">
+    <!-- SVG: ícone do WhatsApp -->
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+    <!-- Tooltip "Fale conosco" -->
+    <span class="btn-whatsapp__tooltip">Fale conosco</span>
+  </a>
+  <!-- ========= FIM BOTÃO WHATSAPP FLUTUANTE ================= -->
+
+
+  <!-- ============== BOTÃO VOLTAR AO TOPO ==================== -->
+  <!-- Aparece após 400px de scroll -->
+  <button class="btn-topo" id="btn-topo" aria-label="Voltar ao topo da página">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+    </svg>
+  </button>
+  <!-- =========== FIM BOTÃO VOLTAR AO TOPO =================== -->
+
+
+  <!-- ============== BANNER DE COOKIES (LGPD) ================ -->
+  <!-- Aparece na primeira visita — controlado por cookies.js -->
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Preferências de cookies">
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__texto">
+        Usamos cookies para melhorar sua experiência no site. Ao continuar navegando,
+        você concorda com o uso de cookies essenciais. Veja nossa
+        <a href="pages/politica-privacidade.html">Política de Privacidade</a>.
+      </p>
+      <div class="cookie-banner__btns">
+        <button class="btn btn--primario btn--sm" id="cookie-aceitar-todos">Aceitar todos</button>
+        <button class="btn btn--branco btn--sm" id="cookie-aceitar-essenciais" style="color:var(--cor-branco);border-color:rgba(255,255,255,0.4);">Apenas essenciais</button>
+      </div>
+    </div>
+  </div>
+  <!-- =========== FIM BANNER DE COOKIES (LGPD) =============== -->
+
+
+  <!-- ======================== SCRIPTS ======================== -->
+  <!-- main.js: funcionalidades globais (header, menu, animações, etc.) -->
+  <script src="js/main.js"></script>
+  <!-- cookies.js: banner LGPD -->
+  <script src="js/cookies.js"></script>
+  <!-- adote.js: dados dos animais (para renderizar destaques na home) -->
+  <script src="js/adote.js"></script>
+  <!-- blog.js: dados dos posts (para renderizar os 3 mais recentes na home) -->
+  <script src="js/blog.js"></script>
+
+  <!-- Script inline: renderiza animais e posts em destaque na home -->
+  <script>
+    // ============================================================
+    // RENDERIZAÇÃO DA HOME — Animais em destaque e posts recentes
+    // Este bloco depende dos dados exportados por adote.js e blog.js
+    // ============================================================
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- ANIMAIS EM DESTAQUE ---
+      // Verifica se os dados de animais e a função existem
+      if (typeof ANIMAIS !== 'undefined') {
+        const gridDestaque = document.getElementById('grid-animais-destaque');
+        if (gridDestaque) {
+          // Seleciona 3 animais disponíveis para destaque
+          const destaques = ANIMAIS.filter(a => a.status === 'Disponível').slice(0, 3);
+          destaques.forEach(animal => {
+            gridDestaque.appendChild(criarCardAnimalHome(animal));
+          });
+        }
+      }
+
+      // --- POSTS RECENTES ---
+      // Verifica se os dados de posts existem
+      if (typeof POSTS !== 'undefined') {
+        const gridPosts = document.getElementById('grid-posts-home');
+        if (gridPosts) {
+          // Seleciona os 3 primeiros posts (mais recentes por data)
+          const recentes = POSTS.slice(0, 3);
+          recentes.forEach(post => {
+            gridPosts.appendChild(criarCardPostHome(post));
+          });
+        }
+      }
+    });
+
+    /**
+     * Cria um card simplificado de animal para a home.
+     * @param {Object} animal - Dados do animal
+     * @returns {HTMLElement} Card HTML do animal
+     */
+    function criarCardAnimalHome(animal) {
+      const card = document.createElement('div');
+      card.classList.add('card-animal');
+
+      // Determina a classe do badge de status
+      const statusClasse = {
+        'Disponível': 'badge--disponivel',
+        'Reservado': 'badge--reservado',
+        'Em Tratamento': 'badge--tratamento'
+      };
+
+      card.innerHTML = `
+        <div class="card-animal__foto-wrapper">
+          <img src="${animal.foto}" alt="${animal.nome}, ${animal.idade}, ${animal.porte}" class="card-animal__foto" loading="lazy">
+          <div class="card-animal__badges">
+            <span class="badge ${statusClasse[animal.status] || 'badge--disponivel'}">${animal.status}</span>
+            ${animal.novo ? '<span class="badge badge--novo">Novo</span>' : ''}
+          </div>
+        </div>
+        <div class="card-animal__info">
+          <h3 class="card-animal__nome">${animal.nome}</h3>
+          <div class="card-animal__detalhes">
+            <span class="card-animal__detalhe">${animal.idade}</span>
+            <span class="card-animal__detalhe">•</span>
+            <span class="card-animal__detalhe">${animal.porte}</span>
+            <span class="card-animal__detalhe">•</span>
+            <span class="card-animal__detalhe">${animal.sexo}</span>
+          </div>
+          <div class="card-animal__icones">
+            ${animal.vacinado ? '<span class="card-animal__icone-info"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Vacinado</span>' : ''}
+            ${animal.castrado ? '<span class="card-animal__icone-info"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Castrado</span>' : ''}
+          </div>
+          <p class="card-animal__descricao">${animal.descricao}</p>
+          <a href="pages/ficha-adocao.html?animal=${animal.id}" class="btn btn--primario btn--sm card-animal__btn">Quero adotar</a>
+        </div>
+      `;
+
+      return card;
+    }
+
+    /**
+     * Cria um card de post simplificado para a home.
+     * @param {Object} post - Dados do post
+     * @returns {HTMLElement} Card HTML do post
+     */
+    function criarCardPostHome(post) {
+      const card = document.createElement('div');
+      card.classList.add('card-post');
+
+      card.innerHTML = `
+        <div class="card-post__imagem-wrapper">
+          <img src="${post.imagem}" alt="${post.titulo}" class="card-post__imagem" loading="lazy">
+        </div>
+        <div class="card-post__corpo">
+          <div class="card-post__meta">
+            <span class="badge badge--categoria">${post.categoria}</span>
+            <span>${post.data}</span>
+            <span>•</span>
+            <span>${post.tempoLeitura}</span>
+          </div>
+          <a href="pages/post.html?id=${post.id}">
+            <h3 class="card-post__titulo">${post.titulo}</h3>
+          </a>
+          <p class="card-post__resumo">${post.resumo}</p>
+          <div class="card-post__footer">
+            <a href="pages/post.html?id=${post.id}" class="btn btn--primario btn--sm">Ler Mais</a>
+          </div>
+        </div>
+      `;
+
+      return card;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,3680 @@
+/* ============================================================
+   ARQUIVO: style.css
+   DESCRIÇÃO: Estilos globais do site ONG Paraíso dos Pets
+   ÚLTIMA ATUALIZAÇÃO: 2025
+
+   ÍNDICE:
+     1. Variáveis CSS (Custom Properties)
+     2. Reset e Base
+     3. Tipografia
+     4. Links e Acessibilidade
+     5. Utilitários (.container, .btn, .badge, .sr-only)
+     6. Header e Navegação
+     7. Submenu Dropdown
+     8. Hero Section
+     9. Seção Números de Impacto
+    10. Seção Quem Somos
+    11. Cards de Como Ajudar
+    12. Grid de Animais
+    13. Lightbox Modal
+    14. Carrossel de Histórias
+    15. Seção Blog / Posts
+    16. CTA de Doação
+    17. Footer
+    18. Botão WhatsApp Flutuante
+    19. Botão Voltar ao Topo
+    20. Toast Notifications
+    21. Banner de Cookies (LGPD)
+    22. Formulários (inputs, selects, textareas, labels, erros)
+    23. Stepper (ficha de adoção)
+    24. Tabela de Transparência
+    25. Gráfico de Barras (transparência)
+    26. Gráfico de Pizza (transparência)
+    27. Accordion FAQ
+    28. Página Banner Interna
+    29. Linha do Tempo
+    30. Cards de Equipe
+    31. Página 404
+    32. Página Doação
+    33. Página Redes Sociais
+    34. Animações (@keyframes e classes .animate-*)
+   ============================================================ */
+
+/* === Importação de fontes do Google Fonts === */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ============================================================
+   1. VARIÁVEIS CSS — Paleta de cores, tipografia e espaçamentos
+      Altere aqui para mudar o visual de todo o site de uma vez.
+   ============================================================ */
+:root {
+  /* === CORES PRINCIPAIS === */
+  --cor-primaria:        #E87722;  /* Laranja — botões, destaques, CTAs */
+  --cor-primaria-hover:  #C9611A;  /* Laranja escuro — estado hover */
+  --cor-primaria-light:  #FDF0E6;  /* Laranja pastel — fundos suaves */
+
+  --cor-secundaria:      #8B5E3C;  /* Marrom caramelo — títulos */
+  --cor-secundaria-dark: #5C3D22;  /* Marrom escuro — texto sobre claro */
+
+  --cor-verde:           #4A8F5C;  /* Verde — status disponível, sucesso */
+  --cor-verde-light:     #E8F5EC;  /* Verde claro — badges */
+
+  /* === NEUTROS === */
+  --cor-branco:          #FFFFFF;
+  --cor-bege:            #FAF7F4;  /* Fundo alternativo de seções */
+  --cor-bege-medio:      #F0EBE3;  /* Bordas e divisores suaves */
+  --cor-cinza-claro:     #E8E4DF;
+  --cor-cinza-medio:     #9B8F85;  /* Texto secundário, legendas */
+  --cor-texto:           #2D2520;  /* Texto principal — marrom muito escuro */
+  --cor-fundo-escuro:    #1A1208;  /* Footer e seções escuras */
+
+  /* === ESTADO === */
+  --cor-erro:            #D94F3D;
+  --cor-aviso:           #E8A61A;
+  --cor-sucesso:         #4A8F5C;
+  --cor-info:            #2E6DA4;
+
+  /* === TIPOGRAFIA === */
+  --fonte-titulo:   'Playfair Display', Georgia, serif;
+  --fonte-corpo:    'Nunito', 'Helvetica Neue', sans-serif;
+
+  --tamanho-xs:   0.75rem;   /*  12px */
+  --tamanho-sm:   0.875rem;  /*  14px */
+  --tamanho-base: 1rem;      /*  16px */
+  --tamanho-lg:   1.125rem;  /*  18px */
+  --tamanho-xl:   1.25rem;   /*  20px */
+  --tamanho-2xl:  1.5rem;    /*  24px */
+  --tamanho-3xl:  1.875rem;  /*  30px */
+  --tamanho-4xl:  2.25rem;   /*  36px */
+  --tamanho-5xl:  3rem;      /*  48px */
+
+  /* === ESPAÇAMENTO === */
+  --espaco-xs:   0.5rem;
+  --espaco-sm:   1rem;
+  --espaco-md:   1.5rem;
+  --espaco-lg:   2rem;
+  --espaco-xl:   3rem;
+  --espaco-2xl:  5rem;
+  --espaco-3xl:  8rem;
+
+  /* === BORDAS E SOMBRAS === */
+  --raio-sm:    8px;
+  --raio-md:    16px;
+  --raio-lg:    24px;
+  --raio-full:  9999px;
+
+  --sombra-sm:  0 2px 8px rgba(0,0,0,0.08);
+  --sombra-md:  0 4px 20px rgba(0,0,0,0.12);
+  --sombra-lg:  0 8px 40px rgba(0,0,0,0.16);
+
+  /* === TRANSIÇÕES === */
+  --transicao: all 0.3s ease;
+}
+
+/* ============================================================
+   2. RESET E BASE — Remove inconsistências entre navegadores
+   ============================================================ */
+
+/* Box-sizing universal — padding e border incluídos no tamanho */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Elementos semânticos HTML5 — compatibilidade com navegadores antigos */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+  display: block;
+}
+
+/* Scroll suave global */
+html {
+  scroll-behavior: smooth;
+  font-size: 100%; /* Base de 16px */
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  font-size: var(--tamanho-base);
+  line-height: 1.7;
+  color: var(--cor-texto);
+  background-color: var(--cor-branco);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Evita scroll horizontal */
+  overflow-x: hidden;
+}
+
+/* Remove estilos padrão de listas */
+ul, ol {
+  list-style: none;
+}
+
+/* Imagens responsivas por padrão */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remove sublinhado padrão de links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Botões sem estilo padrão */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Tabelas coerentes */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* ============================================================
+   3. TIPOGRAFIA — Estilos de títulos e textos
+   ============================================================ */
+
+/* Título principal — usado no hero e em destaques de página */
+h1 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  color: var(--cor-secundaria-dark);
+}
+
+/* Títulos de seção */
+h2 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.3;
+  color: var(--cor-secundaria);
+}
+
+/* Subtítulos e títulos de card */
+h3 {
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.4;
+  color: var(--cor-secundaria-dark);
+}
+
+/* Subtítulos menores */
+h4 {
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  font-size: var(--tamanho-lg);
+  color: var(--cor-secundaria);
+}
+
+/* Parágrafo padrão */
+p {
+  margin-bottom: 1rem;
+  color: var(--cor-texto);
+}
+
+/* Texto forte/negrito */
+strong {
+  font-weight: 700;
+}
+
+/* Texto pequeno (legendas, datas) */
+small, .texto-pequeno {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+}
+
+/* ============================================================
+   4. LINKS E ACESSIBILIDADE
+   ============================================================ */
+
+/* Links em texto corrido */
+a:not(.btn):not(.nav-link):not(.logo-link) {
+  color: var(--cor-primaria);
+  transition: var(--transicao);
+}
+
+a:not(.btn):not(.nav-link):not(.logo-link):hover {
+  color: var(--cor-primaria-hover);
+  text-decoration: underline;
+}
+
+/* Foco visível — acessibilidade de navegação por teclado
+   Nunca remover o outline globalmente! */
+:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 2px;
+  border-radius: var(--raio-sm);
+}
+
+/* Remove outline apenas de cliques de mouse (não do teclado) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================================
+   5. UTILITÁRIOS — Classes reutilizáveis em todo o site
+   ============================================================ */
+
+/* Container centralizado — largura máxima com padding lateral */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--espaco-md);
+}
+
+/* Container menor para textos longos (blog, políticas) */
+.container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--espaco-md);
+}
+
+/* Seção padrão — espaçamento vertical generoso */
+.secao {
+  padding: var(--espaco-2xl) 0;
+}
+
+/* Seção com fundo bege alternado */
+.secao--bege {
+  background-color: var(--cor-bege);
+}
+
+/* Seção com fundo escuro (footer, CTA) */
+.secao--escura {
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-branco);
+}
+
+/* Título de seção centralizado */
+.secao__titulo {
+  text-align: center;
+  margin-bottom: var(--espaco-xs);
+}
+
+/* Subtítulo de seção */
+.secao__subtitulo {
+  text-align: center;
+  color: var(--cor-cinza-medio);
+  font-size: var(--tamanho-lg);
+  margin-bottom: var(--espaco-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- BOTÕES ---- */
+
+/* Botão primário — laranja com texto branco, formato pílula */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  font-size: var(--tamanho-base);
+  border-radius: var(--raio-full);
+  cursor: pointer;
+  transition: var(--transicao);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.btn--primario {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  border: 2px solid var(--cor-primaria);
+}
+
+.btn--primario:hover {
+  background-color: var(--cor-primaria-hover);
+  border-color: var(--cor-primaria-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-md);
+}
+
+/* Botão secundário — outline laranja, fundo transparente */
+.btn--secundario {
+  background-color: transparent;
+  color: var(--cor-primaria);
+  border: 2px solid var(--cor-primaria);
+}
+
+.btn--secundario:hover {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  transform: translateY(-2px);
+}
+
+/* Botão branco (outline) — usado sobre fundos escuros */
+.btn--branco {
+  background-color: transparent;
+  color: var(--cor-branco);
+  border: 2px solid var(--cor-branco);
+}
+
+.btn--branco:hover {
+  background-color: var(--cor-branco);
+  color: var(--cor-texto);
+  transform: translateY(-2px);
+}
+
+/* Botão pequeno — usado dentro de cards */
+.btn--sm {
+  padding: 0.6rem 1.4rem;
+  font-size: var(--tamanho-sm);
+}
+
+/* Botão desabilitado */
+.btn:disabled,
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---- BADGES ---- */
+
+/* Badge genérica */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.75rem;
+  font-size: var(--tamanho-xs);
+  font-weight: 700;
+  border-radius: var(--raio-full);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Badge de status: disponível (verde) */
+.badge--disponivel {
+  background-color: var(--cor-verde-light);
+  color: var(--cor-verde);
+}
+
+/* Badge de status: reservado (laranja) */
+.badge--reservado {
+  background-color: var(--cor-primaria-light);
+  color: var(--cor-primaria);
+}
+
+/* Badge de status: em tratamento (aviso) */
+.badge--tratamento {
+  background-color: #FFF8E1;
+  color: var(--cor-aviso);
+}
+
+/* Badge "Novo" */
+.badge--novo {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+/* Badge de categoria (blog) */
+.badge--categoria {
+  background-color: var(--cor-bege-medio);
+  color: var(--cor-secundaria-dark);
+}
+
+/* ---- ACESSIBILIDADE ---- */
+
+/* Esconde visualmente mas mantém acessível para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   6. HEADER E NAVEGAÇÃO — Barra fixa no topo
+   ============================================================ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: var(--transicao);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Estado após scroll — fundo sólido com sombra */
+.header.scrolled {
+  padding: 0.6rem 0;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--sombra-sm);
+}
+
+/* Container interno do header — flex para alinhar logo, menu e botão */
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--espaco-md);
+}
+
+/* Logo — ícone de patinha + texto */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+/* Ícone SVG da patinha no logo */
+.logo-link svg {
+  width: 36px;
+  height: 36px;
+  fill: var(--cor-primaria);
+  transition: var(--transicao);
+}
+
+.logo-link:hover svg {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+/* Texto do logo */
+.logo-texto {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tamanho-2xl);
+  font-weight: 700;
+  color: var(--cor-secundaria-dark);
+  line-height: 1;
+}
+
+.logo-texto span {
+  color: var(--cor-primaria);
+}
+
+/* Navegação principal */
+.nav-principal {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Links do menu principal */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: var(--tamanho-sm);
+  color: var(--cor-texto);
+  border-radius: var(--raio-sm);
+  transition: var(--transicao);
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.ativo {
+  color: var(--cor-primaria);
+  background-color: var(--cor-primaria-light);
+}
+
+/* Ícone de seta para links com submenu */
+.nav-link__seta {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* Botão DOAR no header — destaque especial */
+/* No desktop: apenas #btn-doar-desktop é exibido (fora do nav)
+   No mobile: apenas o .btn-doar-header dentro do nav é exibido */
+.nav-principal .btn-doar-header {
+  display: none; /* Escondido no desktop — visível apenas no mobile via responsive.css */
+}
+
+.btn-doar-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.6rem;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  font-weight: 700;
+  font-size: var(--tamanho-sm);
+  border-radius: var(--raio-full);
+  transition: var(--transicao);
+}
+
+.btn-doar-header:hover {
+  background-color: var(--cor-primaria-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-md);
+}
+
+.btn-doar-header svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Hamburguer — menu mobile (oculto no desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+/* Linhas do ícone hamburguer */
+.hamburger__linha {
+  width: 24px;
+  height: 2px;
+  background-color: var(--cor-texto);
+  border-radius: 2px;
+  transition: var(--transicao);
+}
+
+/* Espaço entre as linhas */
+.hamburger__linha + .hamburger__linha {
+  margin-top: 6px;
+}
+
+/* Animação: hamburguer → X quando ativo */
+.hamburger.ativo .hamburger__linha:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.ativo .hamburger__linha:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburger.ativo .hamburger__linha:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Overlay escuro atrás do menu mobile */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-overlay.ativo {
+  display: block;
+  opacity: 1;
+}
+
+/* Badge de favoritos no header */
+.header-fav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  font-size: 0.65rem;
+  font-weight: 800;
+  border-radius: 50%;
+  margin-left: 0.25rem;
+}
+
+/* ============================================================
+   7. SUBMENU DROPDOWN — Aparece ao hover/click em "Adote"
+   ============================================================ */
+
+/* Container do item com submenu */
+.nav-item--submenu {
+  position: relative;
+}
+
+/* Dropdown do submenu */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-sm);
+  box-shadow: var(--sombra-md);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: var(--transicao);
+  z-index: 100;
+}
+
+/* Mostra o submenu no hover (desktop) */
+.nav-item--submenu:hover .submenu,
+.nav-item--submenu.ativo .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Rotaciona a seta quando submenu está aberto */
+.nav-item--submenu:hover .nav-link__seta,
+.nav-item--submenu.ativo .nav-link__seta {
+  transform: rotate(180deg);
+}
+
+/* Links dentro do submenu */
+.submenu__link {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  font-size: var(--tamanho-sm);
+  color: var(--cor-texto);
+  transition: var(--transicao);
+}
+
+.submenu__link:hover {
+  background-color: var(--cor-primaria-light);
+  color: var(--cor-primaria);
+  padding-left: 1.5rem;
+}
+
+/* ============================================================
+   8. HERO SECTION — Banner principal da home
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* Compensa o header fixo */
+  margin-top: 0;
+}
+
+/* Imagem de fundo do hero */
+.hero__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Overlay gradiente sobre a imagem */
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26,18,8,0.85) 0%, rgba(139,94,60,0.6) 100%);
+  z-index: 1;
+}
+
+/* Conteúdo textual do hero */
+.hero__conteudo {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+  padding: var(--espaco-2xl) var(--espaco-md);
+  color: var(--cor-branco);
+}
+
+/* Badge de localização no hero */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  background-color: rgba(255,255,255,0.15);
+  border-radius: var(--raio-full);
+  font-size: var(--tamanho-sm);
+  font-weight: 600;
+  margin-bottom: var(--espaco-md);
+  backdrop-filter: blur(4px);
+}
+
+/* Título principal do hero */
+.hero__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: var(--espaco-sm);
+  color: var(--cor-branco);
+}
+
+/* Subtítulo do hero */
+.hero__subtitulo {
+  font-size: var(--tamanho-2xl);
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: var(--espaco-sm);
+  color: var(--cor-branco);
+}
+
+/* Parágrafo do hero */
+.hero__texto {
+  font-size: var(--tamanho-lg);
+  opacity: 0.85;
+  margin-bottom: var(--espaco-lg);
+  line-height: 1.8;
+}
+
+/* Grupo de botões do hero */
+.hero__botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-sm);
+}
+
+/* Indicador de scroll no rodapé do hero */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.7);
+  font-size: var(--tamanho-xs);
+  animation: bounce-down 2s infinite;
+}
+
+.hero__scroll-indicator svg {
+  width: 24px;
+  height: 24px;
+  fill: rgba(255,255,255,0.7);
+}
+
+/* ============================================================
+   9. SEÇÃO NÚMEROS DE IMPACTO — Contadores animados
+   ============================================================ */
+
+.numeros-impacto {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: var(--espaco-xl) 0;
+}
+
+/* Grid dos 4 contadores */
+.numeros-impacto__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espaco-lg);
+  text-align: center;
+}
+
+/* Cada item do contador */
+.numero-item {
+  padding: var(--espaco-sm);
+}
+
+/* Número grande animado */
+.numero-item__valor {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tamanho-5xl);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+/* Prefixo "+" antes do número */
+.numero-item__valor::before {
+  content: '+';
+}
+
+/* Descrição abaixo do número */
+.numero-item__label {
+  font-size: var(--tamanho-sm);
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+/* ============================================================
+   10. SEÇÃO QUEM SOMOS — Texto + imagem lado a lado
+   ============================================================ */
+
+.quem-somos__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--espaco-xl);
+  align-items: center;
+}
+
+/* Imagem com borda arredondada */
+.quem-somos__imagem {
+  border-radius: var(--raio-lg);
+  overflow: hidden;
+  box-shadow: var(--sombra-md);
+}
+
+.quem-somos__imagem img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Texto da seção */
+.quem-somos__texto h2 {
+  margin-bottom: var(--espaco-sm);
+}
+
+.quem-somos__texto p {
+  color: var(--cor-cinza-medio);
+  margin-bottom: var(--espaco-md);
+}
+
+/* ============================================================
+   11. CARDS DE COMO AJUDAR — Grid 2x2 com ícone, título e texto
+   ============================================================ */
+
+.como-ajudar__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espaco-lg);
+}
+
+/* Card individual */
+.card-ajudar {
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-lg);
+  box-shadow: var(--sombra-sm);
+  transition: var(--transicao);
+  text-align: center;
+}
+
+.card-ajudar:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-md);
+}
+
+/* Ícone SVG do card */
+.card-ajudar__icone {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--espaco-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor-primaria-light);
+  border-radius: var(--raio-md);
+  padding: 14px;
+}
+
+.card-ajudar__icone svg {
+  width: 36px;
+  height: 36px;
+  fill: var(--cor-primaria);
+}
+
+/* Título do card */
+.card-ajudar h3 {
+  margin-bottom: var(--espaco-xs);
+}
+
+/* Texto do card */
+.card-ajudar p {
+  color: var(--cor-cinza-medio);
+  font-size: var(--tamanho-sm);
+  margin-bottom: var(--espaco-md);
+}
+
+/* ============================================================
+   12. GRID DE ANIMAIS — Cards de pets para adoção
+   ============================================================ */
+
+/* Barra de filtros */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-xs);
+  margin-bottom: var(--espaco-lg);
+  align-items: center;
+}
+
+/* Grupo de filtro (porte, sexo, etc.) */
+.filtros__grupo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.filtros__grupo label {
+  font-size: var(--tamanho-sm);
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  margin-right: 0.5rem;
+}
+
+/* Botão/pill de filtro */
+.filtro-btn {
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-full);
+  font-size: var(--tamanho-xs);
+  font-weight: 600;
+  color: var(--cor-cinza-medio);
+  cursor: pointer;
+  transition: var(--transicao);
+  background: var(--cor-branco);
+}
+
+.filtro-btn:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+
+.filtro-btn.ativo {
+  background-color: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+/* Campo de busca por nome */
+.filtros__busca {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-full);
+  font-family: var(--fonte-corpo);
+  font-size: var(--tamanho-sm);
+  outline: none;
+  transition: var(--transicao);
+  width: 200px;
+}
+
+.filtros__busca:focus {
+  border-color: var(--cor-primaria);
+}
+
+/* Contador de resultados */
+.filtros__contador {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  font-weight: 600;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Grid de cards de animais */
+.grid-animais {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco-lg);
+}
+
+/* Card de animal individual */
+.card-animal {
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-md);
+  overflow: hidden;
+  box-shadow: var(--sombra-sm);
+  transition: var(--transicao);
+  position: relative;
+}
+
+.card-animal:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-md);
+}
+
+/* Área da foto do animal */
+.card-animal__foto-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 240px;
+  cursor: pointer;
+}
+
+.card-animal__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card-animal:hover .card-animal__foto {
+  transform: scale(1.05);
+}
+
+/* Badge de status sobre a foto */
+.card-animal__badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* Botão de favorito (coração) — canto superior direito da foto */
+.card-animal__favorito {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transicao);
+  border: none;
+}
+
+.card-animal__favorito svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--cor-cinza-medio);
+  stroke-width: 2;
+  transition: var(--transicao);
+}
+
+/* Estado ativo do coração (favoritado) */
+.card-animal__favorito.ativo svg {
+  fill: var(--cor-erro);
+  stroke: var(--cor-erro);
+}
+
+.card-animal__favorito:hover {
+  transform: scale(1.1);
+  background-color: var(--cor-branco);
+}
+
+/* Corpo do card com informações do animal */
+.card-animal__info {
+  padding: var(--espaco-md);
+}
+
+/* Nome do animal */
+.card-animal__nome {
+  font-size: var(--tamanho-xl);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+/* Detalhes (idade, porte, sexo) */
+.card-animal__detalhes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--tamanho-xs);
+  color: var(--cor-cinza-medio);
+}
+
+.card-animal__detalhe {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* Ícones de castrado/vacinado */
+.card-animal__icones {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-animal__icone-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: var(--tamanho-xs);
+  color: var(--cor-verde);
+  font-weight: 600;
+}
+
+.card-animal__icone-info svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--cor-verde);
+}
+
+/* Descrição truncada (2 linhas) */
+.card-animal__descricao {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: var(--espaco-sm);
+}
+
+/* Botão "Quero adotar" dentro do card */
+.card-animal__btn {
+  width: 100%;
+}
+
+/* Seção colapsável de favoritos */
+.favoritos-secao {
+  margin-bottom: var(--espaco-lg);
+  padding: var(--espaco-md);
+  background-color: var(--cor-primaria-light);
+  border-radius: var(--raio-md);
+  display: none; /* Escondido até ter favoritos */
+}
+
+.favoritos-secao.ativo {
+  display: block;
+}
+
+.favoritos-secao__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: var(--espaco-sm);
+}
+
+.favoritos-secao__titulo {
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+.favoritos-secao__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espaco-sm);
+}
+
+/* ============================================================
+   13. LIGHTBOX MODAL — Foto ampliada do animal
+   ============================================================ */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estado ativo (visível) */
+.lightbox.ativo {
+  display: flex;
+}
+
+/* Fundo escuro com blur */
+.lightbox__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+/* Conteúdo interno do lightbox */
+.lightbox__conteudo {
+  position: relative;
+  z-index: 1;
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-md);
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: fadeInScale 0.3s ease;
+}
+
+/* Botão de fechar o lightbox */
+.lightbox__fechar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  border: none;
+  transition: var(--transicao);
+}
+
+.lightbox__fechar:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.lightbox__fechar svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--cor-branco);
+}
+
+/* Imagem dentro do lightbox */
+.lightbox__imagem {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+/* Informações do animal dentro do lightbox */
+.lightbox__info {
+  padding: var(--espaco-lg);
+}
+
+.lightbox__nome {
+  font-size: var(--tamanho-3xl);
+  margin-bottom: var(--espaco-xs);
+}
+
+.lightbox__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-sm);
+  margin-bottom: var(--espaco-sm);
+  color: var(--cor-cinza-medio);
+  font-size: var(--tamanho-sm);
+}
+
+.lightbox__descricao {
+  margin-bottom: var(--espaco-sm);
+  line-height: 1.8;
+}
+
+.lightbox__historico {
+  padding: var(--espaco-sm);
+  background-color: var(--cor-bege);
+  border-radius: var(--raio-sm);
+  margin-bottom: var(--espaco-md);
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+}
+
+.lightbox__historico strong {
+  color: var(--cor-texto);
+}
+
+/* ============================================================
+   14. CARROSSEL DE HISTÓRIAS — Depoimentos de adoção
+   ============================================================ */
+
+.carrossel {
+  position: relative;
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Trilha de slides */
+.carrossel__trilha {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+/* Cada slide */
+.carrossel__slide {
+  min-width: 100%;
+  padding: var(--espaco-lg);
+  text-align: center;
+}
+
+/* Foto do pet ou adotante */
+.carrossel__foto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--espaco-sm);
+  border: 4px solid var(--cor-primaria-light);
+}
+
+/* Depoimento */
+.carrossel__texto {
+  font-size: var(--tamanho-lg);
+  font-style: italic;
+  color: var(--cor-texto);
+  margin-bottom: var(--espaco-sm);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+}
+
+/* Ícone de aspas decorativo */
+.carrossel__aspas {
+  font-size: 3rem;
+  color: var(--cor-primaria);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+/* Nome do adotante */
+.carrossel__autor {
+  font-weight: 700;
+  color: var(--cor-secundaria);
+}
+
+/* Data */
+.carrossel__data {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+}
+
+/* Setas de navegação do carrossel */
+.carrossel__seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor-branco);
+  border-radius: 50%;
+  box-shadow: var(--sombra-sm);
+  cursor: pointer;
+  border: none;
+  transition: var(--transicao);
+  z-index: 5;
+}
+
+.carrossel__seta:hover {
+  background-color: var(--cor-primaria);
+}
+
+.carrossel__seta:hover svg {
+  fill: var(--cor-branco);
+}
+
+.carrossel__seta svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--cor-texto);
+  transition: var(--transicao);
+}
+
+.carrossel__seta--esq {
+  left: 0;
+}
+
+.carrossel__seta--dir {
+  right: 0;
+}
+
+/* Dots indicadores de posição */
+.carrossel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: var(--espaco-sm);
+}
+
+.carrossel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--cor-cinza-claro);
+  cursor: pointer;
+  border: none;
+  transition: var(--transicao);
+}
+
+.carrossel__dot.ativo {
+  background-color: var(--cor-primaria);
+  transform: scale(1.2);
+}
+
+/* ============================================================
+   15. SEÇÃO BLOG / POSTS — Cards de artigos
+   ============================================================ */
+
+/* Layout do blog: principal + sidebar */
+.blog-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--espaco-xl);
+}
+
+/* Grid de posts */
+.grid-posts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espaco-lg);
+}
+
+/* Card de post */
+.card-post {
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-md);
+  overflow: hidden;
+  box-shadow: var(--sombra-sm);
+  transition: var(--transicao);
+}
+
+.card-post:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-md);
+}
+
+/* Imagem de destaque do post */
+.card-post__imagem-wrapper {
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-post__imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card-post:hover .card-post__imagem {
+  transform: scale(1.05);
+}
+
+/* Corpo do card de post */
+.card-post__corpo {
+  padding: var(--espaco-md);
+}
+
+/* Meta do post (data, tempo de leitura) */
+.card-post__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-sm);
+  margin-bottom: 0.5rem;
+  font-size: var(--tamanho-xs);
+  color: var(--cor-cinza-medio);
+}
+
+/* Título do post */
+.card-post__titulo {
+  font-size: var(--tamanho-lg);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--cor-texto);
+  transition: var(--transicao);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-post__titulo:hover {
+  color: var(--cor-primaria);
+}
+
+/* Resumo do post */
+.card-post__resumo {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: var(--espaco-sm);
+}
+
+/* Footer do card (botões) */
+.card-post__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-post__compartilhar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-post__share-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--cor-bege);
+  cursor: pointer;
+  transition: var(--transicao);
+  border: none;
+}
+
+.card-post__share-btn:hover {
+  background-color: var(--cor-primaria-light);
+}
+
+.card-post__share-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--cor-cinza-medio);
+}
+
+/* ---- SIDEBAR DO BLOG ---- */
+
+.blog-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-lg);
+}
+
+/* Widget da sidebar */
+.sidebar-widget {
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-md);
+  box-shadow: var(--sombra-sm);
+}
+
+.sidebar-widget__titulo {
+  font-size: var(--tamanho-lg);
+  font-weight: 700;
+  margin-bottom: var(--espaco-sm);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--cor-bege-medio);
+}
+
+/* Lista de posts recentes na sidebar */
+.sidebar-post {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--cor-bege-medio);
+  transition: var(--transicao);
+}
+
+.sidebar-post:last-child {
+  border-bottom: none;
+}
+
+.sidebar-post:hover {
+  opacity: 0.8;
+}
+
+.sidebar-post__thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--raio-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.sidebar-post__titulo {
+  font-size: var(--tamanho-sm);
+  font-weight: 600;
+  color: var(--cor-texto);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sidebar-post__data {
+  font-size: var(--tamanho-xs);
+  color: var(--cor-cinza-medio);
+}
+
+/* Lista de categorias na sidebar */
+.sidebar-categoria {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--cor-bege-medio);
+  font-size: var(--tamanho-sm);
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition: var(--transicao);
+}
+
+.sidebar-categoria:hover {
+  color: var(--cor-primaria);
+}
+
+.sidebar-categoria:last-child {
+  border-bottom: none;
+}
+
+.sidebar-categoria__count {
+  background-color: var(--cor-bege);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--raio-full);
+  font-size: var(--tamanho-xs);
+  font-weight: 700;
+}
+
+/* CTA na sidebar */
+.sidebar-cta {
+  background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-hover));
+  color: var(--cor-branco);
+  text-align: center;
+  border-radius: var(--raio-md);
+  padding: var(--espaco-lg);
+}
+
+.sidebar-cta h3 {
+  color: var(--cor-branco);
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-cta p {
+  color: rgba(255,255,255,0.9);
+  font-size: var(--tamanho-sm);
+  margin-bottom: var(--espaco-sm);
+}
+
+/* ---- TABS DE CATEGORIA ---- */
+.tabs-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--espaco-lg);
+}
+
+.tab-btn {
+  padding: 0.5rem 1.2rem;
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-full);
+  font-size: var(--tamanho-sm);
+  font-weight: 600;
+  color: var(--cor-cinza-medio);
+  cursor: pointer;
+  transition: var(--transicao);
+  background: var(--cor-branco);
+}
+
+.tab-btn:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+
+.tab-btn.ativo {
+  background-color: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+/* ---- PAGINAÇÃO ---- */
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--espaco-xl);
+}
+
+.paginacao__btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-sm);
+  font-size: var(--tamanho-sm);
+  font-weight: 600;
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition: var(--transicao);
+  background: var(--cor-branco);
+}
+
+.paginacao__btn:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+
+.paginacao__btn.ativo {
+  background-color: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+.paginacao__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---- POST INDIVIDUAL ---- */
+
+/* Barra de progresso de leitura no topo */
+.barra-progresso-leitura {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--cor-primaria);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* Hero do post individual */
+.post-hero {
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 70px;
+}
+
+.post-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-hero__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--espaco-xl) var(--espaco-md);
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: var(--cor-branco);
+}
+
+/* Conteúdo do artigo */
+.artigo-conteudo {
+  max-width: 750px;
+  margin: var(--espaco-xl) auto;
+  padding: 0 var(--espaco-md);
+}
+
+.artigo-conteudo h2 {
+  margin-top: var(--espaco-lg);
+  margin-bottom: var(--espaco-sm);
+}
+
+.artigo-conteudo h3 {
+  margin-top: var(--espaco-md);
+  margin-bottom: var(--espaco-xs);
+}
+
+.artigo-conteudo p {
+  margin-bottom: var(--espaco-sm);
+  line-height: 1.9;
+}
+
+.artigo-conteudo ul, .artigo-conteudo ol {
+  margin-left: var(--espaco-md);
+  margin-bottom: var(--espaco-sm);
+}
+
+.artigo-conteudo li {
+  margin-bottom: 0.5rem;
+  list-style: disc;
+}
+
+.artigo-conteudo blockquote {
+  border-left: 4px solid var(--cor-primaria);
+  padding: var(--espaco-sm) var(--espaco-md);
+  margin: var(--espaco-md) 0;
+  background-color: var(--cor-primaria-light);
+  border-radius: 0 var(--raio-sm) var(--raio-sm) 0;
+  font-style: italic;
+}
+
+/* Botões de compartilhamento */
+.compartilhar-btns {
+  display: flex;
+  gap: var(--espaco-sm);
+  margin-top: var(--espaco-lg);
+  padding-top: var(--espaco-lg);
+  border-top: 1px solid var(--cor-cinza-claro);
+}
+
+/* Posts relacionados */
+.posts-relacionados {
+  margin-top: var(--espaco-2xl);
+  padding-top: var(--espaco-xl);
+  border-top: 1px solid var(--cor-cinza-claro);
+}
+
+.posts-relacionados h2 {
+  margin-bottom: var(--espaco-lg);
+}
+
+.posts-relacionados .grid-posts {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ============================================================
+   16. CTA DE DOAÇÃO — Seção com imagem e overlay
+   ============================================================ */
+
+.cta-doacao {
+  position: relative;
+  padding: var(--espaco-3xl) 0;
+  text-align: center;
+  color: var(--cor-branco);
+  overflow: hidden;
+}
+
+/* Imagem de fundo */
+.cta-doacao__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Overlay escuro */
+.cta-doacao__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(26,18,8,0.9) 0%, rgba(232,119,34,0.7) 100%);
+  z-index: 1;
+}
+
+/* Conteúdo sobre a imagem */
+.cta-doacao__conteudo {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-doacao h2 {
+  color: var(--cor-branco);
+  margin-bottom: var(--espaco-sm);
+}
+
+.cta-doacao p {
+  color: rgba(255,255,255,0.9);
+  font-size: var(--tamanho-xl);
+  margin-bottom: var(--espaco-lg);
+}
+
+.cta-doacao__botoes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--espaco-sm);
+}
+
+/* ============================================================
+   17. FOOTER — Rodapé completo do site
+   ============================================================ */
+
+.footer {
+  background-color: var(--cor-fundo-escuro);
+  color: rgba(255,255,255,0.8);
+  padding: var(--espaco-2xl) 0 var(--espaco-lg);
+}
+
+/* Grid principal do footer: 4 colunas */
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: var(--espaco-xl);
+  margin-bottom: var(--espaco-xl);
+}
+
+/* Coluna de logo e descrição */
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-sm);
+}
+
+.footer__brand .logo-link svg {
+  fill: var(--cor-primaria);
+}
+
+.footer__brand .logo-texto {
+  color: var(--cor-branco);
+}
+
+.footer__slogan {
+  font-size: var(--tamanho-sm);
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* Título de coluna do footer */
+.footer__titulo {
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  font-size: var(--tamanho-base);
+  color: var(--cor-branco);
+  margin-bottom: var(--espaco-sm);
+}
+
+/* Links do footer */
+.footer__link {
+  display: block;
+  padding: 0.3rem 0;
+  font-size: var(--tamanho-sm);
+  color: rgba(255,255,255,0.6);
+  transition: var(--transicao);
+}
+
+.footer__link:hover {
+  color: var(--cor-primaria);
+  padding-left: 0.5rem;
+}
+
+/* Ícones de redes sociais */
+.footer__redes {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: var(--espaco-sm);
+}
+
+.footer__rede-link {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.1);
+  transition: var(--transicao);
+}
+
+.footer__rede-link:hover {
+  background-color: var(--cor-primaria);
+  transform: translateY(-3px);
+}
+
+.footer__rede-link svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--cor-branco);
+}
+
+/* Barra inferior do footer */
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: var(--espaco-md);
+  text-align: center;
+  font-size: var(--tamanho-sm);
+  color: rgba(255,255,255,0.5);
+}
+
+.footer__bottom a {
+  color: rgba(255,255,255,0.6);
+  transition: var(--transicao);
+}
+
+.footer__bottom a:hover {
+  color: var(--cor-primaria);
+}
+
+/* ============================================================
+   18. BOTÃO WHATSAPP FLUTUANTE
+   ============================================================ */
+
+.btn-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  transition: var(--transicao);
+  /* Inicialmente oculto — aparece após 2s via JS */
+  opacity: 0;
+  transform: scale(0.5);
+  pointer-events: none;
+}
+
+/* Estado visível */
+.btn-whatsapp.visivel {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+}
+
+.btn-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.btn-whatsapp svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--cor-branco);
+}
+
+/* Tooltip "Fale conosco" */
+.btn-whatsapp__tooltip {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 12px;
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-branco);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--raio-sm);
+  font-size: var(--tamanho-xs);
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transicao);
+}
+
+.btn-whatsapp:hover .btn-whatsapp__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Setinha do tooltip */
+.btn-whatsapp__tooltip::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--cor-fundo-escuro);
+}
+
+/* ============================================================
+   19. BOTÃO VOLTAR AO TOPO
+   ============================================================ */
+
+.btn-topo {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sombra-md);
+  cursor: pointer;
+  border: none;
+  transition: var(--transicao);
+  /* Inicialmente oculto — aparece após 400px de scroll */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+}
+
+.btn-topo.visivel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.btn-topo:hover {
+  background-color: var(--cor-primaria-hover);
+  transform: translateY(-3px);
+}
+
+.btn-topo svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--cor-branco);
+}
+
+/* ============================================================
+   20. TOAST NOTIFICATIONS — Sistema de feedback visual
+   ============================================================ */
+
+/* Container de toasts — empilhados no canto inferior direito */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  max-width: 400px;
+}
+
+/* Toast individual */
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-sm);
+  box-shadow: var(--sombra-lg);
+  animation: slideInLeft 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barra de progresso (4 segundos) */
+.toast__barra {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  animation: toastTimer 4s linear forwards;
+}
+
+/* Cores por tipo de toast */
+.toast--sucesso { border-left: 4px solid var(--cor-sucesso); }
+.toast--sucesso .toast__barra { background-color: var(--cor-sucesso); }
+
+.toast--erro { border-left: 4px solid var(--cor-erro); }
+.toast--erro .toast__barra { background-color: var(--cor-erro); }
+
+.toast--aviso { border-left: 4px solid var(--cor-aviso); }
+.toast--aviso .toast__barra { background-color: var(--cor-aviso); }
+
+.toast--info { border-left: 4px solid var(--cor-info); }
+.toast--info .toast__barra { background-color: var(--cor-info); }
+
+/* Ícone do toast */
+.toast__icone svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.toast--sucesso .toast__icone svg { fill: var(--cor-sucesso); }
+.toast--erro .toast__icone svg { fill: var(--cor-erro); }
+.toast--aviso .toast__icone svg { fill: var(--cor-aviso); }
+.toast--info .toast__icone svg { fill: var(--cor-info); }
+
+/* Mensagem do toast */
+.toast__msg {
+  font-size: var(--tamanho-sm);
+  font-weight: 600;
+  color: var(--cor-texto);
+  flex: 1;
+}
+
+/* Botão X de fechar */
+.toast__fechar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  padding: 0;
+  transition: var(--transicao);
+}
+
+.toast__fechar:hover {
+  opacity: 1;
+}
+
+.toast__fechar svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--cor-cinza-medio);
+}
+
+/* ============================================================
+   21. BANNER DE COOKIES (LGPD)
+   ============================================================ */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9998;
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-branco);
+  padding: var(--espaco-md) var(--espaco-lg);
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+/* Estado visível */
+.cookie-banner.visivel {
+  transform: translateY(0);
+}
+
+/* Layout interno do banner */
+.cookie-banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-md);
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+/* Texto do banner */
+.cookie-banner__texto {
+  font-size: var(--tamanho-sm);
+  flex: 1;
+  min-width: 300px;
+}
+
+.cookie-banner__texto a {
+  color: var(--cor-primaria);
+  text-decoration: underline;
+}
+
+/* Grupo de botões */
+.cookie-banner__btns {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   22. FORMULÁRIOS — Inputs, selects, textareas, labels, erros
+   ============================================================ */
+
+/* Grupo de campo (label + input + mensagem de erro) */
+.campo-grupo {
+  margin-bottom: var(--espaco-md);
+}
+
+/* Label */
+.campo-label {
+  display: block;
+  font-weight: 700;
+  font-size: var(--tamanho-sm);
+  color: var(--cor-texto);
+  margin-bottom: 0.4rem;
+}
+
+/* Indicador de obrigatório */
+.campo-label .obrigatorio {
+  color: var(--cor-erro);
+}
+
+/* Inputs, selects e textareas */
+.campo-input,
+.campo-select,
+.campo-textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: var(--fonte-corpo);
+  font-size: var(--tamanho-base);
+  color: var(--cor-texto);
+  background-color: var(--cor-branco);
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-sm);
+  transition: var(--transicao);
+  outline: none;
+}
+
+.campo-input:focus,
+.campo-select:focus,
+.campo-textarea:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(232, 119, 34, 0.15);
+}
+
+/* Estado válido (borda verde + ícone check) */
+.campo-input.valido,
+.campo-select.valido,
+.campo-textarea.valido {
+  border-color: var(--cor-verde);
+}
+
+/* Estado de erro (borda vermelha) */
+.campo-input.erro,
+.campo-select.erro,
+.campo-textarea.erro {
+  border-color: var(--cor-erro);
+  box-shadow: 0 0 0 3px rgba(217, 79, 61, 0.1);
+}
+
+/* Textarea */
+.campo-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* Mensagem de erro inline */
+.campo-erro {
+  display: none;
+  font-size: var(--tamanho-xs);
+  color: var(--cor-erro);
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.campo-erro.visivel {
+  display: block;
+}
+
+/* Contador de caracteres */
+.campo-contador {
+  font-size: var(--tamanho-xs);
+  color: var(--cor-cinza-medio);
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+/* Select customizado */
+.campo-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%239B8F85' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* Radio e checkbox — grupo */
+.campo-radio-grupo,
+.campo-checkbox-grupo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+/* Radio/checkbox customizados */
+.campo-radio,
+.campo-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: var(--tamanho-sm);
+}
+
+.campo-radio input,
+.campo-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--cor-primaria);
+  cursor: pointer;
+}
+
+/* Layout de campos em linha (desktop) */
+.campos-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espaco-sm);
+}
+
+/* Formulário com largura controlada */
+.form-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Spinner de loading no botão */
+.btn-loading {
+  position: relative;
+  color: transparent !important; /* !important justificado: sobrepõe texto durante loading */
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: var(--cor-branco);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* ============================================================
+   23. STEPPER — Formulário multi-etapas (ficha de adoção)
+   ============================================================ */
+
+/* Barra de progresso */
+.stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-bottom: var(--espaco-xl);
+}
+
+/* Cada etapa no stepper */
+.stepper__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Círculo numerado */
+.stepper__numero {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--cor-cinza-claro);
+  color: var(--cor-cinza-medio);
+  font-weight: 700;
+  font-size: var(--tamanho-sm);
+  transition: var(--transicao);
+}
+
+/* Etapa ativa */
+.stepper__item.ativo .stepper__numero {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+/* Etapa concluída */
+.stepper__item.concluido .stepper__numero {
+  background-color: var(--cor-verde);
+  color: var(--cor-branco);
+}
+
+/* Texto da etapa */
+.stepper__texto {
+  font-size: var(--tamanho-sm);
+  font-weight: 600;
+  color: var(--cor-cinza-medio);
+}
+
+.stepper__item.ativo .stepper__texto {
+  color: var(--cor-primaria);
+}
+
+.stepper__item.concluido .stepper__texto {
+  color: var(--cor-verde);
+}
+
+/* Linha conectora entre etapas */
+.stepper__linha {
+  width: 60px;
+  height: 2px;
+  background-color: var(--cor-cinza-claro);
+  margin: 0 0.75rem;
+  transition: var(--transicao);
+}
+
+.stepper__linha.ativo {
+  background-color: var(--cor-verde);
+}
+
+/* Painel de cada etapa (exibir apenas a ativa) */
+.etapa-painel {
+  display: none;
+}
+
+.etapa-painel.ativo {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Botões de navegação do stepper */
+.stepper__nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--espaco-lg);
+}
+
+/* ============================================================
+   24. TABELA DE TRANSPARÊNCIA — Movimentações financeiras
+   ============================================================ */
+
+/* Container com scroll horizontal no mobile */
+.tabela-wrapper {
+  overflow-x: auto;
+  border-radius: var(--raio-sm);
+  box-shadow: var(--sombra-sm);
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--tamanho-sm);
+}
+
+.tabela thead {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco);
+}
+
+.tabela th {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tabela td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--cor-bege-medio);
+}
+
+/* Linhas com zebra striping (cor alternada) */
+.tabela tbody tr:nth-child(even) {
+  background-color: var(--cor-bege);
+}
+
+.tabela tbody tr:hover {
+  background-color: var(--cor-primaria-light);
+}
+
+/* Valores de entrada (positivos) */
+.tabela .valor-entrada {
+  color: var(--cor-verde);
+  font-weight: 700;
+}
+
+/* Valores de saída (negativos) */
+.tabela .valor-saida {
+  color: var(--cor-erro);
+  font-weight: 700;
+}
+
+/* ============================================================
+   25. GRÁFICO DE BARRAS — Gastos por categoria (transparência)
+   ============================================================ */
+
+.grafico-barras {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-sm);
+}
+
+/* Cada item de barra */
+.barra-item {
+  display: grid;
+  grid-template-columns: 200px 1fr 100px;
+  align-items: center;
+  gap: var(--espaco-sm);
+}
+
+.barra-item__label {
+  font-size: var(--tamanho-sm);
+  font-weight: 600;
+  color: var(--cor-texto);
+  text-align: right;
+}
+
+/* Container da barra */
+.barra-item__track {
+  height: 28px;
+  background-color: var(--cor-bege-medio);
+  border-radius: var(--raio-full);
+  overflow: hidden;
+}
+
+/* Preenchimento da barra — largura definida via JS */
+.barra-item__fill {
+  height: 100%;
+  background-color: var(--cor-primaria);
+  border-radius: var(--raio-full);
+  transition: width 1.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  /* Inicia em 0 — animada ao entrar no viewport */
+  width: 0;
+}
+
+.barra-item__fill span {
+  font-size: var(--tamanho-xs);
+  font-weight: 700;
+  color: var(--cor-branco);
+}
+
+.barra-item__valor {
+  font-size: var(--tamanho-sm);
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+/* ============================================================
+   26. GRÁFICO DE PIZZA — Fontes de receita (transparência)
+   ============================================================ */
+
+.grafico-pizza-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-xl);
+  flex-wrap: wrap;
+}
+
+/* Círculo do gráfico — feito com conic-gradient */
+.grafico-pizza {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  /* O conic-gradient é aplicado via JS conforme dados */
+  position: relative;
+}
+
+/* Círculo central branco (efeito donut) */
+.grafico-pizza::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background-color: var(--cor-branco);
+  border-radius: 50%;
+}
+
+/* Legenda do gráfico de pizza */
+.grafico-pizza-legenda {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--tamanho-sm);
+}
+
+.legenda-item__cor {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.legenda-item__texto {
+  color: var(--cor-texto);
+}
+
+.legenda-item__valor {
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  margin-left: auto;
+}
+
+/* ============================================================
+   27. ACCORDION FAQ — Perguntas frequentes
+   ============================================================ */
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Cada item do accordion */
+.accordion__item {
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-sm);
+  overflow: hidden;
+  transition: var(--transicao);
+}
+
+.accordion__item.ativo {
+  border-color: var(--cor-primaria);
+}
+
+/* Cabeçalho clicável do accordion */
+.accordion__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  background-color: var(--cor-branco);
+  transition: var(--transicao);
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  font-size: var(--tamanho-base);
+  color: var(--cor-texto);
+}
+
+.accordion__item.ativo .accordion__header {
+  background-color: var(--cor-primaria-light);
+  color: var(--cor-primaria);
+}
+
+.accordion__header:hover {
+  background-color: var(--cor-bege);
+}
+
+/* Ícone +/- do accordion */
+.accordion__icone {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--tamanho-xl);
+  font-weight: 700;
+  color: var(--cor-cinza-medio);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.accordion__item.ativo .accordion__icone {
+  transform: rotate(45deg);
+  color: var(--cor-primaria);
+}
+
+/* Corpo do accordion — animação de altura */
+.accordion__corpo {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.accordion__conteudo {
+  padding: 0 1.25rem 1rem;
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  line-height: 1.8;
+}
+
+/* ============================================================
+   28. PÁGINA BANNER INTERNA — Banner no topo de páginas internas
+   ============================================================ */
+
+.banner-pagina {
+  position: relative;
+  padding: var(--espaco-3xl) 0 var(--espaco-xl);
+  margin-top: 70px; /* Compensa o header fixo */
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Fundo com overlay */
+.banner-pagina__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.banner-pagina__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(92,61,34,0.9) 0%, rgba(139,94,60,0.8) 100%);
+  z-index: 1;
+}
+
+.banner-pagina__conteudo {
+  position: relative;
+  z-index: 2;
+  color: var(--cor-branco);
+}
+
+.banner-pagina__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--cor-branco);
+  margin-bottom: var(--espaco-xs);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--tamanho-sm);
+  color: rgba(255,255,255,0.7);
+}
+
+.breadcrumb a {
+  color: rgba(255,255,255,0.8);
+  transition: var(--transicao);
+}
+
+.breadcrumb a:hover {
+  color: var(--cor-primaria);
+}
+
+.breadcrumb__separador {
+  opacity: 0.5;
+}
+
+/* ============================================================
+   29. LINHA DO TEMPO — Marcos da história da ONG
+   ============================================================ */
+
+.timeline {
+  position: relative;
+  padding: var(--espaco-lg) 0;
+}
+
+/* Linha central vertical */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 100%;
+  background-color: var(--cor-primaria-light);
+}
+
+/* Cada item da timeline */
+.timeline__item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--espaco-xl);
+  position: relative;
+}
+
+/* Alterna lado esquerdo e direito */
+.timeline__item:nth-child(odd) {
+  flex-direction: row;
+  padding-right: calc(50% + 30px);
+  text-align: right;
+}
+
+.timeline__item:nth-child(even) {
+  flex-direction: row-reverse;
+  padding-left: calc(50% + 30px);
+  text-align: left;
+}
+
+/* Ponto marcador (patinha) na linha central */
+.timeline__marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--cor-primaria);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border: 4px solid var(--cor-branco);
+  box-shadow: var(--sombra-sm);
+}
+
+.timeline__marker svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--cor-branco);
+}
+
+/* Conteúdo de cada marco */
+.timeline__conteudo {
+  background-color: var(--cor-branco);
+  padding: var(--espaco-md);
+  border-radius: var(--raio-md);
+  box-shadow: var(--sombra-sm);
+  max-width: 100%;
+}
+
+.timeline__ano {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tamanho-2xl);
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-bottom: 0.25rem;
+}
+
+.timeline__titulo {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.timeline__texto {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+}
+
+/* ============================================================
+   30. CARDS DE EQUIPE — Membros da ONG
+   ============================================================ */
+
+.grid-equipe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco-lg);
+}
+
+.card-equipe {
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-lg);
+  text-align: center;
+  box-shadow: var(--sombra-sm);
+  transition: var(--transicao);
+}
+
+.card-equipe:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-md);
+}
+
+.card-equipe__foto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--espaco-sm);
+  border: 4px solid var(--cor-primaria-light);
+}
+
+.card-equipe__nome {
+  font-weight: 700;
+  font-size: var(--tamanho-lg);
+  margin-bottom: 0.15rem;
+}
+
+.card-equipe__funcao {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-primaria);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-equipe__frase {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  font-style: italic;
+}
+
+/* ============================================================
+   31. PÁGINA 404 — Erro de página não encontrada
+   ============================================================ */
+
+.pagina-404 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--espaco-xl) var(--espaco-md);
+}
+
+.pagina-404 svg {
+  width: 200px;
+  height: 200px;
+  margin-bottom: var(--espaco-lg);
+}
+
+.pagina-404 h1 {
+  font-size: var(--tamanho-4xl);
+  margin-bottom: var(--espaco-sm);
+}
+
+.pagina-404 p {
+  font-size: var(--tamanho-lg);
+  color: var(--cor-cinza-medio);
+  max-width: 500px;
+  margin-bottom: var(--espaco-lg);
+}
+
+.pagina-404__btns {
+  display: flex;
+  gap: var(--espaco-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ============================================================
+   32. PÁGINA DOAÇÃO — Seleção de valor e métodos
+   ============================================================ */
+
+/* Barra de progresso da meta mensal */
+.meta-doacao {
+  max-width: 600px;
+  margin: 0 auto var(--espaco-xl);
+  text-align: center;
+}
+
+.meta-doacao__info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: var(--tamanho-sm);
+  font-weight: 600;
+}
+
+.meta-doacao__barra {
+  height: 20px;
+  background-color: var(--cor-bege-medio);
+  border-radius: var(--raio-full);
+  overflow: hidden;
+}
+
+.meta-doacao__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cor-primaria), var(--cor-aviso));
+  border-radius: var(--raio-full);
+  transition: width 1.5s ease;
+  width: 0; /* Animado via JS */
+}
+
+.meta-doacao__porcentagem {
+  font-size: var(--tamanho-sm);
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-top: 0.5rem;
+}
+
+/* Grid de cards de valor de doação */
+.grid-valores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco-sm);
+  max-width: 700px;
+  margin: 0 auto var(--espaco-lg);
+}
+
+/* Card de valor individual */
+.card-valor {
+  padding: var(--espaco-md);
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-md);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transicao);
+  background: var(--cor-branco);
+}
+
+.card-valor:hover {
+  border-color: var(--cor-primaria);
+}
+
+/* Card selecionado */
+.card-valor.selecionado {
+  border-color: var(--cor-primaria);
+  background-color: var(--cor-primaria-light);
+  transform: scale(1.02);
+}
+
+.card-valor__montante {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tamanho-3xl);
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-bottom: 0.25rem;
+}
+
+.card-valor__descricao {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+}
+
+/* Campo de valor personalizado */
+.valor-personalizado {
+  display: none;
+  max-width: 300px;
+  margin: 0 auto var(--espaco-md);
+}
+
+.valor-personalizado.ativo {
+  display: block;
+}
+
+/* Mensagem motivacional */
+.mensagem-motivacional {
+  text-align: center;
+  font-size: var(--tamanho-lg);
+  font-weight: 600;
+  color: var(--cor-secundaria);
+  margin-bottom: var(--espaco-lg);
+  font-style: italic;
+}
+
+/* Seção de métodos de pagamento */
+.metodos-pagamento {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Card PIX */
+.pix-card {
+  background-color: var(--cor-bege);
+  border: 2px solid var(--cor-bege-medio);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-lg);
+  text-align: center;
+  margin-bottom: var(--espaco-lg);
+}
+
+.pix-card__chave {
+  background-color: var(--cor-branco);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--raio-sm);
+  font-family: monospace;
+  font-size: var(--tamanho-lg);
+  font-weight: 700;
+  color: var(--cor-texto);
+  display: inline-block;
+  margin: var(--espaco-sm) 0;
+  border: 2px dashed var(--cor-cinza-claro);
+}
+
+/* QR Code placeholder */
+.pix-card__qr {
+  width: 200px;
+  height: 200px;
+  background-color: var(--cor-branco);
+  border: 2px dashed var(--cor-cinza-claro);
+  border-radius: var(--raio-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--espaco-sm) auto;
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+}
+
+/* Mural de doadores */
+.mural-doadores {
+  text-align: center;
+  padding: var(--espaco-lg);
+  background-color: var(--cor-bege);
+  border-radius: var(--raio-md);
+  margin-top: var(--espaco-xl);
+}
+
+.mural-doadores__nomes {
+  font-size: var(--tamanho-lg);
+  color: var(--cor-secundaria);
+  font-weight: 600;
+  line-height: 2;
+}
+
+/* ============================================================
+   33. PÁGINA REDES SOCIAIS — Cards de redes
+   ============================================================ */
+
+.grid-redes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espaco-lg);
+}
+
+.card-rede {
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-lg);
+  box-shadow: var(--sombra-sm);
+  transition: var(--transicao);
+  text-align: center;
+}
+
+.card-rede:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-md);
+}
+
+.card-rede__icone {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--raio-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--espaco-sm);
+}
+
+.card-rede__icone svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--cor-branco);
+}
+
+/* Cores específicas de cada rede */
+.card-rede--instagram .card-rede__icone {
+  background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+}
+
+.card-rede--threads .card-rede__icone {
+  background-color: #000000;
+}
+
+.card-rede--youtube .card-rede__icone {
+  background-color: #FF0000;
+}
+
+.card-rede--whatsapp .card-rede__icone {
+  background-color: #25D366;
+}
+
+.card-rede h3 {
+  margin-bottom: 0.5rem;
+}
+
+.card-rede p {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  margin-bottom: var(--espaco-md);
+}
+
+/* ============================================================
+   34. PÁGINA DE CONTEÚDO LEGAL — Privacidade, Termos
+   ============================================================ */
+
+.conteudo-legal {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--espaco-xl) var(--espaco-md);
+}
+
+.conteudo-legal h2 {
+  margin-top: var(--espaco-lg);
+  margin-bottom: var(--espaco-sm);
+  font-size: var(--tamanho-2xl);
+}
+
+.conteudo-legal h3 {
+  margin-top: var(--espaco-md);
+  margin-bottom: var(--espaco-xs);
+}
+
+.conteudo-legal p {
+  margin-bottom: var(--espaco-sm);
+  line-height: 1.9;
+}
+
+.conteudo-legal ul {
+  margin-left: var(--espaco-md);
+  margin-bottom: var(--espaco-sm);
+}
+
+.conteudo-legal li {
+  list-style: disc;
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   35. SEÇÃO ETAPAS DE ADOÇÃO — Passos numerados
+   ============================================================ */
+
+.etapas-adocao {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-lg);
+  justify-content: center;
+  margin: var(--espaco-xl) 0;
+}
+
+.etapa-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 200px;
+  position: relative;
+}
+
+.etapa-item__numero {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--tamanho-2xl);
+  font-weight: 700;
+  margin-bottom: var(--espaco-xs);
+}
+
+.etapa-item__texto {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   36. SEÇÃO DE DOCUMENTOS — Links para downloads fictícios
+   ============================================================ */
+
+.lista-documentos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.documento-item {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-sm);
+  padding: var(--espaco-sm);
+  background-color: var(--cor-bege);
+  border-radius: var(--raio-sm);
+  transition: var(--transicao);
+}
+
+.documento-item:hover {
+  background-color: var(--cor-bege-medio);
+}
+
+.documento-item svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--cor-primaria);
+  flex-shrink: 0;
+}
+
+.documento-item__nome {
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.documento-item__desc {
+  font-size: var(--tamanho-xs);
+  color: var(--cor-cinza-medio);
+}
+
+/* ============================================================
+   37. CARDS DE RESUMO FINANCEIRO — Transparência
+   ============================================================ */
+
+.grid-resumo-financeiro {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco-lg);
+  margin-bottom: var(--espaco-xl);
+}
+
+.card-financeiro {
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-lg);
+  box-shadow: var(--sombra-sm);
+  text-align: center;
+}
+
+.card-financeiro__icone {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--espaco-xs);
+}
+
+.card-financeiro__icone svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--cor-branco);
+}
+
+.card-financeiro--receita .card-financeiro__icone {
+  background-color: var(--cor-verde);
+}
+
+.card-financeiro--despesa .card-financeiro__icone {
+  background-color: var(--cor-erro);
+}
+
+.card-financeiro--saldo .card-financeiro__icone {
+  background-color: var(--cor-info);
+}
+
+.card-financeiro__valor {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tamanho-4xl);
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin-bottom: 0.15rem;
+}
+
+.card-financeiro__label {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  font-weight: 600;
+}
+
+/* Seletor de período */
+.periodo-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: var(--espaco-lg);
+}
+
+/* ============================================================
+   38. MAPA PLACEHOLDER — Página de contato
+   ============================================================ */
+
+.mapa-placeholder {
+  background-color: var(--cor-bege);
+  border: 2px dashed var(--cor-bege-medio);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-xl);
+  text-align: center;
+}
+
+.mapa-placeholder svg {
+  width: 80px;
+  height: 80px;
+  fill: var(--cor-cinza-medio);
+  margin-bottom: var(--espaco-sm);
+}
+
+.mapa-placeholder h3 {
+  margin-bottom: 0.5rem;
+}
+
+.mapa-placeholder p {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  margin-bottom: var(--espaco-md);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   39. ANIMAÇÕES — @keyframes e classes utilitárias
+   ============================================================ */
+
+/* Fade-in de baixo para cima — disparado via IntersectionObserver */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-in com escala — usado no lightbox */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Fade simples */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Slide de entrada pela esquerda — toasts */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Timer do toast — barra de progresso de 100% a 0% */
+@keyframes toastTimer {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* Bounce para baixo — indicador de scroll no hero */
+@keyframes bounce-down {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* Rotação — spinner de loading */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Pulse — usado no WhatsApp button */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.btn-whatsapp.visivel {
+  animation: pulse 2s infinite;
+}
+
+/* Classes de animação — aplicadas via JS (IntersectionObserver) */
+/* Elementos com data-animate começam invisíveis */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Quando o JS adiciona .animado, o elemento aparece */
+[data-animate].animado {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variações de delay para escalonamento */
+[data-animate-delay="1"] { transition-delay: 0.1s; }
+[data-animate-delay="2"] { transition-delay: 0.2s; }
+[data-animate-delay="3"] { transition-delay: 0.3s; }
+[data-animate-delay="4"] { transition-delay: 0.4s; }
+[data-animate-delay="5"] { transition-delay: 0.5s; }
+
+/* ============================================================
+   40. CONTATO — Layout da página
+   ============================================================ */
+
+.contato-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espaco-xl);
+}
+
+.contato-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-md);
+}
+
+.contato-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaco-sm);
+}
+
+.contato-item__icone {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--cor-primaria-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contato-item__icone svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--cor-primaria);
+}
+
+.contato-item h4 {
+  font-size: var(--tamanho-base);
+  margin-bottom: 0.15rem;
+}
+
+.contato-item p {
+  font-size: var(--tamanho-sm);
+  color: var(--cor-cinza-medio);
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   FIM DO ARQUIVO style.css
+   ============================================================ */

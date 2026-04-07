@@ -1,0 +1,118 @@
+<!-- ============================================================
+     ARQUIVO: 404.html
+     DESCRIÇÃO: Página de erro 404 personalizada da ONG Paraíso
+                dos Pets. Ilustração SVG de cão perdido com
+                mensagem temática e links de navegação.
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página não encontrada — ONG Paraíso dos Pets.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ops! Página não encontrada | ONG Paraíso dos Pets</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="index.html" class="logo-link" aria-label="Página inicial">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg>
+        <span class="logo-texto">Paraíso dos <span>Pets</span></span>
+      </a>
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="pages/nossa-missao.html" class="nav-link">Nossa Missão</a>
+        <a href="pages/transparencia.html" class="nav-link">Transparência</a>
+        <div class="nav-item--submenu">
+          <a href="pages/adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a>
+          <div class="submenu" role="menu"><a href="pages/adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="pages/doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="pages/voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a></div>
+        </div>
+        <a href="pages/blog.html" class="nav-link">Blog</a>
+        <a href="pages/contato.html" class="nav-link">Contato</a>
+        <a href="pages/doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      </nav>
+      <a href="pages/doar.html" class="btn-doar-header" id="btn-doar-desktop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span class="hamburger__linha"></span><span class="hamburger__linha"></span><span class="hamburger__linha"></span></button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <!-- ======================== CONTEÚDO 404 ================== -->
+  <main role="main">
+    <div class="pagina-404">
+
+      <!-- Ilustração SVG inline: Cão perdido (simples, fofo, estilizado) -->
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustração de um cão perdido">
+        <!-- Corpo do cão -->
+        <ellipse cx="100" cy="135" rx="50" ry="35" fill="#E8A61A" opacity="0.9"/>
+        <!-- Cabeça -->
+        <circle cx="100" cy="80" r="35" fill="#E8A61A"/>
+        <!-- Orelha esquerda (caída — tristinha) -->
+        <ellipse cx="72" cy="62" rx="12" ry="20" fill="#C9611A" transform="rotate(-20 72 62)"/>
+        <!-- Orelha direita (caída) -->
+        <ellipse cx="128" cy="62" rx="12" ry="20" fill="#C9611A" transform="rotate(20 128 62)"/>
+        <!-- Olho esquerdo -->
+        <circle cx="88" cy="78" r="5" fill="#2D2520"/>
+        <circle cx="89.5" cy="76.5" r="1.5" fill="#FFF"/>
+        <!-- Olho direito -->
+        <circle cx="112" cy="78" r="5" fill="#2D2520"/>
+        <circle cx="113.5" cy="76.5" r="1.5" fill="#FFF"/>
+        <!-- Sobrancelhas tristes (levantadas no centro) -->
+        <line x1="82" y1="68" x2="92" y2="71" stroke="#C9611A" stroke-width="2" stroke-linecap="round"/>
+        <line x1="118" y1="68" x2="108" y2="71" stroke="#C9611A" stroke-width="2" stroke-linecap="round"/>
+        <!-- Focinho -->
+        <ellipse cx="100" cy="92" rx="10" ry="7" fill="#5C3D22"/>
+        <!-- Nariz -->
+        <ellipse cx="100" cy="89" rx="5" ry="3.5" fill="#2D2520"/>
+        <!-- Boca (triste) -->
+        <path d="M93 96 Q100 92 107 96" stroke="#2D2520" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Pata dianteira esquerda -->
+        <ellipse cx="75" cy="168" rx="10" ry="6" fill="#E8A61A"/>
+        <!-- Pata dianteira direita -->
+        <ellipse cx="125" cy="168" rx="10" ry="6" fill="#E8A61A"/>
+        <!-- Pernas dianteiras -->
+        <rect x="70" y="145" width="12" height="23" rx="6" fill="#E8A61A"/>
+        <rect x="118" y="145" width="12" height="23" rx="6" fill="#E8A61A"/>
+        <!-- Rabo (atrás, caído) -->
+        <path d="M150 130 Q165 120 158 105" stroke="#E8A61A" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <!-- Coleira -->
+        <path d="M72 100 Q100 110 128 100" stroke="#E87722" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- Medalhão na coleira -->
+        <circle cx="100" cy="108" r="5" fill="#E87722"/>
+        <text x="100" y="111" text-anchor="middle" fill="#FFF" font-size="6" font-weight="bold">?</text>
+        <!-- Ponto de interrogação flutuante -->
+        <text x="145" cy="55" y="55" fill="#E87722" font-size="28" font-weight="bold" opacity="0.6">?</text>
+        <text x="55" cy="50" y="50" fill="#8B5E3C" font-size="20" font-weight="bold" opacity="0.4">?</text>
+      </svg>
+
+      <!-- Título do erro -->
+      <h1>Ops! Este caminho está um pouco perdido...</h1>
+
+      <!-- Mensagem temática -->
+      <p>
+        Parece que você seguiu um caminho que não existe — mas no Paraíso
+        dos Pets, todo caminho perdido acaba encontrando um lar.
+      </p>
+
+      <!-- Botões de navegação -->
+      <div class="pagina-404__btns">
+        <a href="index.html" class="btn btn--primario">
+          🏠 Ir para Home
+        </a>
+        <a href="pages/adote.html" class="btn btn--secundario">
+          🐾 Ver Animais para Adoção
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

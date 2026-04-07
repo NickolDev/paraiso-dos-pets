@@ -1,0 +1,282 @@
+<!-- ============================================================
+     ARQUIVO: contato.html
+     DESCRIÇÃO: Página de contato — dados da ONG, formulário
+                validado, mapa placeholder e FAQ rápido.
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entre em contato com a ONG Paraíso dos Pets. Tire dúvidas sobre adoção, voluntariado, doações ou agendamento de visita ao abrigo.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ongparaisodospets.org.br/pages/contato.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ONG Paraíso dos Pets">
+  <meta property="og:title" content="Contato | ONG Paraíso dos Pets">
+  <meta property="og:description" content="Entre em contato com a ONG Paraíso dos Pets. Adoção, voluntariado, doações e mais.">
+  <meta property="og:image" content="https://placedog.net/1200/630?r=90">
+  <meta property="og:locale" content="pt_BR">
+  <title>Contato | ONG Paraíso dos Pets</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo-link" aria-label="Página inicial"><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+        <a href="../index.html" class="nav-link">Home</a><a href="nossa-missao.html" class="nav-link">Nossa Missão</a><a href="transparencia.html" class="nav-link">Transparência</a>
+        <div class="nav-item--submenu"><a href="adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a><div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a></div></div>
+        <a href="blog.html" class="nav-link">Blog</a><a href="contato.html" class="nav-link ativo">Contato</a>
+        <a href="doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      </nav>
+      <a href="doar.html" class="btn-doar-header" id="btn-doar-desktop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span class="hamburger__linha"></span><span class="hamburger__linha"></span><span class="hamburger__linha"></span></button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <main role="main">
+
+    <!-- =================== BANNER =========================== -->
+    <section class="banner-pagina" aria-label="Banner de contato">
+      <img src="https://placedog.net/1920/600?r=90" alt="Cão simpático" class="banner-pagina__bg" loading="eager">
+      <div class="banner-pagina__overlay" aria-hidden="true"></div>
+      <div class="banner-pagina__conteudo">
+        <h1 class="banner-pagina__titulo">Contato</h1>
+        <p style="color:rgba(255,255,255,0.8);margin-top:0.5rem;">Estamos prontos para ajudar — fale com a gente!</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb__separador">›</span><span>Contato</span></nav>
+      </div>
+    </section>
+
+    <!-- ============= CONTATO: INFO + FORMULÁRIO ============= -->
+    <section class="secao" aria-label="Formulário e dados de contato">
+      <div class="container">
+        <div class="contato-layout">
+
+          <!-- Coluna 1: Dados da ONG -->
+          <div class="contato-info" data-animate="fade-up">
+            <h2 style="margin-bottom:var(--espaco-md);">Fale Conosco</h2>
+
+            <!-- Email -->
+            <div class="contato-item">
+              <div class="contato-item__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+              <div>
+                <h4>E-mail</h4>
+                <p><a href="mailto:contato@ongparaisodospets.org.br">contato@ongparaisodospets.org.br</a></p>
+              </div>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="contato-item">
+              <div class="contato-item__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg></div>
+              <div>
+                <h4>WhatsApp</h4>
+                <p><a href="https://wa.me/5516999999999" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a></p>
+              </div>
+            </div>
+
+            <!-- Instagram -->
+            <div class="contato-item">
+              <div class="contato-item__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></div>
+              <div>
+                <h4>Instagram</h4>
+                <p><a href="https://www.instagram.com/ongparaisodospets" target="_blank" rel="noopener noreferrer">@ongparaisodospets</a></p>
+              </div>
+            </div>
+
+            <!-- Localização -->
+            <div class="contato-item">
+              <div class="contato-item__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></div>
+              <div>
+                <h4>Localização</h4>
+                <p>Ribeirão Preto, SP — Brasil</p>
+              </div>
+            </div>
+
+            <!-- Horário -->
+            <div class="contato-item">
+              <div class="contato-item__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+              <div>
+                <h4>Horário de Atendimento</h4>
+                <p>Segunda a Sexta: 9h – 18h<br>Sábado: 9h – 13h</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Formulário de contato -->
+          <div data-animate="fade-up">
+            <h2 style="margin-bottom:var(--espaco-md);">Envie uma Mensagem</h2>
+
+            <form id="form-contato" novalidate>
+              <!-- Nome -->
+              <div class="campo-grupo">
+                <label class="campo-label" for="contato-nome">Nome completo <span class="obrigatorio">*</span></label>
+                <input type="text" class="campo-input" id="contato-nome" name="nome" required aria-required="true" placeholder="Seu nome completo">
+              </div>
+
+              <!-- Email e Telefone -->
+              <div class="campos-linha">
+                <div class="campo-grupo">
+                  <label class="campo-label" for="contato-email">E-mail <span class="obrigatorio">*</span></label>
+                  <input type="email" class="campo-input" id="contato-email" name="email" required aria-required="true" placeholder="seu@email.com">
+                </div>
+                <div class="campo-grupo">
+                  <label class="campo-label" for="contato-telefone">Telefone/WhatsApp <span class="obrigatorio">*</span></label>
+                  <input type="text" class="campo-input" id="contato-telefone" name="telefone" required aria-required="true" placeholder="(16) 99999-9999" maxlength="15">
+                </div>
+              </div>
+
+              <!-- Assunto -->
+              <div class="campo-grupo">
+                <label class="campo-label" for="contato-assunto">Assunto <span class="obrigatorio">*</span></label>
+                <select class="campo-select" id="contato-assunto" name="assunto" required aria-required="true">
+                  <option value="">Selecione o assunto</option>
+                  <option value="Adoção">Adoção</option>
+                  <option value="Voluntariado">Voluntariado</option>
+                  <option value="Doação">Doação</option>
+                  <option value="Parceria Empresarial">Parceria Empresarial</option>
+                  <option value="Imprensa">Imprensa</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </div>
+
+              <!-- Mensagem -->
+              <div class="campo-grupo">
+                <label class="campo-label" for="contato-mensagem">Mensagem <span class="obrigatorio">*</span></label>
+                <textarea class="campo-textarea" id="contato-mensagem" name="mensagem" required aria-required="true" minlength="20" placeholder="Escreva sua mensagem (mínimo 20 caracteres)..." rows="5"></textarea>
+                <div class="campo-contador" id="contador-mensagem">0 caracteres</div>
+              </div>
+
+              <!-- Política de privacidade -->
+              <div class="campo-grupo">
+                <label class="campo-checkbox" style="align-items:flex-start;">
+                  <input type="checkbox" id="contato-politica" name="politica" required aria-required="true">
+                  <span>Li e concordo com a <a href="politica-privacidade.html" style="color:var(--cor-primaria);text-decoration:underline;">Política de Privacidade</a> <span class="obrigatorio">*</span></span>
+                </label>
+              </div>
+
+              <!-- Botão de envio -->
+              <button type="button" class="btn btn--primario btn--disabled" id="btn-enviar-contato" disabled>
+                Enviar Mensagem
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= MAPA PLACEHOLDER ======================= -->
+    <section class="secao secao--bege" aria-label="Localização">
+      <div class="container">
+        <div class="mapa-placeholder" data-animate="fade-up">
+          <!-- SVG: Ícone de mapa/pin -->
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          <h3>Ribeirão Preto, SP</h3>
+          <p>Endereço completo fornecido após confirmação de visita agendada. A ONG não divulga o endereço público por segurança dos animais.</p>
+          <a href="https://wa.me/5516999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20ao%20abrigo." class="btn btn--primario btn--sm" target="_blank" rel="noopener noreferrer">Agendar visita via WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= FAQ RÁPIDO ============================== -->
+    <section class="secao" aria-label="Perguntas frequentes">
+      <div class="container">
+        <h2 class="secao__titulo" data-animate="fade-up">Perguntas Frequentes</h2>
+
+        <div class="accordion" data-animate="fade-up" style="max-width:700px;margin:var(--espaco-lg) auto 0;">
+
+          <!-- Pergunta 1 -->
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Como faço para adotar um animal?</span>
+              <span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo">
+              <div class="accordion__conteudo">
+                Acesse a página de adoção, conheça os animais disponíveis e preencha a ficha de interesse.
+                Nossa equipe entrará em contato em até 48 horas úteis para agendar uma visita ao abrigo.
+              </div>
+            </div>
+          </div>
+
+          <!-- Pergunta 2 -->
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Posso visitar o abrigo sem agendamento?</span>
+              <span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo">
+              <div class="accordion__conteudo">
+                Por segurança dos animais, todas as visitas precisam ser agendadas previamente.
+                Entre em contato pelo WhatsApp ou e-mail para agendar.
+              </div>
+            </div>
+          </div>
+
+          <!-- Pergunta 3 -->
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Como posso fazer uma doação?</span>
+              <span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo">
+              <div class="accordion__conteudo">
+                Você pode doar via PIX (chave: contato@ongparaisodospets.org.br), cartão de crédito
+                (via Stripe) ou boleto (entre em contato). Visite nossa página de doações para mais detalhes.
+              </div>
+            </div>
+          </div>
+
+          <!-- Pergunta 4 -->
+          <div class="accordion__item">
+            <button class="accordion__header" aria-expanded="false" onclick="this.parentElement.classList.toggle('ativo');this.setAttribute('aria-expanded',this.parentElement.classList.contains('ativo'));">
+              <span>Qual o horário de atendimento?</span>
+              <span class="accordion__icone">+</span>
+            </button>
+            <div class="accordion__corpo">
+              <div class="accordion__conteudo">
+                Nosso atendimento funciona de segunda a sexta, das 9h às 18h, e aos sábados das 9h às 13h.
+                Fora desse horário, deixe sua mensagem por WhatsApp ou e-mail que responderemos assim que possível.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:var(--espaco-lg);" data-animate="fade-up">
+          <a href="faq.html" class="btn btn--secundario btn--sm">Ver todas as perguntas frequentes →</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="logo-link"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px;"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a><p class="footer__slogan">Ajudando quem não tem voz desde 2017.<br>Ribeirão Preto, SP — Brasil.</p></div>
+        <div><h4 class="footer__titulo">Links Rápidos</h4><a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="transparencia.html" class="footer__link">Transparência</a><a href="blog.html" class="footer__link">Blog</a><a href="faq.html" class="footer__link">FAQ</a></div>
+        <div><h4 class="footer__titulo">Como Ajudar</h4><a href="doar.html" class="footer__link">Apadrinhar</a><a href="voluntario.html" class="footer__link">Voluntariar</a><a href="doar.html#associar" class="footer__link">Associar-se</a></div>
+        <div><h4 class="footer__titulo">Contato</h4><a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a><a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a></div>
+      </div>
+      <div class="footer__bottom"><p>ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br><a href="politica-privacidade.html">Política de Privacidade</a> | <a href="termos-de-uso.html">Termos de Uso</a></p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5516999999999" class="btn-whatsapp" id="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg><span class="btn-whatsapp__tooltip">Fale conosco</span></a>
+  <button class="btn-topo" id="btn-topo" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <div class="cookie-banner" id="cookie-banner" role="dialog"><div class="cookie-banner__inner"><p class="cookie-banner__texto">Usamos cookies para melhorar sua experiência. <a href="politica-privacidade.html">Política de Privacidade</a>.</p><div class="cookie-banner__btns"><button class="btn btn--primario btn--sm" id="cookie-aceitar-todos">Aceitar todos</button><button class="btn btn--branco btn--sm" id="cookie-aceitar-essenciais" style="color:var(--cor-branco);border-color:rgba(255,255,255,0.4);">Apenas essenciais</button></div></div></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/cookies.js"></script>
+  <script src="../js/contato.js"></script>
+</body>
+</html>

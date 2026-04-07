@@ -1,0 +1,342 @@
+<!-- ============================================================
+     ARQUIVO: transparencia.html
+     DESCRIÇÃO: Página de Transparência Financeira da ONG Paraíso
+                dos Pets. Exibe dados financeiros simulados com
+                gráficos, tabelas e documentos.
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Transparência financeira da ONG Paraíso dos Pets. Veja como cada real doado é utilizado: gastos, receitas e balanços detalhados.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ongparaisodospets.org.br/pages/transparencia.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ONG Paraíso dos Pets">
+  <meta property="og:title" content="Transparência | ONG Paraíso dos Pets">
+  <meta property="og:description" content="Veja como cada real doado é utilizado na ONG Paraíso dos Pets.">
+  <meta property="og:image" content="https://placedog.net/1200/630?r=60">
+  <meta property="og:url" content="https://ongparaisodospets.org.br/pages/transparencia.html">
+  <meta property="og:locale" content="pt_BR">
+  <title>Transparência | ONG Paraíso dos Pets</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/print.css">
+</head>
+<body>
+
+  <!-- Cabeçalho de impressão (visível apenas no print) -->
+  <div class="print-header">
+    <span class="print-header__logo">ONG Paraíso dos Pets — Relatório de Transparência (<span id="print-periodo"></span>)</span>
+    <span class="print-header__data" id="print-data"></span>
+  </div>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo-link" aria-label="Página inicial"><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="nossa-missao.html" class="nav-link">Nossa Missão</a>
+        <a href="transparencia.html" class="nav-link ativo">Transparência</a>
+        <div class="nav-item--submenu">
+          <a href="adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a>
+          <div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a><a href="doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a><a href="contato.html" class="submenu__link" role="menuitem">Parcerias</a></div>
+        </div>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contato.html" class="nav-link">Contato</a>
+        <a href="doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      </nav>
+      <a href="doar.html" class="btn-doar-header" id="btn-doar-desktop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span class="hamburger__linha"></span><span class="hamburger__linha"></span><span class="hamburger__linha"></span></button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+  <!-- ===================== FIM HEADER ======================= -->
+
+  <main role="main" id="transparencia-page">
+
+    <!-- =================== BANNER ========================== -->
+    <section class="banner-pagina" aria-label="Banner da página Transparência">
+      <img src="https://placedog.net/1920/600?r=60" alt="Cães no abrigo" class="banner-pagina__bg" loading="eager">
+      <div class="banner-pagina__overlay" aria-hidden="true"></div>
+      <div class="banner-pagina__conteudo">
+        <h1 class="banner-pagina__titulo">Transparência</h1>
+        <p style="color:rgba(255,255,255,0.8);margin-top:0.5rem;">Cada centavo importa — veja como usamos os recursos</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="breadcrumb__separador">›</span>
+          <span>Transparência</span>
+        </nav>
+      </div>
+    </section>
+    <!-- ================ FIM BANNER ========================= -->
+
+
+    <!-- ============= SELETOR DE PERÍODO ==================== -->
+    <section class="secao" aria-label="Resumo financeiro">
+      <div class="container">
+
+        <!-- Botões de seleção de período -->
+        <div class="periodo-selector" data-animate="fade-up">
+          <button class="filtro-btn periodo-btn ativo" data-periodo="2025-1">1º Semestre 2025</button>
+          <button class="filtro-btn periodo-btn" data-periodo="2024-2">2º Semestre 2024</button>
+          <button class="filtro-btn periodo-btn" data-periodo="2023">Ano 2023</button>
+        </div>
+
+        <!-- ============= CARDS DE RESUMO =================== -->
+        <div class="grid-resumo-financeiro" data-animate="fade-up">
+
+          <!-- Card: Total Recebido -->
+          <div class="card-financeiro card-financeiro--receita">
+            <div class="card-financeiro__icone">
+              <!-- SVG: Seta para cima (receita) -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14l5-5 5 5z"/></svg>
+            </div>
+            <div class="card-financeiro__valor" id="valor-recebido">R$ 0,00</div>
+            <div class="card-financeiro__label">Total Recebido</div>
+          </div>
+
+          <!-- Card: Total Gasto -->
+          <div class="card-financeiro card-financeiro--despesa">
+            <div class="card-financeiro__icone">
+              <!-- SVG: Seta para baixo (despesa) -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+            <div class="card-financeiro__valor" id="valor-gasto">R$ 0,00</div>
+            <div class="card-financeiro__label">Total Gasto</div>
+          </div>
+
+          <!-- Card: Saldo Atual -->
+          <div class="card-financeiro card-financeiro--saldo">
+            <div class="card-financeiro__icone">
+              <!-- SVG: Banco / saldo -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z"/></svg>
+            </div>
+            <div class="card-financeiro__valor" id="valor-saldo">R$ 0,00</div>
+            <div class="card-financeiro__label">Saldo Atual</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- =========== FIM CARDS DE RESUMO ===================== -->
+
+
+    <!-- ============= GRÁFICO DE BARRAS ===================== -->
+    <section class="secao secao--bege" aria-label="Gastos por categoria">
+      <div class="container">
+        <h2 class="secao__titulo" data-animate="fade-up">Gastos por Categoria</h2>
+        <p class="secao__subtitulo" data-animate="fade-up">Para onde vai cada real gasto no período</p>
+
+        <!-- Barras horizontais — preenchidas por JS -->
+        <div class="grafico-barras" id="grafico-barras" data-animate="fade-up">
+          <!-- Barras inseridas dinamicamente pelo transparencia.js -->
+        </div>
+      </div>
+    </section>
+    <!-- ========== FIM GRÁFICO DE BARRAS ==================== -->
+
+
+    <!-- ============= GRÁFICO DE PIZZA ====================== -->
+    <section class="secao" aria-label="Fontes de receita">
+      <div class="container">
+        <h2 class="secao__titulo" data-animate="fade-up">Fontes de Receita</h2>
+        <p class="secao__subtitulo" data-animate="fade-up">De onde vêm os recursos da ONG</p>
+
+        <div class="grafico-pizza-wrapper" data-animate="fade-up">
+          <!-- Círculo do gráfico de pizza (conic-gradient via JS) -->
+          <div class="grafico-pizza" id="grafico-pizza" aria-label="Gráfico de fontes de receita"></div>
+
+          <!-- Legenda com cores -->
+          <div class="grafico-pizza-legenda" id="grafico-pizza-legenda">
+            <!-- Itens inseridos dinamicamente pelo JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== FIM GRÁFICO DE PIZZA ===================== -->
+
+
+    <!-- ============= TABELA DE MOVIMENTAÇÕES =============== -->
+    <section class="secao secao--bege" aria-label="Movimentações financeiras">
+      <div class="container">
+        <h2 class="secao__titulo" data-animate="fade-up">Movimentações</h2>
+        <p class="secao__subtitulo" data-animate="fade-up">Registro detalhado de entradas e saídas</p>
+
+        <!-- Filtro por categoria -->
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:var(--espaco-md);" data-animate="fade-up">
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <label for="filtro-tabela" style="font-weight:700;font-size:var(--tamanho-sm);">Filtrar por:</label>
+            <select id="filtro-tabela" class="campo-select" style="width:auto;padding:0.5rem 2rem 0.5rem 0.75rem;">
+              <option value="Todas">Todas as categorias</option>
+              <option value="Doação">Doação</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Veterinário">Veterinário</option>
+              <option value="Medicamentos">Medicamentos</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Manutenção">Manutenção</option>
+              <option value="Associado">Associado</option>
+              <option value="Apadrinhamento">Apadrinhamento</option>
+              <option value="Loja Solidária">Loja Solidária</option>
+            </select>
+          </div>
+
+          <!-- Botão de impressão -->
+          <button class="btn btn--secundario btn--sm" id="btn-imprimir">
+            <!-- SVG: Impressora -->
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;" aria-hidden="true"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+            Imprimir Relatório
+          </button>
+        </div>
+
+        <!-- Tabela com scroll horizontal no mobile -->
+        <div class="tabela-wrapper" data-animate="fade-up">
+          <table class="tabela">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Entrada</th>
+                <th>Saída</th>
+                <th>Saldo</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-body">
+              <!-- Linhas inseridas dinamicamente pelo JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <!-- ======== FIM TABELA DE MOVIMENTAÇÕES ================ -->
+
+
+    <!-- ============= DOCUMENTOS ============================= -->
+    <section class="secao" aria-label="Documentos disponíveis">
+      <div class="container">
+        <h2 class="secao__titulo" data-animate="fade-up">Documentos Disponíveis</h2>
+        <p class="secao__subtitulo" data-animate="fade-up">Acesso público aos documentos oficiais da ONG</p>
+
+        <div class="lista-documentos" style="max-width:600px;margin:0 auto;" data-animate="fade-up">
+
+          <!-- CNPJ -->
+          <div class="documento-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+            <div>
+              <p class="documento-item__nome">CNPJ: XX.XXX.XXX/0001-XX</p>
+              <p class="documento-item__desc">Cadastro Nacional de Pessoa Jurídica</p>
+            </div>
+          </div>
+
+          <!-- Estatuto Social -->
+          <a href="#" class="documento-item" onclick="if(typeof showToast==='function')showToast('Documento fictício — substitua pelo link real','info');return false;">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+            <div>
+              <p class="documento-item__nome">Estatuto Social</p>
+              <p class="documento-item__desc">Documento de constituição da ONG</p>
+            </div>
+          </a>
+
+          <!-- Ata de Fundação -->
+          <a href="#" class="documento-item" onclick="if(typeof showToast==='function')showToast('Documento fictício — substitua pelo link real','info');return false;">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+            <div>
+              <p class="documento-item__nome">Ata de Fundação</p>
+              <p class="documento-item__desc">Registro da assembleia de fundação</p>
+            </div>
+          </a>
+
+          <!-- Relatório Anual 2024 -->
+          <a href="#" class="documento-item" onclick="if(typeof showToast==='function')showToast('Documento fictício — substitua pelo link real','info');return false;">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+            <div>
+              <p class="documento-item__nome">Relatório Anual 2024</p>
+              <p class="documento-item__desc">Balanço completo do ano de 2024</p>
+            </div>
+          </a>
+
+        </div>
+
+        <p style="text-align:center;font-size:var(--tamanho-sm);color:var(--cor-cinza-medio);margin-top:var(--espaco-lg);" data-animate="fade-up">
+          Para solicitações de documentos adicionais, entre em contato pelo e-mail
+          <a href="mailto:contato@ongparaisodospets.org.br">contato@ongparaisodospets.org.br</a>.
+        </p>
+
+      </div>
+    </section>
+    <!-- ========== FIM DOCUMENTOS ============================ -->
+
+
+    <!-- ============= CTA FINAL ============================== -->
+    <section class="cta-doacao" aria-label="Chamada para doação">
+      <img src="https://placedog.net/1920/600?r=61" alt="Cão olhando para a câmera" class="cta-doacao__bg" loading="lazy">
+      <div class="cta-doacao__overlay" aria-hidden="true"></div>
+      <div class="cta-doacao__conteudo container">
+        <h2 data-animate="fade-up">Transparência é respeito com quem confia na gente</h2>
+        <p data-animate="fade-up">Cada doação é acompanhada, registrada e publicada. Sua confiança alimenta vidas.</p>
+        <div class="cta-doacao__botoes" data-animate="fade-up">
+          <a href="doar.html" class="btn btn--primario">💛 Fazer uma doação</a>
+          <a href="contato.html" class="btn btn--branco">Fale conosco</a>
+        </div>
+      </div>
+    </section>
+    <!-- =========== FIM CTA FINAL ============================ -->
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="../index.html" class="logo-link"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px;"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+          <p class="footer__slogan">Ajudando quem não tem voz desde 2017.<br>Ribeirão Preto, SP — Brasil.</p>
+          <div class="footer__redes">
+            <a href="https://www.instagram.com/ongparaisodospets" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></a>
+            <a href="https://www.youtube.com/@ONGParaísodosPets" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></a>
+            <a href="https://wa.me/5516999999999" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__titulo">Links Rápidos</h4>
+          <a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="transparencia.html" class="footer__link">Transparência</a><a href="blog.html" class="footer__link">Blog</a><a href="faq.html" class="footer__link">FAQ</a><a href="politica-privacidade.html" class="footer__link">Política de Privacidade</a><a href="termos-de-uso.html" class="footer__link">Termos de Uso</a>
+        </div>
+        <div>
+          <h4 class="footer__titulo">Como Ajudar</h4>
+          <a href="doar.html" class="footer__link">Apadrinhar</a><a href="voluntario.html" class="footer__link">Voluntariar</a><a href="doar.html#associar" class="footer__link">Associar-se</a><a href="contato.html" class="footer__link">Parcerias</a><a href="https://loja.ongparaisodospets.org.br" class="footer__link" target="_blank" rel="noopener noreferrer">Loja Solidária ↗</a>
+        </div>
+        <div>
+          <h4 class="footer__titulo">Contato</h4>
+          <a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a><a href="https://www.instagram.com/ongparaisodospets" class="footer__link" target="_blank" rel="noopener noreferrer">@ongparaisodospets</a><a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a><p class="footer__link" style="cursor:default;margin-top:0.5rem;">Seg a Sex: 9h–18h<br>Sábado: 9h–13h</p>
+        </div>
+      </div>
+      <div class="footer__bottom"><p>ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br>Este site respeita sua privacidade. <a href="politica-privacidade.html">Política de Privacidade</a> | <a href="termos-de-uso.html">Termos de Uso</a></p></div>
+    </div>
+  </footer>
+  <!-- ===================== FIM FOOTER ======================= -->
+
+  <!-- Rodapé de impressão (visível apenas no print) -->
+  <div class="print-footer">
+    ONG Paraíso dos Pets — contato@ongparaisodospets.org.br — Ribeirão Preto, SP
+  </div>
+
+  <!-- Botão WhatsApp -->
+  <a href="https://wa.me/5516999999999" class="btn-whatsapp" id="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg><span class="btn-whatsapp__tooltip">Fale conosco</span></a>
+
+  <!-- Botão voltar ao topo -->
+  <button class="btn-topo" id="btn-topo" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+
+  <!-- Banner de cookies -->
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Preferências de cookies"><div class="cookie-banner__inner"><p class="cookie-banner__texto">Usamos cookies para melhorar sua experiência. <a href="politica-privacidade.html">Política de Privacidade</a>.</p><div class="cookie-banner__btns"><button class="btn btn--primario btn--sm" id="cookie-aceitar-todos">Aceitar todos</button><button class="btn btn--branco btn--sm" id="cookie-aceitar-essenciais" style="color:var(--cor-branco);border-color:rgba(255,255,255,0.4);">Apenas essenciais</button></div></div></div>
+
+  <!-- Scripts -->
+  <script src="../js/main.js"></script>
+  <script src="../js/cookies.js"></script>
+  <script src="../js/transparencia.js"></script>
+
+</body>
+</html>

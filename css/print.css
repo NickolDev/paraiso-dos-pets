@@ -1,0 +1,293 @@
+/* ============================================================
+   ARQUIVO: print.css
+   DESCRIÇÃO: Estilos de impressão para relatórios de
+              transparência da ONG Paraíso dos Pets.
+              Aplicado apenas quando o usuário aciona window.print()
+              ou usa Ctrl+P / Cmd+P.
+   ÚLTIMA ATUALIZAÇÃO: 2025
+   ============================================================ */
+
+@media print {
+
+  /* ============================================================
+     1. OCULTAR ELEMENTOS NÃO RELEVANTES PARA IMPRESSÃO
+     ============================================================ */
+
+  /* Header, footer, sidebar, botões, WhatsApp, cookies, voltar ao topo */
+  .header,
+  .footer,
+  .blog-sidebar,
+  .btn-whatsapp,
+  .btn-topo,
+  .cookie-banner,
+  .toast-container,
+  .nav-overlay,
+  .btn,
+  .periodo-selector,
+  .filtros,
+  .paginacao,
+  .compartilhar-btns,
+  .hero__scroll-indicator {
+    display: none !important; /* !important necessário: sobreposiçao absoluta para print */
+  }
+
+  /* ============================================================
+     2. CONFIGURAÇÃO DA PÁGINA — Papel A4
+     ============================================================ */
+
+  @page {
+    size: A4;
+    margin: 2cm 1.5cm;
+  }
+
+  /* Reset de cores e fontes para impressão */
+  body {
+    background: white !important; /* !important: garantir fundo branco */
+    color: #000 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+    font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* ============================================================
+     3. CABEÇALHO DE IMPRESSÃO — Logo e data
+        Exibido apenas na impressão (display: none no CSS normal)
+     ============================================================ */
+
+  .print-header {
+    display: flex !important; /* !important: tornar visível apenas no print */
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5cm;
+    margin-bottom: 1cm;
+  }
+
+  .print-header__logo {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .print-header__data {
+    font-size: 10pt;
+    color: #666;
+  }
+
+  /* ============================================================
+     4. TIPOGRAFIA — Preto puro para melhor legibilidade
+     ============================================================ */
+
+  h1, h2, h3, h4 {
+    color: #000 !important;
+    page-break-after: avoid; /* Evita quebra de página após título */
+  }
+
+  h1 {
+    font-size: 18pt;
+  }
+
+  h2 {
+    font-size: 14pt;
+    margin-top: 0.5cm;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.2cm;
+  }
+
+  h3 {
+    font-size: 12pt;
+  }
+
+  p {
+    color: #333 !important;
+    orphans: 3; /* Mínimo de linhas antes de quebra */
+    widows: 3;  /* Mínimo de linhas após quebra */
+  }
+
+  /* ============================================================
+     5. TABELAS — Bordas simples, sem cores de fundo
+     ============================================================ */
+
+  .tabela {
+    border: 1px solid #ccc;
+    font-size: 9pt;
+  }
+
+  .tabela thead {
+    background-color: #eee !important;
+    color: #000 !important;
+  }
+
+  .tabela th,
+  .tabela td {
+    border: 1px solid #ccc;
+    padding: 0.3cm 0.4cm;
+  }
+
+  /* Remove zebra striping colorido */
+  .tabela tbody tr:nth-child(even) {
+    background-color: #f9f9f9 !important;
+  }
+
+  .tabela tbody tr:hover {
+    background-color: transparent !important;
+  }
+
+  /* Valores monetários em preto */
+  .tabela .valor-entrada,
+  .tabela .valor-saida {
+    color: #000 !important;
+  }
+
+  /* ============================================================
+     6. GRÁFICOS — Escala de cinza para impressão
+     ============================================================ */
+
+  /* Barras do gráfico em tons de cinza */
+  .barra-item__fill {
+    background-color: #666 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .barra-item__fill span {
+    color: #fff !important;
+  }
+
+  /* Gráfico de pizza: forçar a exibição de cores */
+  .grafico-pizza {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ============================================================
+     7. CARDS FINANCEIROS — Simplificados
+     ============================================================ */
+
+  .card-financeiro {
+    box-shadow: none !important;
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+
+  .card-financeiro__icone {
+    display: none; /* Ícones são visuais, não úteis impresso */
+  }
+
+  /* ============================================================
+     8. LINKS — Mostrar URL na impressão
+     ============================================================ */
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666;
+    font-weight: normal;
+  }
+
+  /* Não mostrar URL em links de navegação interna */
+  .nav-link[href]::after,
+  .footer__link[href]::after,
+  .breadcrumb a[href]::after {
+    content: none;
+  }
+
+  /* ============================================================
+     9. LAYOUT — Remover posicionamento fixo e cores
+     ============================================================ */
+
+  /* Remove header fixo */
+  .banner-pagina {
+    margin-top: 0;
+    background: none !important;
+    color: #000 !important;
+    padding: 0.5cm 0;
+  }
+
+  .banner-pagina__overlay {
+    display: none;
+  }
+
+  .banner-pagina__bg {
+    display: none;
+  }
+
+  .banner-pagina__titulo {
+    color: #000 !important;
+  }
+
+  /* Seções: remover fundos alternados */
+  .secao--bege {
+    background-color: transparent !important;
+  }
+
+  /* Grids: uma coluna na impressão */
+  .grid-resumo-financeiro {
+    display: block;
+  }
+
+  .grid-resumo-financeiro .card-financeiro {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    margin-bottom: 0.5cm;
+  }
+
+  /* ============================================================
+     10. QUEBRAS DE PÁGINA
+     ============================================================ */
+
+  /* Evitar quebra dentro de cards e tabelas */
+  .card-financeiro,
+  .barra-item,
+  .legenda-item {
+    page-break-inside: avoid;
+  }
+
+  /* Forçar quebra antes de seções grandes */
+  .tabela-wrapper {
+    page-break-before: auto;
+  }
+
+  /* ============================================================
+     11. IMAGENS — Não imprimir desnecessariamente
+     ============================================================ */
+
+  img {
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+
+  /* Esconder imagens decorativas */
+  .banner-pagina__bg,
+  .hero__bg,
+  .cta-doacao__bg {
+    display: none !important;
+  }
+
+  /* ============================================================
+     12. RODAPÉ DE IMPRESSÃO
+     ============================================================ */
+
+  .print-footer {
+    display: block !important; /* !important: visível apenas no print */
+    text-align: center;
+    font-size: 8pt;
+    color: #999;
+    margin-top: 1cm;
+    padding-top: 0.3cm;
+    border-top: 1px solid #ccc;
+  }
+}
+
+/* ============================================================
+   Esconder elementos de print no modo normal (tela)
+   ============================================================ */
+.print-header,
+.print-footer {
+  display: none;
+}
+
+/* ============================================================
+   FIM DO ARQUIVO print.css
+   ============================================================ */

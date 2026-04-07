@@ -1,0 +1,237 @@
+<!-- ============================================================
+     ARQUIVO: voluntario.html
+     DESCRIÇÃO: Página de cadastro de voluntários da ONG Paraíso
+                dos Pets. Formulário completo com disponibilidade,
+                habilidades e motivação.
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Seja voluntário na ONG Paraíso dos Pets. Doe seu tempo e carinho para mais de 130 cães resgatados em Ribeirão Preto, SP.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ongparaisodospets.org.br/pages/voluntario.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ONG Paraíso dos Pets">
+  <meta property="og:title" content="Seja Voluntário | ONG Paraíso dos Pets">
+  <meta property="og:description" content="Doe seu tempo e carinho para mais de 130 cães resgatados em Ribeirão Preto, SP.">
+  <meta property="og:image" content="https://placedog.net/1200/630?r=92">
+  <meta property="og:locale" content="pt_BR">
+  <title>Seja Voluntário | ONG Paraíso dos Pets</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo-link" aria-label="Página inicial"><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+        <a href="../index.html" class="nav-link">Home</a><a href="nossa-missao.html" class="nav-link">Nossa Missão</a><a href="transparencia.html" class="nav-link">Transparência</a>
+        <div class="nav-item--submenu"><a href="adote.html" class="nav-link nav-link--submenu-trigger ativo" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a><div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a></div></div>
+        <a href="blog.html" class="nav-link">Blog</a><a href="contato.html" class="nav-link">Contato</a>
+        <a href="doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      </nav>
+      <a href="doar.html" class="btn-doar-header" id="btn-doar-desktop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span class="hamburger__linha"></span><span class="hamburger__linha"></span><span class="hamburger__linha"></span></button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <main role="main">
+
+    <!-- =================== BANNER =========================== -->
+    <section class="banner-pagina" aria-label="Banner de voluntariado">
+      <img src="https://placedog.net/1920/600?r=92" alt="Voluntários com cães no abrigo" class="banner-pagina__bg" loading="eager">
+      <div class="banner-pagina__overlay" aria-hidden="true"></div>
+      <div class="banner-pagina__conteudo">
+        <h1 class="banner-pagina__titulo">Seja Voluntário</h1>
+        <p style="color:rgba(255,255,255,0.85);margin-top:0.5rem;font-size:var(--tamanho-lg);">Ser voluntário é dar o que nenhum dinheiro compra: seu tempo.</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb__separador">›</span><span>Voluntário</span></nav>
+      </div>
+    </section>
+
+    <!-- ============= INTRODUÇÃO ============================= -->
+    <section class="secao" aria-label="O que é ser voluntário">
+      <div class="container container-narrow">
+        <div data-animate="fade-up" style="text-align:center;margin-bottom:var(--espaco-xl);">
+          <h2>O que é ser voluntário no Paraíso dos Pets?</h2>
+          <p style="color:var(--cor-cinza-medio);font-size:var(--tamanho-lg);margin-top:var(--espaco-sm);">
+            É dedicar algumas horas da sua semana para cuidar de quem mais precisa. É dar banho,
+            passear, fotografar, transportar, organizar eventos e muito mais. Não é preciso ter
+            experiência com animais — temos atividades para todos os perfis. O que importa é a
+            vontade de fazer a diferença.
+          </p>
+          <p style="color:var(--cor-cinza-medio);">
+            Nossos mais de <strong>200 voluntários ativos</strong> são a força que mantém o abrigo
+            funcionando. Cada um contribui com o que sabe e pode. Juntos, cuidamos de mais de
+            130 cães todos os dias.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= FORMULÁRIO ============================= -->
+    <section class="secao secao--bege" aria-label="Cadastro de voluntário">
+      <div class="container">
+        <div class="form-container">
+          <h2 style="text-align:center;margin-bottom:var(--espaco-lg);" data-animate="fade-up">Cadastre-se como Voluntário</h2>
+
+          <form id="form-voluntario" novalidate>
+
+            <!-- Nome -->
+            <div class="campo-grupo">
+              <label class="campo-label" for="vol-nome">Nome completo <span class="obrigatorio">*</span></label>
+              <input type="text" class="campo-input" id="vol-nome" name="nome" required aria-required="true" placeholder="Seu nome completo">
+            </div>
+
+            <!-- Email e WhatsApp -->
+            <div class="campos-linha">
+              <div class="campo-grupo">
+                <label class="campo-label" for="vol-email">E-mail <span class="obrigatorio">*</span></label>
+                <input type="email" class="campo-input" id="vol-email" name="email" required aria-required="true" placeholder="seu@email.com">
+              </div>
+              <div class="campo-grupo">
+                <label class="campo-label" for="vol-whatsapp">WhatsApp <span class="obrigatorio">*</span></label>
+                <input type="text" class="campo-input" id="vol-whatsapp" name="whatsapp" required aria-required="true" placeholder="(16) 99999-9999" maxlength="15">
+              </div>
+            </div>
+
+            <!-- Cidade/Bairro -->
+            <div class="campo-grupo">
+              <label class="campo-label" for="vol-cidade">Cidade / Bairro <span class="obrigatorio">*</span></label>
+              <input type="text" class="campo-input" id="vol-cidade" name="cidade" required aria-required="true" placeholder="Ex: Ribeirão Preto — Jardim Sumaré">
+            </div>
+
+            <!-- Disponibilidade — Dias -->
+            <div class="campo-grupo">
+              <label class="campo-label">Disponibilidade — Dias da semana <span class="obrigatorio">*</span></label>
+              <div class="campo-checkbox-grupo">
+                <label class="campo-checkbox"><input type="checkbox" name="dias[]" value="seg"> Seg</label>
+                <label class="campo-checkbox"><input type="checkbox" name="dias[]" value="ter"> Ter</label>
+                <label class="campo-checkbox"><input type="checkbox" name="dias[]" value="qua"> Qua</label>
+                <label class="campo-checkbox"><input type="checkbox" name="dias[]" value="qui"> Qui</label>
+                <label class="campo-checkbox"><input type="checkbox" name="dias[]" value="sex"> Sex</label>
+                <label class="campo-checkbox"><input type="checkbox" name="dias[]" value="sab"> Sáb</label>
+                <label class="campo-checkbox"><input type="checkbox" name="dias[]" value="dom"> Dom</label>
+              </div>
+            </div>
+
+            <!-- Disponibilidade — Turno -->
+            <div class="campo-grupo">
+              <label class="campo-label">Disponibilidade — Turno <span class="obrigatorio">*</span></label>
+              <div class="campo-checkbox-grupo">
+                <label class="campo-checkbox"><input type="checkbox" name="turnos[]" value="manha"> Manhã</label>
+                <label class="campo-checkbox"><input type="checkbox" name="turnos[]" value="tarde"> Tarde</label>
+                <label class="campo-checkbox"><input type="checkbox" name="turnos[]" value="noite"> Noite</label>
+              </div>
+            </div>
+
+            <!-- Habilidades -->
+            <div class="campo-grupo">
+              <label class="campo-label">Habilidades (selecione todas que se aplicam)</label>
+              <div class="campo-checkbox-grupo" style="flex-direction:column;gap:0.5rem;">
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="cuidados-animais"> Cuidados com animais</label>
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="veterinaria"> Área veterinária ou biologia</label>
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="fotografia"> Fotografia e vídeo</label>
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="redes-sociais"> Redes sociais e comunicação</label>
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="transporte"> Transporte (tem veículo)</label>
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="construcao"> Construção / marcenaria</label>
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="design"> Design gráfico</label>
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="eventos"> Organização de eventos</label>
+                <label class="campo-checkbox"><input type="checkbox" name="habilidades[]" value="fundraising"> Captação de recursos / fundraising</label>
+                <label class="campo-checkbox"><input type="checkbox" id="hab-outro" name="habilidades[]" value="outro"> Outro</label>
+              </div>
+              <!-- Campo "Outro" (condicional) -->
+              <div id="hab-outro-campo" style="display:none;margin-top:0.5rem;">
+                <input type="text" class="campo-input" name="habilidade-outro" placeholder="Descreva sua habilidade">
+              </div>
+            </div>
+
+            <!-- Motivação -->
+            <div class="campo-grupo">
+              <label class="campo-label" for="vol-motivacao">Por que quer ser voluntário? <span class="obrigatorio">*</span></label>
+              <textarea class="campo-textarea" id="vol-motivacao" name="motivacao" required aria-required="true" minlength="30" placeholder="Conte-nos o que te motiva (mínimo 30 caracteres)..." rows="4"></textarea>
+              <div class="campo-contador" id="vol-motivacao-contador">0 / 30 caracteres mínimos</div>
+            </div>
+
+            <!-- Como nos conheceu -->
+            <div class="campo-grupo">
+              <label class="campo-label" for="vol-como-conheceu">Como nos conheceu?</label>
+              <select class="campo-select" id="vol-como-conheceu" name="como-conheceu">
+                <option value="">Selecione</option>
+                <option value="instagram">Instagram</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="indicacao">Indicação de amigo/familiar</option>
+                <option value="youtube">YouTube</option>
+                <option value="google">Pesquisa no Google</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+
+            <!-- Orientação -->
+            <div class="campo-grupo">
+              <label class="campo-checkbox" style="align-items:flex-start;">
+                <input type="checkbox" id="vol-orientacao" name="orientacao" required aria-required="true">
+                <span>Entendo que precisarei passar por uma orientação inicial antes de começar as atividades <span class="obrigatorio">*</span></span>
+              </label>
+            </div>
+
+            <!-- Botão de envio -->
+            <div style="text-align:center;margin-top:var(--espaco-lg);">
+              <button type="button" class="btn btn--primario" id="btn-enviar-voluntario">🙌 Enviar Cadastro</button>
+            </div>
+
+          </form>
+
+          <!-- Mensagem de sucesso -->
+          <div id="voluntario-sucesso" style="display:none;text-align:center;padding:var(--espaco-2xl) 0;">
+            <div style="font-size:4rem;margin-bottom:var(--espaco-sm);">🎉🙌🐾</div>
+            <h2 style="color:var(--cor-verde);margin-bottom:var(--espaco-sm);">Bem-vindo à equipe!</h2>
+            <p style="font-size:var(--tamanho-lg);max-width:500px;margin:0 auto var(--espaco-md);">
+              Seu cadastro foi recebido com sucesso! Estamos muito felizes com a sua decisão de nos ajudar.
+            </p>
+            <h3 style="margin-bottom:var(--espaco-xs);">Próximos passos:</h3>
+            <p style="color:var(--cor-cinza-medio);max-width:450px;margin:0 auto var(--espaco-lg);">
+              1. Nossa equipe entrará em contato em até 5 dias úteis<br>
+              2. Agendaremos uma orientação inicial (presencial ou online)<br>
+              3. Você será direcionado para as atividades conforme seu perfil<br>
+              4. Comece a transformar vidas!
+            </p>
+            <div style="display:flex;gap:var(--espaco-sm);justify-content:center;flex-wrap:wrap;">
+              <a href="adote.html" class="btn btn--primario">🐾 Conhecer os animais</a>
+              <a href="../index.html" class="btn btn--secundario">Voltar para a Home</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="logo-link"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px;"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a><p class="footer__slogan">Ajudando quem não tem voz desde 2017.</p></div>
+        <div><h4 class="footer__titulo">Links Rápidos</h4><a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="transparencia.html" class="footer__link">Transparência</a><a href="blog.html" class="footer__link">Blog</a><a href="faq.html" class="footer__link">FAQ</a></div>
+        <div><h4 class="footer__titulo">Como Ajudar</h4><a href="doar.html" class="footer__link">Apadrinhar</a><a href="voluntario.html" class="footer__link">Voluntariar</a><a href="doar.html#associar" class="footer__link">Associar-se</a></div>
+        <div><h4 class="footer__titulo">Contato</h4><a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a><a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a></div>
+      </div>
+      <div class="footer__bottom"><p>ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br><a href="politica-privacidade.html">Política de Privacidade</a> | <a href="termos-de-uso.html">Termos de Uso</a></p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5516999999999" class="btn-whatsapp" id="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg><span class="btn-whatsapp__tooltip">Fale conosco</span></a>
+  <button class="btn-topo" id="btn-topo" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <div class="cookie-banner" id="cookie-banner" role="dialog"><div class="cookie-banner__inner"><p class="cookie-banner__texto">Usamos cookies para melhorar sua experiência. <a href="politica-privacidade.html">Política de Privacidade</a>.</p><div class="cookie-banner__btns"><button class="btn btn--primario btn--sm" id="cookie-aceitar-todos">Aceitar todos</button><button class="btn btn--branco btn--sm" id="cookie-aceitar-essenciais" style="color:var(--cor-branco);border-color:rgba(255,255,255,0.4);">Apenas essenciais</button></div></div></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/cookies.js"></script>
+  <script src="../js/voluntario.js"></script>
+</body>
+</html>

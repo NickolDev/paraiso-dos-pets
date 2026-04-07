@@ -1,0 +1,12 @@
+# ============================================================
+# ARQUIVO: robots.txt
+# DESCRIÇÃO: Instruções para mecanismos de busca (Google, Bing, etc.)
+# SITE: ONG Paraíso dos Pets — ongparaisodospets.org.br
+# ============================================================
+
+User-agent: *
+Allow: /
+Disallow: /pages/ficha-adocao.html
+Disallow: /pages/politica-privacidade.html
+
+Sitemap: https://ongparaisodospets.org.br/sitemap.xml
