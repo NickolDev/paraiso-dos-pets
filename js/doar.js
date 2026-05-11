@@ -23,12 +23,13 @@
 let valorSelecionado = null;
 
 // ============================================================
-// DADOS DA META MENSAL — Altere para atualizar a barra
+// DADOS DA META MENSAL — Populados pelo Firebase via config.
+// Para alterar, use o painel admin → Configurações → Meta Mensal.
 // ============================================================
 const META_MENSAL = {
-  meta: 15000,
-  arrecadado: 9800,
-  mes: 'julho/2025'
+  meta: 0,
+  arrecadado: 0,
+  mes: ''
 };
 
 // ============================================================
@@ -66,6 +67,9 @@ function initDoar() {
   if (btnPix) {
     btnPix.addEventListener('click', copiarPix);
   }
+
+  // Inicializa link do Mercado Pago (sem valor inicial)
+  atualizarLinkMercadoPago(null);
 
   // Configura campo de valor personalizado
   const campoLivre = document.getElementById('valor-livre-input');
@@ -139,14 +143,52 @@ function destacarCard(valor) {
  */
 function atualizarCTA(valor) {
   const btn = document.getElementById('btn-cta-doar');
-  if (!btn) return;
+  const btnMP = document.getElementById('btn-mercadopago');
 
-  if (valor && valor > 0) {
-    btn.textContent = `Quero Doar R$ ${valor.toFixed(0)} →`;
-    btn.classList.remove('btn--disabled');
+  if (btn) {
+    if (valor && valor > 0) {
+      btn.textContent = `Quero Doar R$ ${valor.toFixed(0)} →`;
+      btn.classList.remove('btn--disabled');
+    } else {
+      btn.textContent = 'Selecione um valor acima →';
+      btn.classList.add('btn--disabled');
+    }
+  }
+
+  // Atualiza o link do Mercado Pago com o valor selecionado
+  atualizarLinkMercadoPago(valor);
+}
+
+/**
+ * Atualiza o link do Mercado Pago com o valor selecionado.
+ * Usa o link de doação configurado nas Configurações do admin,
+ * ou um link padrão genérico de fallback.
+ * @param {number|null} valor - Valor da doação
+ */
+function atualizarLinkMercadoPago(valor) {
+  const btnMP = document.getElementById('btn-mercadopago');
+  if (!btnMP) return;
+
+  // Link do Mercado Pago vindo das configurações (Firebase)
+  // ou fallback para link genérico (ONG cria na conta MP deles)
+  const linkConfigurado = (typeof configPublica !== 'undefined' && configPublica?.mercadoPagoLink)
+    ? SafeDOM.safeURL(configPublica.mercadoPagoLink, { allowRelative: false })
+    : null;
+
+  if (linkConfigurado) {
+    // Se há link configurado, redireciona direto para ele
+    // (a ONG cria um link de doação no Mercado Pago e cola no admin)
+    btnMP.href = linkConfigurado;
+    btnMP.target = '_blank';
+    btnMP.rel = 'noopener noreferrer';
   } else {
-    btn.textContent = 'Selecione um valor acima →';
-    btn.classList.add('btn--disabled');
+    // Sem link configurado — redireciona para WhatsApp com o valor
+    const msg = valor && valor > 0
+      ? `Olá! Quero fazer uma doação de R$ ${valor.toFixed(2)} via cartão/boleto. Como devo proceder?`
+      : `Olá! Quero fazer uma doação via cartão de crédito ou boleto. Como devo proceder?`;
+    btnMP.href = `https://wa.me/5516999999999?text=${encodeURIComponent(msg)}`;
+    btnMP.target = '_blank';
+    btnMP.rel = 'noopener noreferrer';
   }
 }
 
@@ -197,6 +239,14 @@ function animarMeta() {
 
   if (!fill) return;
 
+  // Se a meta não foi configurada, mostra mensagem apropriada
+  if (!META_MENSAL.meta || META_MENSAL.meta === 0) {
+    if (metaLabel) metaLabel.textContent = 'Meta mensal será definida em breve';
+    if (arrecadadoLabel) arrecadadoLabel.textContent = '';
+    if (percentEl) percentEl.textContent = '';
+    return;
+  }
+
   const percentual = Math.min((META_MENSAL.arrecadado / META_MENSAL.meta) * 100, 100);
 
   // Preenche labels
@@ -234,13 +284,14 @@ function copiarPix() {
     // Feedback visual no botão
     const btn = document.getElementById('btn-copiar-pix');
     if (btn) {
-      const textoOriginal = btn.innerHTML;
-      btn.innerHTML = '✅ Copiado!';
+      const textoOriginal = btn.dataset.originalText || btn.textContent || 'Copiar chave PIX';
+      btn.dataset.originalText = textoOriginal;
+      btn.textContent = '✅ Copiado!';
       btn.style.backgroundColor = 'var(--cor-verde)';
       btn.style.color = 'var(--cor-branco)';
 
       setTimeout(() => {
-        btn.innerHTML = textoOriginal;
+        btn.textContent = textoOriginal;
         btn.style.backgroundColor = '';
         btn.style.color = '';
       }, 3000);

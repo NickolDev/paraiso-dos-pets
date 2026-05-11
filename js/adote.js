@@ -1,351 +1,210 @@
-// ============================================================
-// ARQUIVO: adote.js
-// DESCRIÇÃO: Controla os animais disponíveis para adoção —
-//            renderização de cards, filtros, favoritos e lightbox.
-//            Os dados de animais também são usados na Home
-//            para renderizar os 3 animais em destaque.
-// DEPENDÊNCIAS: main.js (toast notifications)
-// ÚLTIMA ATUALIZAÇÃO: 2025
-//
-// ÍNDICE DE FUNÇÕES:
-//   - renderAnimais(lista)      → Renderiza cards no grid
-//   - filtrarAnimais()          → Aplica filtros combinados
-//   - criarCard(animal)         → Cria elemento HTML de um card
-//   - abrirLightbox(id)         → Abre modal com info completa
-//   - fecharLightbox()          → Fecha o modal
-//   - toggleFavorito(id)        → Adiciona/remove dos favoritos
-//   - carregarFavoritos()       → Recupera favoritos do localStorage
-//   - atualizarContadorFav()    → Atualiza badge de favoritos
-//   - renderFavoritos()         → Exibe lista de favoritos
-//   - initAdote()               → Inicializa a página de adoção
-// ============================================================
-
 'use strict';
 
-// ============================================================
-// DADOS DOS ANIMAIS — Array com 12 objetos
-// Cada objeto representa um cão disponível no abrigo.
-// Para atualizar os animais, edite este array.
-//
-// Estrutura de cada objeto:
-//   id          → Identificador único (número)
-//   nome        → Nome do animal (string)
-//   foto        → URL da foto (usar placedog.net durante dev)
-//   idade       → Idade estimada (string, ex: "2 anos")
-//   porte       → Porte: "Pequeno" | "Médio" | "Grande"
-//   sexo        → Sexo: "Macho" | "Fêmea"
-//   status      → Status: "Disponível" | "Reservado" | "Em Tratamento"
-//   castrado    → Se é castrado (boolean)
-//   vacinado    → Se está vacinado (boolean)
-//   descricao   → Descrição curta do animal (string)
-//   historico   → Como foi resgatado (string)
-//   novo        → Se é novo no abrigo (boolean) — exibe badge
-// ============================================================
-
-const ANIMAIS = [
-  {
-    id: 1,
-    nome: "Thor",
-    foto: "https://placedog.net/400/300?r=5",
-    idade: "2 anos",
-    porte: "Grande",
-    sexo: "Macho",
-    status: "Disponível",
-    castrado: true,
-    vacinado: true,
-    descricao: "Thor é um cão dócil e brincalhão que adora crianças. Apesar do nome forte, é um verdadeiro gigante gentil que só quer carinho.",
-    historico: "Resgatado em fevereiro de 2025 nas ruas do centro de Ribeirão Preto. Estava desnutrido e com sinais de maus-tratos.",
-    novo: true
-  },
-  {
-    id: 2,
-    nome: "Luna",
-    foto: "https://placedog.net/400/300?r=6",
-    idade: "1 ano",
-    porte: "Médio",
-    sexo: "Fêmea",
-    status: "Disponível",
-    castrado: true,
-    vacinado: true,
-    descricao: "Luna é meiga e tranquila. Adora ficar no colo e se dá bem com outros cães. Ideal para apartamentos.",
-    historico: "Encontrada abandonada em uma caixa de papelão próxima à rodoviária de Ribeirão Preto em janeiro de 2025.",
-    novo: true
-  },
-  {
-    id: 3,
-    nome: "Caramelo",
-    foto: "https://placedog.net/400/300?r=7",
-    idade: "4 anos",
-    porte: "Médio",
-    sexo: "Macho",
-    status: "Disponível",
-    castrado: true,
-    vacinado: true,
-    descricao: "Caramelo é o típico vira-lata caramelo brasileiro: leal, protetor e muito companheiro. Se dá bem com todos.",
-    historico: "Resgatado de uma situação de acumulação em 2023. Passou por tratamento e está totalmente recuperado.",
-    novo: false
-  },
-  {
-    id: 4,
-    nome: "Mel",
-    foto: "https://placedog.net/400/300?r=8",
-    idade: "3 anos",
-    porte: "Pequeno",
-    sexo: "Fêmea",
-    status: "Disponível",
-    castrado: true,
-    vacinado: true,
-    descricao: "Mel é pequena, mas tem uma personalidade enorme! Muito esperta e carinhosa. Adora brincar de buscar bolinha.",
-    historico: "Entregue por uma família que não podia mais cuidar dela em dezembro de 2024.",
-    novo: false
-  },
-  {
-    id: 5,
-    nome: "Pipoca",
-    foto: "https://placedog.net/400/300?r=9",
-    idade: "6 meses",
-    porte: "Pequeno",
-    sexo: "Fêmea",
-    status: "Disponível",
-    castrado: false,
-    vacinado: true,
-    descricao: "Pipoca é filhote e cheia de energia! Pula de alegria toda vez que vê alguém. Perfeita para famílias ativas.",
-    historico: "Nasceu no abrigo. Sua mãe, a Pretinha, foi resgatada grávida em outubro de 2024.",
-    novo: true
-  },
-  {
-    id: 6,
-    nome: "Rex",
-    foto: "https://placedog.net/400/300?r=10",
-    idade: "5 anos",
-    porte: "Grande",
-    sexo: "Macho",
-    status: "Reservado",
-    castrado: true,
-    vacinado: true,
-    descricao: "Rex é forte e protetor. Já está reservado para uma família que o conheceu na última feira de adoção.",
-    historico: "Resgatado de um terreno baldio na zona norte de Ribeirão Preto em 2022.",
-    novo: false
-  },
-  {
-    id: 7,
-    nome: "Nina",
-    foto: "https://placedog.net/400/300?r=11",
-    idade: "2 anos",
-    porte: "Médio",
-    sexo: "Fêmea",
-    status: "Disponível",
-    castrado: true,
-    vacinado: true,
-    descricao: "Nina é super sociável e adora passear. Caminha na guia como uma profissional e se dá bem com outros cães.",
-    historico: "Encontrada vagando pela rodovia SP-322 em março de 2024. Voluntários a resgataram com segurança.",
-    novo: false
-  },
-  {
-    id: 8,
-    nome: "Bento",
-    foto: "https://placedog.net/400/300?r=12",
-    idade: "7 anos",
-    porte: "Grande",
-    sexo: "Macho",
-    status: "Em Tratamento",
-    castrado: true,
-    vacinado: true,
-    descricao: "Bento é um senhor cão muito calmo e amoroso. Está em tratamento para uma lesão na pata, mas se recupera bem.",
-    historico: "Resgatado após denúncia de maus-tratos em 2023. Passou por cirurgia e segue em recuperação.",
-    novo: false
-  },
-  {
-    id: 9,
-    nome: "Estrela",
-    foto: "https://placedog.net/400/300?r=13",
-    idade: "1 ano",
-    porte: "Pequeno",
-    sexo: "Fêmea",
-    status: "Disponível",
-    castrado: false,
-    vacinado: true,
-    descricao: "Estrela é tímida no início, mas quando confia em você, não sai mais do seu lado. Precisa de paciência e amor.",
-    historico: "Encontrada escondida debaixo de um carro durante uma tempestade em novembro de 2024.",
-    novo: false
-  },
-  {
-    id: 10,
-    nome: "Bolt",
-    foto: "https://placedog.net/400/300?r=14",
-    idade: "3 anos",
-    porte: "Médio",
-    sexo: "Macho",
-    status: "Disponível",
-    castrado: true,
-    vacinado: true,
-    descricao: "Bolt é rápido, energético e muito inteligente. Aprende truques com facilidade. Ideal para quem gosta de atividades ao ar livre.",
-    historico: "Resgatado de uma situação de abandono em um condomínio em construção em setembro de 2024.",
-    novo: false
-  },
-  {
-    id: 11,
-    nome: "Flora",
-    foto: "https://placedog.net/400/300?r=15",
-    idade: "8 anos",
-    porte: "Médio",
-    sexo: "Fêmea",
-    status: "Disponível",
-    castrado: true,
-    vacinado: true,
-    descricao: "Flora é uma senhora tranquila que adora deitar ao sol. Perfeita para quem busca companhia calma e amorosa.",
-    historico: "Sua tutora faleceu e a família não quis ficar com ela. Chegou ao abrigo em julho de 2024.",
-    novo: false
-  },
-  {
-    id: 12,
-    nome: "Zeus",
-    foto: "https://placedog.net/400/300?r=16",
-    idade: "4 anos",
-    porte: "Grande",
-    sexo: "Macho",
-    status: "Disponível",
-    castrado: true,
-    vacinado: true,
-    descricao: "Zeus é imponente, mas com coração de manteiga. Adora receber cafuné na barriga e é muito obediente.",
-    historico: "Resgatado de uma corrente em um quintal abandonado em abril de 2024. Hoje é puro amor.",
-    novo: false
-  }
-];
-
-// ============================================================
-// CHAVE DO LOCALSTORAGE para favoritos
-// ============================================================
+const ANIMAIS = [];
 const FAVORITOS_KEY = 'paraiso_favoritos';
+const ADOTE_IMAGE_FALLBACK = '../images/logo-300.png';
 
-// ============================================================
-// RENDERIZAR ANIMAIS — Cria e insere os cards no grid
-// ============================================================
-
-/**
- * Renderiza os cards de animais no grid da página de adoção.
- * @param {Array} lista - Array de objetos de animais a exibir
- * @returns {void}
- */
 function renderAnimais(lista) {
   const container = document.getElementById('grid-animais');
   if (!container) return;
 
-  // Limpa o grid antes de renderizar
-  container.innerHTML = '';
+  SafeDOM.clear(container);
 
   if (lista.length === 0) {
-    container.innerHTML = '<p style="text-align:center;color:var(--cor-cinza-medio);grid-column:1/-1;padding:2rem;">Nenhum animal encontrado com esses filtros.</p>';
+    const empty = SafeDOM.el('div');
+    empty.style.textAlign = 'center';
+    empty.style.gridColumn = '1 / -1';
+    empty.style.padding = '3rem 1rem';
+
+    if (ANIMAIS.length === 0) {
+      empty.appendChild(SafeDOM.el('svg', {
+        attrs: { viewBox: '0 0 24 24', width: '64', height: '64', 'aria-hidden': 'true' },
+        html: '<path d="M4.5 9.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm15 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-7-3a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>'
+      }));
+      empty.querySelector('svg').style.fill = 'var(--cor-cinza-claro)';
+      empty.querySelector('svg').style.marginBottom = '1rem';
+      empty.appendChild(SafeDOM.el('h3', { text: 'Em breve nossos pets estarão aqui' }));
+      empty.querySelector('h3').style.color = 'var(--cor-texto)';
+      empty.querySelector('h3').style.marginBottom = '0.5rem';
+      const message = SafeDOM.el('p', {
+        text: 'Estamos preparando tudo para você conhecer nossos animais disponíveis para adoção. Enquanto isso, entre em contato pelo WhatsApp!'
+      });
+      message.style.color = 'var(--cor-cinza-medio)';
+      empty.appendChild(message);
+      const contactLink = SafeDOM.el('a', {
+        className: 'btn btn--primario',
+        text: 'Falar pelo WhatsApp',
+        attrs: {
+          href: 'https://wa.me/5516999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20animais%20dispon%C3%ADveis%20para%20ado%C3%A7%C3%A3o.',
+          target: '_blank',
+          rel: 'noopener noreferrer'
+        }
+      });
+      contactLink.style.marginTop = '1.5rem';
+      contactLink.style.display = 'inline-flex';
+      empty.appendChild(contactLink);
+    } else {
+      const text = SafeDOM.el('p', { text: 'Nenhum animal encontrado com esses filtros.' });
+      text.style.color = 'var(--cor-cinza-medio)';
+      text.style.padding = '2rem';
+      empty.appendChild(text);
+    }
+
+    container.appendChild(empty);
     return;
   }
 
-  // Cria e adiciona cada card
-  lista.forEach(animal => {
+  lista.forEach((animal) => {
     container.appendChild(criarCard(animal));
   });
 
-  // Atualiza contador de resultados
   const contador = document.getElementById('filtros-contador');
-  if (contador) {
-    contador.textContent = `Exibindo ${lista.length} de ${ANIMAIS.length} animais`;
-  }
+  if (contador) contador.textContent = `Exibindo ${lista.length} de ${ANIMAIS.length} animais`;
 }
 
-// ============================================================
-// CRIAR CARD — Monta o HTML de um card de animal
-// ============================================================
-
-/**
- * Cria o elemento HTML completo de um card de animal.
- * Inclui: foto, badges, botão favorito, nome, detalhes,
- * ícones de status, descrição e botão de ação.
- * @param {Object} animal - Objeto com dados do animal
- * @returns {HTMLElement} Elemento div do card
- */
-function criarCard(animal) {
-  const card = document.createElement('div');
-  card.classList.add('card-animal');
-  card.setAttribute('data-id', animal.id);
-
-  // Verifica se é favorito
-  const favoritos = carregarFavoritos();
-  const isFavorito = favoritos.includes(animal.id);
-
-  // Classes de badge conforme status
+function createAnimalStatusBadge(status) {
   const statusClasse = {
     'Disponível': 'badge--disponivel',
     'Reservado': 'badge--reservado',
     'Em Tratamento': 'badge--tratamento'
   };
+  return SafeDOM.el('span', {
+    className: `badge ${statusClasse[status] || 'badge--disponivel'}`,
+    text: status || 'Disponível'
+  });
+}
 
-  card.innerHTML = `
-    <!-- Área da foto com badges e botão favorito -->
-    <div class="card-animal__foto-wrapper" onclick="abrirLightbox(${animal.id})">
-      <img src="${animal.foto}" alt="${animal.nome}, cão ${animal.porte.toLowerCase()} de ${animal.idade}" class="card-animal__foto" loading="lazy">
-      <div class="card-animal__badges">
-        <span class="badge ${statusClasse[animal.status] || 'badge--disponivel'}">${animal.status}</span>
-        ${animal.novo ? '<span class="badge badge--novo">Novo</span>' : ''}
-      </div>
-    </div>
+function createAnimalFeature(text) {
+  return SafeDOM.el('span', { className: 'card-animal__icone-info' }, [
+    SafeDOM.el('svg', {
+      attrs: { viewBox: '0 0 24 24', 'aria-hidden': 'true' },
+      html: '<path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>'
+    }),
+    document.createTextNode(` ${text}`)
+  ]);
+}
 
-    <!-- Botão de favoritar (coração) -->
-    <button class="card-animal__favorito ${isFavorito ? 'ativo' : ''}" onclick="event.stopPropagation(); toggleFavorito(${animal.id})" aria-label="${isFavorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
-      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-    </button>
+function criarCard(animal) {
+  const favoritos = carregarFavoritos();
+  const isFavorito = favoritos.includes(animal.id);
+  const card = SafeDOM.el('div', { className: 'card-animal', attrs: { 'data-id': String(animal.id) } });
 
-    <!-- Informações do animal -->
-    <div class="card-animal__info">
-      <h3 class="card-animal__nome">${animal.nome}</h3>
-      <div class="card-animal__detalhes">
-        <span class="card-animal__detalhe">${animal.idade}</span>
-        <span class="card-animal__detalhe">•</span>
-        <span class="card-animal__detalhe">${animal.porte}</span>
-        <span class="card-animal__detalhe">•</span>
-        <span class="card-animal__detalhe">${animal.sexo}</span>
-      </div>
-      <div class="card-animal__icones">
-        ${animal.vacinado ? '<span class="card-animal__icone-info"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Vacinado</span>' : ''}
-        ${animal.castrado ? '<span class="card-animal__icone-info"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Castrado</span>' : ''}
-      </div>
-      <p class="card-animal__descricao">${animal.descricao}</p>
-      <a href="ficha-adocao.html?animal=${animal.id}" class="btn btn--primario btn--sm card-animal__btn">Quero adotar</a>
-    </div>
-  `;
+  const fotoWrapper = SafeDOM.el('div', {
+    className: 'card-animal__foto-wrapper',
+    listeners: { click: () => abrirLightbox(animal.id) }
+  });
+  const foto = SafeDOM.el('img', {
+    className: 'card-animal__foto',
+    attrs: { alt: animal.nome || 'Animal para adoção', loading: 'lazy' }
+  });
+  SafeDOM.setImageSource(foto, animal.foto, { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
+  fotoWrapper.appendChild(foto);
+
+  const badges = SafeDOM.el('div', { className: 'card-animal__badges' }, [
+    createAnimalStatusBadge(animal.status),
+    animal.novo ? SafeDOM.el('span', { className: 'badge badge--novo', text: 'Novo' }) : null
+  ]);
+  fotoWrapper.appendChild(badges);
+  card.appendChild(fotoWrapper);
+
+  const favoriteButton = SafeDOM.el('button', {
+    className: `card-animal__favorito ${isFavorito ? 'ativo' : ''}`,
+    attrs: {
+      type: 'button',
+      'aria-label': isFavorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'
+    },
+    listeners: {
+      click: (event) => {
+        event.stopPropagation();
+        toggleFavorito(animal.id);
+      }
+    },
+    html: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'
+  });
+  card.appendChild(favoriteButton);
+
+  const info = SafeDOM.el('div', { className: 'card-animal__info' });
+  info.appendChild(SafeDOM.el('h3', { className: 'card-animal__nome', text: animal.nome || 'Sem nome' }));
+
+  const detalhes = SafeDOM.el('div', { className: 'card-animal__detalhes' });
+  [animal.idade, '•', animal.porte, '•', animal.sexo].forEach((item, index) => {
+    if (!item) return;
+    detalhes.appendChild(SafeDOM.el('span', {
+      className: 'card-animal__detalhe',
+      text: item
+    }));
+  });
+  info.appendChild(detalhes);
+
+  const icones = SafeDOM.el('div', { className: 'card-animal__icones' }, [
+    animal.vacinado ? createAnimalFeature('Vacinado') : null,
+    animal.castrado ? createAnimalFeature('Castrado') : null
+  ]);
+  info.appendChild(icones);
+
+  info.appendChild(SafeDOM.el('p', { className: 'card-animal__descricao', text: animal.descricao || '' }));
+
+  const actions = SafeDOM.el('div');
+  actions.style.display = 'flex';
+  actions.style.gap = '0.5rem';
+  actions.style.alignItems = 'center';
+  actions.style.flexWrap = 'wrap';
+
+  actions.appendChild(SafeDOM.el('a', {
+    className: 'btn btn--primario btn--sm card-animal__btn',
+    text: 'Quero adotar',
+    attrs: { href: `ficha-adocao.html?animal=${encodeURIComponent(String(animal.id))}` }
+  }));
+
+  const shareButton = SafeDOM.el('button', {
+    className: 'btn btn--sm card-animal__btn-compartilhar',
+    attrs: { type: 'button', 'aria-label': 'Compartilhar', title: 'Compartilhar' },
+    listeners: {
+      click: (event) => {
+        event.stopPropagation();
+        compartilharAnimal(animal.nome || 'Animal', animal.id);
+      }
+    }
+  }, [
+    SafeDOM.el('svg', {
+      attrs: { viewBox: '0 0 24 24', 'aria-hidden': 'true' },
+      html: '<path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>'
+    }),
+    document.createTextNode(' Compartilhar')
+  ]);
+  shareButton.style.padding = '0.5rem 0.75rem';
+  shareButton.style.background = 'var(--cor-bege)';
+  shareButton.style.border = '2px solid var(--cor-cinza-claro)';
+  shareButton.style.borderRadius = '50px';
+  shareButton.style.cursor = 'pointer';
+  shareButton.style.display = 'flex';
+  shareButton.style.alignItems = 'center';
+  shareButton.style.gap = '0.3rem';
+  shareButton.style.fontSize = '0.8rem';
+  shareButton.style.fontWeight = '600';
+  shareButton.style.color = 'var(--cor-cinza-medio)';
+  actions.appendChild(shareButton);
+
+  info.appendChild(actions);
+  card.appendChild(info);
 
   return card;
 }
 
-// ============================================================
-// FILTRAR ANIMAIS — Combina porte + sexo + status + busca
-// ============================================================
-
-/**
- * Aplica todos os filtros ativos e rerenderiza o grid.
- * Lê os valores dos filtros diretamente dos botões ativos.
- * @returns {void}
- */
 function filtrarAnimais() {
-  // Lê o filtro ativo de cada grupo
   const porteAtivo = document.querySelector('[data-filtro="porte"].ativo')?.dataset.valor || 'Todos';
   const sexoAtivo = document.querySelector('[data-filtro="sexo"].ativo')?.dataset.valor || 'Todos';
   const statusAtivo = document.querySelector('[data-filtro="status"].ativo')?.dataset.valor || 'Todos';
-  const buscaInput = document.getElementById('busca-animal');
-  const busca = buscaInput ? buscaInput.value.toLowerCase().trim() : '';
+  const busca = (document.getElementById('busca-animal')?.value || '').toLowerCase().trim();
 
-  // Filtra o array de animais
-  let resultado = ANIMAIS.filter(animal => {
-    // Filtro de porte
+  const resultado = ANIMAIS.filter((animal) => {
     if (porteAtivo !== 'Todos' && animal.porte !== porteAtivo) return false;
-    // Filtro de sexo
     if (sexoAtivo !== 'Todos' && animal.sexo !== sexoAtivo) return false;
-    // Filtro de status
     if (statusAtivo !== 'Todos' && animal.status !== statusAtivo) return false;
-    // Filtro de busca por nome
-    if (busca && !animal.nome.toLowerCase().includes(busca)) return false;
+    if (busca && !SafeDOM.toStringValue(animal.nome).toLowerCase().includes(busca)) return false;
     return true;
   });
 
-  // Rerenderiza com animação
   const grid = document.getElementById('grid-animais');
   if (grid) {
     grid.style.opacity = '0';
@@ -358,245 +217,303 @@ function filtrarAnimais() {
   }
 }
 
-// ============================================================
-// LIGHTBOX — Modal com foto ampliada e info completa
-// ============================================================
-
-/**
- * Abre o lightbox com todas as informações de um animal.
- * @param {number} id - ID do animal para exibir
- * @returns {void}
- */
 function abrirLightbox(id) {
-  const animal = ANIMAIS.find(a => a.id === id);
+  const animal = ANIMAIS.find((item) => item.id === id);
   if (!animal) return;
 
   const lightbox = document.getElementById('lightbox');
-  if (!lightbox) return;
+  const conteudo = lightbox?.querySelector('.lightbox__conteudo');
+  if (!lightbox || !conteudo) return;
 
-  // Preenche o conteúdo do lightbox
-  const conteudo = lightbox.querySelector('.lightbox__conteudo');
-  if (!conteudo) return;
+  SafeDOM.clear(conteudo);
 
-  const statusClasse = {
-    'Disponível': 'badge--disponivel',
-    'Reservado': 'badge--reservado',
-    'Em Tratamento': 'badge--tratamento'
-  };
+  const closeButton = SafeDOM.el('button', {
+    className: 'lightbox__fechar',
+    attrs: { type: 'button', 'aria-label': 'Fechar' },
+    listeners: { click: fecharLightbox },
+    html: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
+  });
+  conteudo.appendChild(closeButton);
 
-  conteudo.innerHTML = `
-    <button class="lightbox__fechar" onclick="fecharLightbox()" aria-label="Fechar">
-      <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-    </button>
-    <img src="${animal.foto}" alt="${animal.nome}" class="lightbox__imagem">
-    <div class="lightbox__info">
-      <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem;">
-        <span class="badge ${statusClasse[animal.status]}">${animal.status}</span>
-        ${animal.novo ? '<span class="badge badge--novo">Novo</span>' : ''}
-      </div>
-      <h2 class="lightbox__nome">${animal.nome}</h2>
-      <div class="lightbox__meta">
-        <span>${animal.idade}</span>
-        <span>•</span>
-        <span>Porte ${animal.porte}</span>
-        <span>•</span>
-        <span>${animal.sexo}</span>
-        <span>•</span>
-        <span>${animal.castrado ? 'Castrado' : 'Não castrado'}</span>
-        <span>•</span>
-        <span>${animal.vacinado ? 'Vacinado' : 'Vacinação pendente'}</span>
-      </div>
-      <p class="lightbox__descricao">${animal.descricao}</p>
-      <div class="lightbox__historico">
-        <strong>Histórico de resgate:</strong> ${animal.historico}
-      </div>
-      <a href="ficha-adocao.html?animal=${animal.id}" class="btn btn--primario" style="width:100%;justify-content:center;">
-        🐾 Quero adotar ${animal.nome}
-      </a>
-    </div>
-  `;
+  const image = SafeDOM.el('img', {
+    className: 'lightbox__imagem',
+    attrs: { alt: animal.nome || 'Animal para adoção' }
+  });
+  SafeDOM.setImageSource(image, animal.foto, { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
+  conteudo.appendChild(image);
 
-  // Exibe o lightbox
+  const info = SafeDOM.el('div', { className: 'lightbox__info' });
+  const badgeRow = SafeDOM.el('div');
+  badgeRow.style.display = 'flex';
+  badgeRow.style.gap = '0.5rem';
+  badgeRow.style.marginBottom = '0.75rem';
+  badgeRow.appendChild(createAnimalStatusBadge(animal.status));
+  if (animal.novo) badgeRow.appendChild(SafeDOM.el('span', { className: 'badge badge--novo', text: 'Novo' }));
+  info.appendChild(badgeRow);
+  info.appendChild(SafeDOM.el('h2', { className: 'lightbox__nome', text: animal.nome || 'Sem nome' }));
+
+  const meta = SafeDOM.el('div', { className: 'lightbox__meta' });
+  [animal.idade, '•', `Porte ${animal.porte || 'não informado'}`, '•', animal.sexo, '•', animal.castrado ? 'Castrado' : 'Não castrado', '•', animal.vacinado ? 'Vacinado' : 'Vacinação pendente']
+    .forEach((item) => meta.appendChild(SafeDOM.el('span', { text: item })));
+  info.appendChild(meta);
+
+  info.appendChild(SafeDOM.el('p', { className: 'lightbox__descricao', text: animal.descricao || '' }));
+  const historico = SafeDOM.el('div', { className: 'lightbox__historico' }, [
+    SafeDOM.el('strong', { text: 'Histórico de resgate:' }),
+    document.createTextNode(` ${animal.historico || 'Não informado.'}`)
+  ]);
+  info.appendChild(historico);
+  info.appendChild(SafeDOM.el('a', {
+    className: 'btn btn--primario',
+    text: `🐾 Quero adotar ${animal.nome || 'este pet'}`,
+    attrs: { href: `ficha-adocao.html?animal=${encodeURIComponent(String(animal.id))}` }
+  }));
+  info.lastChild.style.width = '100%';
+  info.lastChild.style.justifyContent = 'center';
+  conteudo.appendChild(info);
+
   lightbox.classList.add('ativo');
   document.body.style.overflow = 'hidden';
-
-  // Foco preso no modal (acessibilidade)
   conteudo.focus();
 }
 
-/**
- * Fecha o lightbox e restaura o scroll.
- * @returns {void}
- */
 function fecharLightbox() {
   const lightbox = document.getElementById('lightbox');
   if (!lightbox) return;
-
   lightbox.classList.remove('ativo');
   document.body.style.overflow = '';
 }
 
-// ============================================================
-// FAVORITOS — Salva/remove no localStorage
-// ============================================================
-
-/**
- * Alterna o estado de favorito de um animal.
- * Se já é favorito, remove; se não é, adiciona.
- * @param {number} id - ID do animal
- * @returns {void}
- */
 function toggleFavorito(id) {
-  let favoritos = carregarFavoritos();
-
+  const favoritos = carregarFavoritos();
   const index = favoritos.indexOf(id);
+
   if (index > -1) {
-    // Remove dos favoritos
     favoritos.splice(index, 1);
-    if (typeof showToast === 'function') {
-      showToast('Removido dos favoritos', 'info');
-    }
+    if (typeof showToast === 'function') showToast('Removido dos favoritos', 'info');
   } else {
-    // Adiciona aos favoritos
     favoritos.push(id);
-    if (typeof showToast === 'function') {
-      showToast('Adicionado aos favoritos!', 'sucesso');
-    }
+    if (typeof showToast === 'function') showToast('Adicionado aos favoritos!', 'sucesso');
   }
 
-  // Salva no localStorage
-  localStorage.setItem(FAVORITOS_KEY, JSON.stringify(favoritos));
-
-  // Atualiza visual do botão de coração
-  const btn = document.querySelector(`.card-animal[data-id="${id}"] .card-animal__favorito`);
-  if (btn) {
-    btn.classList.toggle('ativo');
+  try {
+    localStorage.setItem(FAVORITOS_KEY, JSON.stringify(favoritos));
+  } catch (erro) {
+    console.warn('Não foi possível salvar favoritos:', erro);
   }
 
-  // Atualiza contador e seção de favoritos
+  const button = document.querySelector(`.card-animal[data-id="${id}"] .card-animal__favorito`);
+  if (button) {
+    button.classList.toggle('ativo', favoritos.includes(id));
+    button.setAttribute('aria-label', favoritos.includes(id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+  }
+
   atualizarContadorFav();
   renderFavoritos();
 }
 
-/**
- * Recupera a lista de IDs favoritos do localStorage.
- * @returns {Array<number>} Array de IDs de animais favoritos
- */
 function carregarFavoritos() {
   try {
     const dados = localStorage.getItem(FAVORITOS_KEY);
     return dados ? JSON.parse(dados) : [];
-  } catch (e) {
+  } catch (erro) {
     return [];
   }
 }
 
-/**
- * Atualiza o badge de contagem de favoritos no header.
- * @returns {void}
- */
 function atualizarContadorFav() {
   const badge = document.getElementById('fav-count');
   if (!badge) return;
-
   const favoritos = carregarFavoritos();
   badge.textContent = favoritos.length;
   badge.style.display = favoritos.length > 0 ? 'inline-flex' : 'none';
 }
 
-/**
- * Renderiza a seção colapsável de favoritos no topo do grid.
- * @returns {void}
- */
 function renderFavoritos() {
   const secao = document.getElementById('favoritos-secao');
-  if (!secao) return;
+  const grid = secao?.querySelector('.favoritos-secao__grid');
+  if (!secao || !grid) return;
 
   const favoritos = carregarFavoritos();
-  const grid = secao.querySelector('.favoritos-secao__grid');
-
   if (favoritos.length === 0) {
     secao.classList.remove('ativo');
+    SafeDOM.clear(grid);
     return;
   }
 
   secao.classList.add('ativo');
+  SafeDOM.clear(grid);
 
-  if (grid) {
-    grid.innerHTML = '';
-    const animaisFav = ANIMAIS.filter(a => favoritos.includes(a.id));
-    animaisFav.forEach(animal => {
-      const mini = document.createElement('div');
-      mini.style.cssText = 'display:flex;align-items:center;gap:0.5rem;padding:0.5rem;background:var(--cor-branco);border-radius:var(--raio-sm);';
-      mini.innerHTML = `
-        <img src="${animal.foto}" alt="${animal.nome}" style="width:50px;height:50px;border-radius:var(--raio-sm);object-fit:cover;">
-        <div>
-          <strong style="font-size:var(--tamanho-sm);">${animal.nome}</strong>
-          <p style="font-size:var(--tamanho-xs);color:var(--cor-cinza-medio);margin:0;">${animal.porte} • ${animal.sexo}</p>
-        </div>
-      `;
-      grid.appendChild(mini);
+  ANIMAIS.filter((animal) => favoritos.includes(animal.id)).forEach((animal) => {
+    const item = SafeDOM.el('div');
+    item.style.display = 'flex';
+    item.style.alignItems = 'center';
+    item.style.gap = '0.5rem';
+    item.style.padding = '0.5rem';
+    item.style.background = 'var(--cor-branco)';
+    item.style.borderRadius = 'var(--raio-sm)';
+
+    const img = SafeDOM.el('img', {
+      attrs: { alt: animal.nome || 'Animal favorito' }
     });
-  }
+    img.style.width = '50px';
+    img.style.height = '50px';
+    img.style.borderRadius = 'var(--raio-sm)';
+    img.style.objectFit = 'cover';
+    SafeDOM.setImageSource(img, animal.foto, { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
+    item.appendChild(img);
+
+    const textWrap = SafeDOM.el('div', {}, [
+      SafeDOM.el('strong', { text: animal.nome || 'Sem nome' }),
+      SafeDOM.el('p', { text: `${animal.porte || 'Porte'} • ${animal.sexo || 'Sexo'}` })
+    ]);
+    textWrap.querySelector('strong').style.fontSize = 'var(--tamanho-sm)';
+    textWrap.querySelector('p').style.fontSize = 'var(--tamanho-xs)';
+    textWrap.querySelector('p').style.color = 'var(--cor-cinza-medio)';
+    textWrap.querySelector('p').style.margin = '0';
+    item.appendChild(textWrap);
+
+    grid.appendChild(item);
+  });
 }
 
-// ============================================================
-// INICIALIZAÇÃO — Página de adoção (adote.html)
-// ============================================================
-
-/**
- * Inicializa a página de adoção completa.
- * Configura filtros, renderiza animais e carrega favoritos.
- * Executada apenas na página adote.html.
- * @returns {void}
- */
 function initAdote() {
-  // Verifica se estamos na página de adoção (grid principal existe)
   const gridPrincipal = document.getElementById('grid-animais');
   if (!gridPrincipal) return;
 
-  // Renderiza todos os animais inicialmente
   renderAnimais(ANIMAIS);
 
-  // Configura os botões de filtro
-  const filtros = document.querySelectorAll('.filtro-btn');
-  filtros.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Remove 'ativo' dos botões do mesmo grupo
-      const grupo = btn.dataset.filtro;
-      document.querySelectorAll(`[data-filtro="${grupo}"]`).forEach(b => b.classList.remove('ativo'));
-      // Ativa o botão clicado
-      btn.classList.add('ativo');
-      // Reaplica filtros
+  document.querySelectorAll('.filtro-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      const grupo = button.dataset.filtro;
+      document.querySelectorAll(`[data-filtro="${grupo}"]`).forEach((item) => item.classList.remove('ativo'));
+      button.classList.add('ativo');
       filtrarAnimais();
     });
   });
 
-  // Configura busca por nome em tempo real
-  const buscaInput = document.getElementById('busca-animal');
-  if (buscaInput) {
-    buscaInput.addEventListener('input', filtrarAnimais);
-  }
-
-  // Carrega favoritos e atualiza visual
+  document.getElementById('busca-animal')?.addEventListener('input', filtrarAnimais);
   atualizarContadorFav();
   renderFavoritos();
 
-  // Fecha lightbox com tecla ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') fecharLightbox();
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') fecharLightbox();
   });
 
-  // Fecha lightbox ao clicar no overlay
-  const lightbox = document.getElementById('lightbox');
-  if (lightbox) {
-    lightbox.querySelector('.lightbox__overlay')?.addEventListener('click', fecharLightbox);
-  }
+  document.querySelector('#lightbox .lightbox__overlay')?.addEventListener('click', fecharLightbox);
 }
 
-// Inicializa quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', initAdote);
 
-// ============================================================
-// FIM DO ARQUIVO adote.js
-// ============================================================
+function compartilharAnimal(nome, id) {
+  const url = `${window.location.origin}${window.location.pathname}?destaque=${encodeURIComponent(String(id))}`;
+  const texto = `Olha que lindo(a)! ${nome} está esperando por um lar na ONG Paraíso dos Pets. Conheça:`;
+
+  if (navigator.share) {
+    navigator.share({
+      title: `${nome} — ONG Paraíso dos Pets`,
+      text: texto,
+      url
+    }).catch(() => {});
+    return;
+  }
+
+  const overlay = SafeDOM.el('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.background = 'rgba(0,0,0,0.5)';
+  overlay.style.zIndex = '9999';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+
+  const closeMenu = () => overlay.remove();
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) closeMenu();
+  });
+
+  const box = SafeDOM.el('div');
+  box.style.background = '#fff';
+  box.style.borderRadius = '16px';
+  box.style.padding = '2rem';
+  box.style.maxWidth = '320px';
+  box.style.width = '90%';
+  box.style.textAlign = 'center';
+  box.style.boxShadow = '0 20px 40px rgba(0,0,0,0.2)';
+  box.appendChild(SafeDOM.el('h3', { text: `Compartilhar ${nome}` }));
+  box.querySelector('h3').style.marginBottom = '1rem';
+  box.querySelector('h3').style.color = 'var(--cor-texto)';
+
+  const actions = SafeDOM.el('div');
+  actions.style.display = 'flex';
+  actions.style.flexDirection = 'column';
+  actions.style.gap = '0.75rem';
+
+  const whatsappButton = SafeDOM.el('button', {
+    text: 'WhatsApp',
+    attrs: { type: 'button' },
+    listeners: {
+      click: () => {
+        window.open(`https://wa.me/?text=${encodeURIComponent(`${texto} ${url}`)}`, '_blank', 'noopener');
+        closeMenu();
+      }
+    }
+  });
+  whatsappButton.style.padding = '0.75rem';
+  whatsappButton.style.borderRadius = '50px';
+  whatsappButton.style.border = 'none';
+  whatsappButton.style.background = '#25D366';
+  whatsappButton.style.color = '#fff';
+  whatsappButton.style.fontWeight = '700';
+  whatsappButton.style.cursor = 'pointer';
+  whatsappButton.style.fontSize = '0.9rem';
+  whatsappButton.style.fontFamily = 'var(--fonte-corpo)';
+
+  const copyButton = SafeDOM.el('button', {
+    text: 'Copiar link',
+    attrs: { type: 'button' },
+    listeners: {
+      click: async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          if (typeof showToast === 'function') showToast('Link copiado!', 'sucesso');
+        } catch (erro) {
+          if (typeof showToast === 'function') showToast('Não foi possível copiar o link.', 'erro');
+        }
+        closeMenu();
+      }
+    }
+  });
+  copyButton.style.padding = '0.75rem';
+  copyButton.style.borderRadius = '50px';
+  copyButton.style.border = '2px solid var(--cor-cinza-claro)';
+  copyButton.style.background = '#fff';
+  copyButton.style.color = 'var(--cor-texto)';
+  copyButton.style.fontWeight = '700';
+  copyButton.style.cursor = 'pointer';
+  copyButton.style.fontSize = '0.9rem';
+  copyButton.style.fontFamily = 'var(--fonte-corpo)';
+
+  const cancelButton = SafeDOM.el('button', {
+    text: 'Cancelar',
+    attrs: { type: 'button' },
+    listeners: { click: closeMenu }
+  });
+  cancelButton.style.padding = '0.5rem';
+  cancelButton.style.border = 'none';
+  cancelButton.style.background = 'none';
+  cancelButton.style.color = 'var(--cor-cinza-medio)';
+  cancelButton.style.cursor = 'pointer';
+  cancelButton.style.fontSize = '0.85rem';
+  cancelButton.style.fontFamily = 'var(--fonte-corpo)';
+
+  actions.appendChild(whatsappButton);
+  actions.appendChild(copyButton);
+  actions.appendChild(cancelButton);
+  box.appendChild(actions);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+}

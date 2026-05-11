@@ -41,38 +41,38 @@
    ============================================================ */
 
 /* === Importação de fontes do Google Fonts === */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap');
+/* Google Fonts loaded via <link> in HTML for better performance */
 
 /* ============================================================
    1. VARIÁVEIS CSS — Paleta de cores, tipografia e espaçamentos
       Altere aqui para mudar o visual de todo o site de uma vez.
    ============================================================ */
 :root {
-  /* === CORES PRINCIPAIS === */
-  --cor-primaria:        #E87722;  /* Laranja — botões, destaques, CTAs */
-  --cor-primaria-hover:  #C9611A;  /* Laranja escuro — estado hover */
-  --cor-primaria-light:  #FDF0E6;  /* Laranja pastel — fundos suaves */
+  /* === CORES PRINCIPAIS — Paleta Paraíso dos Pets === */
+  --cor-primaria:        #00B4B4;  /* Turquesa — botões, destaques, CTAs (cor do logo) */
+  --cor-primaria-hover:  #009999;  /* Turquesa escuro — estado hover */
+  --cor-primaria-light:  #E0F7F7;  /* Turquesa pastel — fundos suaves */
 
-  --cor-secundaria:      #8B5E3C;  /* Marrom caramelo — títulos */
-  --cor-secundaria-dark: #5C3D22;  /* Marrom escuro — texto sobre claro */
+  --cor-secundaria:      #3FBADD;  /* Azul claro — títulos, links */
+  --cor-secundaria-dark: #0A61C2;  /* Azul escuro — texto sobre claro, headers */
 
-  --cor-verde:           #4A8F5C;  /* Verde — status disponível, sucesso */
-  --cor-verde-light:     #E8F5EC;  /* Verde claro — badges */
+  --cor-verde:           #0ACC95;  /* Verde — status disponível, sucesso */
+  --cor-verde-light:     #E0FBF1;  /* Verde claro — badges */
 
   /* === NEUTROS === */
   --cor-branco:          #FFFFFF;
-  --cor-bege:            #FAF7F4;  /* Fundo alternativo de seções */
-  --cor-bege-medio:      #F0EBE3;  /* Bordas e divisores suaves */
-  --cor-cinza-claro:     #E8E4DF;
-  --cor-cinza-medio:     #9B8F85;  /* Texto secundário, legendas */
-  --cor-texto:           #2D2520;  /* Texto principal — marrom muito escuro */
-  --cor-fundo-escuro:    #1A1208;  /* Footer e seções escuras */
+  --cor-bege:            #F5FAFA;  /* Fundo alternativo de seções */
+  --cor-bege-medio:      #E8F0EE;  /* Bordas e divisores suaves */
+  --cor-cinza-claro:     #D8E4E2;
+  --cor-cinza-medio:     #6B8A85;  /* Texto secundário, legendas */
+  --cor-texto:           #1A2E35;  /* Texto principal — escuro azulado */
+  --cor-fundo-escuro:    #062A4D;  /* Footer e seções escuras */
 
   /* === ESTADO === */
   --cor-erro:            #D94F3D;
   --cor-aviso:           #E8A61A;
-  --cor-sucesso:         #4A8F5C;
-  --cor-info:            #2E6DA4;
+  --cor-sucesso:         #0ACC95;
+  --cor-info:            #3FBADD;
 
   /* === TIPOGRAFIA === */
   --fonte-titulo:   'Playfair Display', Georgia, serif;
@@ -242,12 +242,12 @@ small, .texto-pequeno {
    ============================================================ */
 
 /* Links em texto corrido */
-a:not(.btn):not(.nav-link):not(.logo-link) {
+a:not(.btn):not(.nav-link):not(.logo-link):not(.btn-doar-header) {
   color: var(--cor-primaria);
   transition: var(--transicao);
 }
 
-a:not(.btn):not(.nav-link):not(.logo-link):hover {
+a:not(.btn):not(.nav-link):not(.logo-link):not(.btn-doar-header):hover {
   color: var(--cor-primaria-hover);
   text-decoration: underline;
 }
@@ -490,7 +490,7 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
   text-decoration: none;
 }
 
-/* Ícone SVG da patinha no logo */
+/* Ícone SVG da patinha no logo (fallback) */
 .logo-link svg {
   width: 36px;
   height: 36px;
@@ -498,7 +498,19 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
   transition: var(--transicao);
 }
 
-.logo-link:hover svg {
+/* Logo real da ONG (imagem) */
+.logo-link .logo-img,
+.logo-link img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: var(--transicao);
+}
+
+.logo-link:hover svg,
+.logo-link:hover .logo-img,
+.logo-link:hover img {
   transform: rotate(-10deg) scale(1.1);
 }
 
@@ -720,11 +732,12 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
   display: flex;
   align-items: center;
   overflow: hidden;
-  /* Compensa o header fixo */
   margin-top: 0;
+  /* Gradient background (aparece quando não há foto ou enquanto carrega) */
+  background: linear-gradient(135deg, #062A4D 0%, #0A61C2 40%, #00B4B4 100%);
 }
 
-/* Imagem de fundo do hero */
+/* Imagem de fundo do hero (substituída por foto real via admin) */
 .hero__bg {
   position: absolute;
   top: 0;
@@ -742,7 +755,7 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(26,18,8,0.85) 0%, rgba(139,94,60,0.6) 100%);
+  background: linear-gradient(135deg, rgba(6,42,77,0.85) 0%, rgba(10,97,194,0.5) 100%);
   z-index: 1;
 }
 
@@ -1890,9 +1903,11 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
   text-align: center;
   color: var(--cor-branco);
   overflow: hidden;
+  /* Gradient background */
+  background: linear-gradient(135deg, #062A4D 0%, #00B4B4 100%);
 }
 
-/* Imagem de fundo */
+/* Imagem de fundo (substituída por foto real via admin) */
 .cta-doacao__bg {
   position: absolute;
   top: 0;
@@ -1910,7 +1925,7 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(26,18,8,0.9) 0%, rgba(232,119,34,0.7) 100%);
+  background: linear-gradient(135deg, rgba(6,42,77,0.9) 0%, rgba(0,180,180,0.6) 100%);
   z-index: 1;
 }
 
@@ -2831,9 +2846,11 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
 .banner-pagina {
   position: relative;
   padding: var(--espaco-3xl) 0 var(--espaco-xl);
-  margin-top: 70px; /* Compensa o header fixo */
+  margin-top: 70px;
   text-align: center;
   overflow: hidden;
+  /* Gradient background (aparece quando não há foto) */
+  background: linear-gradient(135deg, #062A4D 0%, #0A61C2 60%, #00B4B4 100%);
 }
 
 /* Fundo com overlay */
@@ -2853,7 +2870,7 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(92,61,34,0.9) 0%, rgba(139,94,60,0.8) 100%);
+  background: linear-gradient(135deg, rgba(6,42,77,0.9) 0%, rgba(10,97,194,0.7) 100%);
   z-index: 1;
 }
 
@@ -3678,3 +3695,21 @@ a:not(.btn):not(.nav-link):not(.logo-link):hover {
 /* ============================================================
    FIM DO ARQUIVO style.css
    ============================================================ */
+
+/* ============================================================
+   35. Banner de Avisos — Topo da home (configurável pelo admin)
+   ============================================================ */
+
+.banner-aviso {
+  background: linear-gradient(90deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+  color: var(--cor-branco);
+  padding: 0.75rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  margin-top: 70px; /* compensa header fixo */
+}
+
+.banner-aviso + .hero {
+  margin-top: 0; /* Remove margem extra quando banner está ativo */
+}

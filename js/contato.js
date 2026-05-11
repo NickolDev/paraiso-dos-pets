@@ -273,33 +273,36 @@ function enviarFormulario(e) {
     return;
   }
 
-  const btn = document.getElementById('btn-enviar-contato');
-  if (!btn) return;
+  // Se Firebase está disponível, firebase-public.js já cuida do envio
+  if (typeof firebaseDisponivel !== 'undefined' && firebaseDisponivel) return;
 
-  // Loading spinner
-  btn.classList.add('btn-loading');
-  btn.disabled = true;
+  // Anti-spam: impede envio duplicado (60s cooldown)
+  if (typeof podeEnviarForm === 'function' && !podeEnviarForm('contato-wpp')) return;
 
-  setTimeout(() => {
-    btn.classList.remove('btn-loading');
-    btn.disabled = false;
+  // Sem Firebase — redireciona para WhatsApp
+  const nome = document.getElementById('contato-nome')?.value || '';
+  const assunto = document.getElementById('contato-assunto')?.value || 'Contato pelo site';
+  const mensagem = document.getElementById('contato-mensagem')?.value || '';
 
-    // Toast de sucesso
-    if (typeof showToast === 'function') {
-      showToast('Mensagem enviada! Retornaremos em até 24 horas úteis.', 'sucesso');
-    }
+  const textoWpp = encodeURIComponent(
+    `Olá! Meu nome é ${nome}.` +
+    `\nAssunto: ${assunto}` +
+    `\n\n${mensagem}` +
+    `\n\n(Enviado pelo site ongparaisodospets.org.br)`
+  );
 
-    // Limpa o formulário
-    form.reset();
-    form.querySelectorAll('.valido').forEach(c => c.classList.remove('valido'));
+  window.open(`https://wa.me/5516999999999?text=${textoWpp}`, '_blank');
 
-    // Atualiza contador
-    const contador = document.getElementById('contador-mensagem');
-    if (contador) contador.textContent = '0 caracteres';
+  if (typeof showToast === 'function') {
+    showToast('Redirecionando para o WhatsApp...', 'sucesso');
+  }
 
-    // Desabilita botão novamente
-    verificarFormValido();
-  }, 2000);
+  // Limpa o formulário
+  form.reset();
+  form.querySelectorAll('.valido').forEach(c => c.classList.remove('valido'));
+  const contador = document.getElementById('contador-mensagem');
+  if (contador) contador.textContent = '0 caracteres';
+  verificarFormValido();
 }
 
 // Inicializa quando o DOM estiver pronto

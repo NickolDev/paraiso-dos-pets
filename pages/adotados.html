@@ -1,0 +1,129 @@
+<!-- ============================================================
+     ARQUIVO: adotados.html
+     DESCRIÇÃO: Página "Finais Felizes" — Galeria de animais que
+                já foram adotados. Mostra a transformação de cada
+                pet com foto e história. Dados vêm do Firebase
+                (animais com status "Adotado").
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça as histórias de adoção da ONG Paraíso dos Pets. Cada animal encontrou um lar cheio de amor.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ongparaisodospets.org.br/pages/adotados.html">
+  <meta property="og:title" content="Finais Felizes | ONG Paraíso dos Pets">
+  <meta property="og:description" content="Veja os animais que já encontraram um lar graças à ONG Paraíso dos Pets.">
+  <meta property="og:image" content="../images/og-image.jpg">
+  <meta property="og:locale" content="pt_BR">
+  <title>Finais Felizes — Adotados | ONG Paraíso dos Pets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://*.firebasestorage.googleapis.com https://firebasestorage.googleapis.com data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.google-analytics.com https://firestore.googleapis.com https://www.google.com; frame-src https://snapwidget.com https://www.google.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo-link" aria-label="Página inicial"><img src="../images/logo-header.png" alt="Logo ONG Paraíso dos Pets" class="logo-img" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+        <a href="../index.html" class="nav-link">Home</a><a href="nossa-missao.html" class="nav-link">Nossa Missão</a><a href="transparencia.html" class="nav-link">Transparência</a>
+        <div class="nav-item--submenu"><a href="adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a><div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="adotados.html" class="submenu__link" role="menuitem">Finais Felizes</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a></div></div>
+        <a href="blog.html" class="nav-link">Blog</a><a href="contato.html" class="nav-link">Contato</a>
+        <a href="doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      </nav>
+      <a href="doar.html" class="btn-doar-header" id="btn-doar-desktop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span class="hamburger__linha"></span><span class="hamburger__linha"></span><span class="hamburger__linha"></span></button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <main role="main">
+
+    <!-- =================== BANNER =========================== -->
+    <section class="banner-pagina" aria-label="Banner Finais Felizes">
+      <div class="banner-pagina__overlay" aria-hidden="true"></div>
+      <div class="banner-pagina__conteudo">
+        <h1 class="banner-pagina__titulo">Finais Felizes</h1>
+        <p style="color:rgba(255,255,255,0.85);font-size:1.1rem;margin-top:0.5rem;">Cada adoção é uma história de transformação e amor</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb__separador">›</span><a href="adote.html">Adoção</a><span class="breadcrumb__separador">›</span><span>Finais Felizes</span></nav>
+      </div>
+    </section>
+
+    <!-- ============= CONTADOR DE ADOÇÕES ==================== -->
+    <section class="secao" style="padding-bottom:0;">
+      <div class="container" style="text-align:center;">
+        <div id="contador-adotados" style="font-family:var(--fonte-titulo);font-size:3rem;font-weight:700;color:var(--cor-primaria);" data-animate="fade-up">—</div>
+        <p style="color:var(--cor-cinza-medio);font-size:1.1rem;" data-animate="fade-up">animais já encontraram um lar</p>
+      </div>
+    </section>
+
+    <!-- ============= GALERIA DE ADOTADOS ==================== -->
+    <section class="secao" aria-label="Animais adotados">
+      <div class="container">
+
+        <!-- Grid de cards de animais adotados -->
+        <div class="grid-animais" id="grid-adotados" data-animate="fade-up" style="margin-top:1rem;">
+          <!-- Populado pelo JavaScript -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============= CTA ADOTAR ============================= -->
+    <section class="cta-doacao" aria-label="Chamada para adoção">
+      <div class="cta-doacao__overlay" aria-hidden="true"></div>
+      <div class="cta-doacao__conteudo container">
+        <h2 class="cta-doacao__titulo" data-animate="fade-up">Quer ser o próximo final feliz?</h2>
+        <p class="cta-doacao__texto" data-animate="fade-up">Conheça os animais que estão esperando por um lar.</p>
+        <div class="cta-doacao__btns" data-animate="fade-up">
+          <a href="adote.html" class="btn btn--branco">Ver animais disponíveis</a>
+          <a href="doar.html" class="btn btn--branco-outline">Apoiar a ONG</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="logo-link"><img src="../images/logo-footer.png" alt="Logo" class="logo-img" style="width:32px;height:32px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span></a><p class="footer__slogan">Ajudando quem não tem voz desde 2017.</p></div>
+        <div><h4 class="footer__titulo">Links Rápidos</h4><a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="transparencia.html" class="footer__link">Transparência</a><a href="blog.html" class="footer__link">Blog</a><a href="faq.html" class="footer__link">FAQ</a></div>
+        <div><h4 class="footer__titulo">Como Ajudar</h4><a href="doar.html" class="footer__link">Apadrinhar</a><a href="voluntario.html" class="footer__link">Voluntariar</a><a href="doar.html#associar" class="footer__link">Associar-se</a><a href="contato.html" class="footer__link">Parcerias</a></div>
+        <div><h4 class="footer__titulo">Contato</h4><a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a><a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a></div>
+      </div>
+      <div class="footer__bottom"><p>ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br><a href="politica-privacidade.html">Política de Privacidade</a> | <a href="termos-de-uso.html">Termos de Uso</a></p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5516999999999" class="btn-whatsapp" id="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg><span class="btn-whatsapp__tooltip">Fale conosco</span></a>
+  <button class="btn-topo" id="btn-topo" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <div class="cookie-banner" id="cookie-banner" role="dialog"><div class="cookie-banner__inner"><p class="cookie-banner__texto">Usamos cookies para melhorar sua experiência. <a href="politica-privacidade.html">Política de Privacidade</a>.</p><div class="cookie-banner__btns"><button class="btn btn--primario btn--sm" id="cookie-aceitar-todos">Aceitar todos</button><button class="btn btn--branco btn--sm" id="cookie-aceitar-essenciais" style="color:var(--cor-branco);border-color:rgba(255,255,255,0.4);">Apenas essenciais</button></div></div></div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/dompurify.min.js"></script>
+  <script src="../js/sanitizer.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/cookies.js"></script>
+
+  <!-- Script específico desta página -->
+  <script src="../js/adotados-page.js"></script>
+
+  <script src="../js/ga4.js"></script>
+</body>
+</html>

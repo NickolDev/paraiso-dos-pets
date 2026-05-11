@@ -448,11 +448,13 @@ function carregarAnimais() {
 }
 
 // ============================================================
-// ENVIAR FICHA — Simulação de envio com feedback
+// ENVIAR FICHA — Envia via Firebase ou redireciona ao WhatsApp
 // ============================================================
 
 /**
- * Simula o envio do formulário com loading spinner e toast.
+ * Envia a ficha de adoção. Se Firebase estiver configurado,
+ * o firebase-public.js intercepta e salva no banco.
+ * Se NÃO estiver, redireciona para WhatsApp com os dados.
  * @param {Event} e - Evento de click
  */
 function enviarFicha(e) {
@@ -461,33 +463,57 @@ function enviarFicha(e) {
   // Valida a última etapa
   if (!validarEtapa(TOTAL_ETAPAS)) return;
 
-  const btnEnviar = document.getElementById('btn-enviar');
-  if (!btnEnviar) return;
+  // Se Firebase está disponível, firebase-public.js já cuida do envio
+  if (typeof firebaseDisponivel !== 'undefined' && firebaseDisponivel) return;
 
-  // Mostra spinner de loading
-  btnEnviar.classList.add('btn-loading');
-  btnEnviar.disabled = true;
+  // Anti-spam: impede envio duplicado (60s cooldown)
+  if (typeof podeEnviarForm === 'function' && !podeEnviarForm('ficha-wpp')) return;
 
-  // Simula tempo de processamento (2 segundos)
-  setTimeout(() => {
-    btnEnviar.classList.remove('btn-loading');
-    btnEnviar.disabled = false;
+  // Sem Firebase — redireciona para WhatsApp com dados resumidos
+  const nome = document.getElementById('nome-completo')?.value || '';
+  const animal = document.getElementById('animal-interesse')?.value || 'Sem preferência';
+  const cidade = document.getElementById('cidade')?.value || '';
 
-    // Esconde o formulário e mostra mensagem de sucesso
-    const form = document.getElementById('form-adocao');
-    const sucesso = document.getElementById('mensagem-sucesso');
+  const mensagem = encodeURIComponent(
+    `Olá! Meu nome é ${nome}, sou de ${cidade} e gostaria de preencher a ficha de adoção.` +
+    `\nAnimal de interesse: ${animal}` +
+    `\n\n(Enviado pelo site ongparaisodospets.org.br)`
+  );
 
-    if (form) form.style.display = 'none';
-    if (sucesso) sucesso.style.display = 'block';
-
-    // Toast de sucesso
-    if (typeof showToast === 'function') {
-      showToast('Ficha enviada com sucesso! Entraremos em contato em até 48h.', 'sucesso');
-    }
-
-    // Scroll suave para a mensagem de sucesso
-    if (sucesso) sucesso.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 2000);
+  // Mostra mensagem e redireciona
+  const form = document.getElementById('form-adocao');
+  const sucesso = document.getElementById('mensagem-sucesso');
+  if (form) form.style.display = 'none';
+  if (sucesso) {
+    SafeDOM.clear(sucesso);
+    const wrapper = SafeDOM.el('div');
+    wrapper.style.textAlign = 'center';
+    wrapper.style.padding = '2rem';
+    const title = SafeDOM.el('h2', { text: 'Quase lá!' });
+    title.style.color = 'var(--cor-sucesso)';
+    title.style.marginBottom = '1rem';
+    wrapper.appendChild(title);
+    const text = SafeDOM.el('p', {
+      text: 'Para concluir sua ficha de adoção, entre em contato pelo WhatsApp. Nosso time irá te atender!'
+    });
+    text.style.marginBottom = '1.5rem';
+    wrapper.appendChild(text);
+    const link = SafeDOM.el('a', {
+      className: 'btn btn--primario',
+      text: 'Enviar pelo WhatsApp',
+      attrs: {
+        href: `https://wa.me/5516999999999?text=${mensagem}`,
+        target: '_blank',
+        rel: 'noopener noreferrer'
+      }
+    });
+    link.style.display = 'inline-flex';
+    link.style.gap = '0.5rem';
+    wrapper.appendChild(link);
+    sucesso.appendChild(wrapper);
+    sucesso.style.display = 'block';
+    sucesso.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 // Inicializa quando o DOM estiver pronto

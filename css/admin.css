@@ -1,0 +1,1255 @@
+/* ============================================================
+   ARQUIVO: admin.css
+   DESCRIÇÃO: Estilos exclusivos do painel administrativo da
+              ONG Paraíso dos Pets. Separado do style.css para
+              não carregar estilos desnecessários no site público.
+   ÚLTIMA ATUALIZAÇÃO: 2025
+
+   ÍNDICE:
+     1. Variáveis (herda do style.css + específicas do admin)
+     2. Layout geral (sidebar + conteúdo)
+     3. Tela de Login
+     4. Sidebar / Menu lateral
+     5. Header do admin
+     6. Dashboard — Cards de resumo
+     7. Dashboard — Atividades recentes
+     8. Tabelas do admin
+     9. Formulários do admin
+    10. Modais
+    11. Upload de imagem
+    12. Status badges
+    13. Mensagens vazias
+    14. Responsividade
+   ============================================================ */
+
+/* === Importação de fontes (mesmas do site) === */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ============================================================
+   1. VARIÁVEIS — Herda as mesmas do site + adiciona específicas
+   ============================================================ */
+:root {
+  /* Cores do site (replicadas para independência) */
+  --cor-primaria:        #00B4B4;
+  --cor-primaria-hover:  #009999;
+  --cor-primaria-light:  #E0F7F7;
+  --cor-secundaria:      #3FBADD;
+  --cor-secundaria-dark: #0A61C2;
+  --cor-verde:           #0ACC95;
+  --cor-verde-light:     #E0FBF1;
+  --cor-branco:          #FFFFFF;
+  --cor-bege:            #FAF7F4;
+  --cor-bege-medio:      #F0EBE3;
+  --cor-cinza-claro:     #E8E4DF;
+  --cor-cinza-medio:     #9B8F85;
+  --cor-texto:           #2D2520;
+  --cor-fundo-escuro:    #062A4D;
+  --cor-erro:            #D94F3D;
+  --cor-aviso:           #E8A61A;
+  --cor-sucesso:         #0ACC95;
+  --cor-info:            #2E6DA4;
+
+  --fonte-titulo: 'Playfair Display', Georgia, serif;
+  --fonte-corpo:  'Nunito', 'Helvetica Neue', sans-serif;
+
+  --raio-sm:  8px;
+  --raio-md:  16px;
+  --raio-lg:  24px;
+
+  --sombra-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --sombra-md: 0 4px 20px rgba(0,0,0,0.12);
+
+  --transicao: all 0.3s ease;
+
+  /* Específicas do admin */
+  --admin-sidebar-width: 260px;
+  --admin-header-height: 64px;
+  --admin-bg: #F5F3F0;
+}
+
+/* ============================================================
+   2. LAYOUT GERAL — Reset + estrutura sidebar/conteúdo
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--fonte-corpo);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background-color: var(--admin-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Container principal: sidebar + área de conteúdo */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Área de conteúdo (à direita da sidebar) */
+.admin-main {
+  flex: 1;
+  margin-left: var(--admin-sidebar-width);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Área de conteúdo com padding */
+.admin-conteudo {
+  flex: 1;
+  padding: 2rem;
+  margin-top: var(--admin-header-height);
+}
+
+/* ============================================================
+   3. TELA DE LOGIN — Centralizada, sem sidebar
+   ============================================================ */
+
+/* Esconde o layout admin quando mostra o login */
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--cor-fundo-escuro) 0%, var(--cor-secundaria-dark) 100%);
+  padding: 2rem;
+}
+
+.login-card {
+  background: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--sombra-md);
+  text-align: center;
+}
+
+/* Logo no login */
+.login-card__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-card__logo svg {
+  width: 40px;
+  height: 40px;
+  fill: var(--cor-primaria);
+}
+
+.login-card__logo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.login-card__logo span {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-secundaria-dark);
+}
+
+.login-card__titulo {
+  font-size: 1.1rem;
+  color: var(--cor-cinza-medio);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.login-card .campo-grupo {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.login-card .campo-label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--cor-texto);
+  margin-bottom: 0.4rem;
+}
+
+.login-card .campo-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: var(--fonte-corpo);
+  font-size: 1rem;
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-sm);
+  outline: none;
+  transition: var(--transicao);
+}
+
+.login-card .campo-input:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(232,119,34,0.15);
+}
+
+.login-card .campo-input.erro {
+  border-color: var(--cor-erro);
+}
+
+.login-erro {
+  color: var(--cor-erro);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.login-erro.visivel { display: block; }
+
+.login-card .btn {
+  width: 100%;
+  padding: 0.9rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transicao);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn--primario {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+.btn--primario:hover {
+  background-color: var(--cor-primaria-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-md);
+}
+
+.login-card__recuperar {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--cor-primaria);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--fonte-corpo);
+  transition: var(--transicao);
+}
+
+.login-card__recuperar:hover {
+  color: var(--cor-primaria-hover);
+  text-decoration: underline;
+}
+
+/* Spinner de loading no botão */
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: var(--cor-branco);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   4. SIDEBAR — Menu lateral de navegação
+   ============================================================ */
+
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--admin-sidebar-width);
+  height: 100vh;
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-branco);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+/* Logo da sidebar */
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar__logo svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--cor-primaria);
+  flex-shrink: 0;
+}
+
+.sidebar__logo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.sidebar__logo span {
+  font-family: var(--fonte-titulo);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cor-branco);
+}
+
+.sidebar__logo small {
+  display: block;
+  font-family: var(--fonte-corpo);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Navegação da sidebar */
+.sidebar__nav {
+  padding: 1rem 0;
+  flex: 1;
+}
+
+.sidebar__secao-titulo {
+  padding: 0.75rem 1.5rem 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.35);
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  cursor: pointer;
+  transition: var(--transicao);
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--fonte-corpo);
+}
+
+.sidebar__link:hover {
+  color: var(--cor-branco);
+  background-color: rgba(255,255,255,0.06);
+  padding-left: 1.75rem;
+}
+
+.sidebar__link.ativo {
+  color: var(--cor-branco);
+  background-color: rgba(232,119,34,0.15);
+  border-right: 3px solid var(--cor-primaria);
+}
+
+.sidebar__link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Badge de notificação na sidebar */
+.sidebar__badge {
+  margin-left: auto;
+  background-color: var(--cor-erro);
+  color: var(--cor-branco);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.1rem 0.45rem;
+  border-radius: 50px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Footer da sidebar */
+.sidebar__footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar__user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.sidebar__user-info {
+  overflow: hidden;
+}
+
+.sidebar__user-nome {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cor-branco);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar__user-email {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar__logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: none;
+  border-radius: var(--raio-sm);
+  width: 100%;
+  justify-content: center;
+  font-family: var(--fonte-corpo);
+  transition: var(--transicao);
+}
+
+.sidebar__logout:hover {
+  color: var(--cor-erro);
+  border-color: var(--cor-erro);
+  background-color: rgba(217,79,61,0.1);
+}
+
+.sidebar__logout svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* ============================================================
+   5. HEADER DO ADMIN — Barra superior com título da página
+   ============================================================ */
+
+.admin-header {
+  position: fixed;
+  top: 0;
+  left: var(--admin-sidebar-width);
+  right: 0;
+  height: var(--admin-header-height);
+  background-color: var(--cor-branco);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  box-shadow: var(--sombra-sm);
+  z-index: 50;
+}
+
+.admin-header__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--cor-secundaria-dark);
+}
+
+.admin-header__acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Botão hamburger do admin (mobile) */
+.admin-hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-radius: var(--raio-sm);
+}
+
+.admin-hamburger:hover { background-color: var(--cor-bege); }
+
+.admin-hamburger svg { width: 24px; height: 24px; fill: var(--cor-texto); }
+
+/* Botão voltar ao site */
+.btn--outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  border: 2px solid var(--cor-primaria);
+  border-radius: 50px;
+  background: none;
+  cursor: pointer;
+  transition: var(--transicao);
+  font-family: var(--fonte-corpo);
+  text-decoration: none;
+}
+
+.btn--outline:hover {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+.btn--outline svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* ============================================================
+   6. DASHBOARD — Cards de resumo
+   ============================================================ */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dash-card {
+  background: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: 1.5rem;
+  box-shadow: var(--sombra-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+
+.dash-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-md);
+}
+
+.dash-card__icone {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--raio-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dash-card__icone svg { width: 24px; height: 24px; fill: var(--cor-branco); }
+
+.dash-card__icone--laranja  { background-color: var(--cor-primaria); }
+.dash-card__icone--verde    { background-color: var(--cor-verde); }
+.dash-card__icone--azul     { background-color: var(--cor-info); }
+.dash-card__icone--vermelho { background-color: var(--cor-erro); }
+
+.dash-card__info { flex: 1; }
+
+.dash-card__numero {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1;
+  margin-bottom: 0.15rem;
+}
+
+.dash-card__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-cinza-medio);
+}
+
+/* Carregamento dos dados */
+.dash-card__numero.carregando {
+  background: linear-gradient(90deg, var(--cor-cinza-claro) 25%, var(--cor-bege) 50%, var(--cor-cinza-claro) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  color: transparent;
+  width: 60px;
+  height: 2rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================================================
+   7. DASHBOARD — Atividades recentes
+   ============================================================ */
+
+.atividades-card {
+  background: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: 1.5rem;
+  box-shadow: var(--sombra-sm);
+}
+
+.atividades-card__titulo {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--cor-bege-medio);
+}
+
+.atividade-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--cor-bege);
+}
+
+.atividade-item:last-child { border-bottom: none; }
+
+.atividade-item__icone {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.atividade-item__icone svg { width: 16px; height: 16px; fill: var(--cor-branco); }
+
+.atividade-item__texto {
+  font-size: 0.85rem;
+  color: var(--cor-texto);
+}
+
+.atividade-item__texto strong { color: var(--cor-secundaria-dark); }
+
+.atividade-item__tempo {
+  font-size: 0.75rem;
+  color: var(--cor-cinza-medio);
+  margin-top: 0.15rem;
+}
+
+/* ============================================================
+   8. TABELAS DO ADMIN
+   ============================================================ */
+
+.admin-tabela-wrapper {
+  background: var(--cor-branco);
+  border-radius: var(--raio-md);
+  box-shadow: var(--sombra-sm);
+  overflow: hidden;
+}
+
+/* Barra de ações acima da tabela */
+.admin-tabela-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--cor-bege-medio);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-tabela-header__titulo {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cor-texto);
+}
+
+.admin-tabela-header__acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Busca na tabela */
+.admin-busca {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-family: var(--fonte-corpo);
+  outline: none;
+  transition: var(--transicao);
+  width: 220px;
+}
+
+.admin-busca:focus { border-color: var(--cor-primaria); }
+
+/* Tabela */
+.admin-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.admin-tabela thead {
+  background-color: var(--cor-bege);
+}
+
+.admin-tabela th {
+  padding: 0.85rem 1.25rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--cor-cinza-medio);
+  white-space: nowrap;
+}
+
+.admin-tabela td {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--cor-bege);
+  vertical-align: middle;
+}
+
+.admin-tabela tbody tr:hover {
+  background-color: var(--cor-primaria-light);
+}
+
+/* Foto miniatura na tabela */
+.admin-tabela__foto {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--raio-sm);
+  object-fit: cover;
+}
+
+/* Ações na tabela */
+.admin-tabela__acoes {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.btn-acao {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--raio-sm);
+  border: none;
+  cursor: pointer;
+  transition: var(--transicao);
+  background-color: var(--cor-bege);
+}
+
+.btn-acao:hover { background-color: var(--cor-cinza-claro); }
+.btn-acao svg { width: 16px; height: 16px; fill: var(--cor-cinza-medio); }
+.btn-acao:hover svg { fill: var(--cor-texto); }
+
+.btn-acao--editar:hover { background-color: var(--cor-primaria-light); }
+.btn-acao--editar:hover svg { fill: var(--cor-primaria); }
+
+.btn-acao--remover:hover { background-color: #FDEAEA; }
+.btn-acao--remover:hover svg { fill: var(--cor-erro); }
+
+.btn-acao--ver:hover { background-color: #E3F2FD; }
+.btn-acao--ver:hover svg { fill: var(--cor-info); }
+
+/* Botão de adicionar novo */
+.btn--adicionar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.2rem;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transicao);
+  font-family: var(--fonte-corpo);
+}
+
+.btn--adicionar:hover {
+  background-color: var(--cor-primaria-hover);
+  transform: translateY(-2px);
+}
+
+.btn--adicionar svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* ============================================================
+   9. FORMULÁRIOS DO ADMIN
+   ============================================================ */
+
+.admin-form-card {
+  background: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: 2rem;
+  box-shadow: var(--sombra-sm);
+  max-width: 700px;
+}
+
+.admin-form-card__titulo {
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--cor-bege-medio);
+}
+
+.admin-campos-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.admin-campo-grupo {
+  margin-bottom: 1.25rem;
+}
+
+.admin-campo-label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--cor-texto);
+  margin-bottom: 0.35rem;
+}
+
+.admin-campo-label .obrigatorio { color: var(--cor-erro); }
+
+.admin-campo-input,
+.admin-campo-select,
+.admin-campo-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--fonte-corpo);
+  font-size: 0.9rem;
+  border: 2px solid var(--cor-cinza-claro);
+  border-radius: var(--raio-sm);
+  outline: none;
+  transition: var(--transicao);
+}
+
+.admin-campo-input:focus,
+.admin-campo-select:focus,
+.admin-campo-textarea:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(232,119,34,0.12);
+}
+
+.admin-campo-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.admin-campo-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%239B8F85' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.admin-form-acoes {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cor-bege-medio);
+}
+
+.btn--salvar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.5rem;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transicao);
+  font-family: var(--fonte-corpo);
+}
+
+.btn--salvar:hover { background-color: var(--cor-primaria-hover); }
+
+.btn--cancelar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.5rem;
+  background-color: transparent;
+  color: var(--cor-cinza-medio);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 50px;
+  border: 2px solid var(--cor-cinza-claro);
+  cursor: pointer;
+  transition: var(--transicao);
+  font-family: var(--fonte-corpo);
+}
+
+.btn--cancelar:hover { border-color: var(--cor-cinza-medio); color: var(--cor-texto); }
+
+/* ============================================================
+   10. MODAIS — Confirmação e detalhes
+   ============================================================ */
+
+.admin-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 9000;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-modal-overlay.ativo { display: flex; }
+
+.admin-modal {
+  background: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--sombra-md);
+  animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.admin-modal__titulo {
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.admin-modal__texto {
+  font-size: 0.9rem;
+  color: var(--cor-cinza-medio);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.admin-modal__btns {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.btn--confirmar-remover {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--cor-erro);
+  color: var(--cor-branco);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transicao);
+  font-family: var(--fonte-corpo);
+}
+
+.btn--confirmar-remover:hover { background-color: #C0392B; }
+
+/* ============================================================
+   11. UPLOAD DE IMAGEM
+   ============================================================ */
+
+.upload-area {
+  border: 2px dashed var(--cor-cinza-claro);
+  border-radius: var(--raio-md);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transicao);
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-area:hover { border-color: var(--cor-primaria); background-color: var(--cor-primaria-light); }
+
+.upload-area__icone svg { width: 48px; height: 48px; fill: var(--cor-cinza-medio); }
+.upload-area:hover .upload-area__icone svg { fill: var(--cor-primaria); }
+
+.upload-area__texto {
+  font-size: 0.9rem;
+  color: var(--cor-cinza-medio);
+  margin-top: 0.5rem;
+}
+
+.upload-area__texto strong { color: var(--cor-primaria); }
+
+.upload-area input[type="file"] {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Preview da imagem */
+.upload-preview {
+  display: none;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.upload-preview.ativo { display: block; }
+
+.upload-preview img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: var(--raio-sm);
+}
+
+.upload-preview__remover {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transicao);
+}
+
+.upload-preview__remover:hover { background: var(--cor-erro); }
+
+/* ============================================================
+   12. STATUS BADGES
+   ============================================================ */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.status-badge--pendente   { background: #FFF3E0; color: var(--cor-aviso); }
+.status-badge--analise    { background: #E3F2FD; color: var(--cor-info); }
+.status-badge--aprovada   { background: var(--cor-verde-light); color: var(--cor-verde); }
+.status-badge--recusada   { background: #FDEAEA; color: var(--cor-erro); }
+.status-badge--disponivel { background: var(--cor-verde-light); color: var(--cor-verde); }
+.status-badge--reservado  { background: var(--cor-primaria-light); color: var(--cor-primaria); }
+.status-badge--tratamento { background: #FFF3E0; color: var(--cor-aviso); }
+.status-badge--adotado    { background: #E3F2FD; color: var(--cor-info); }
+.status-badge--novo       { background: var(--cor-primaria-light); color: var(--cor-primaria); }
+.status-badge--lida       { background: var(--cor-verde-light); color: var(--cor-verde); }
+.status-badge--naolida    { background: #FDEAEA; color: var(--cor-erro); }
+.status-badge--publicado  { background: var(--cor-verde-light); color: var(--cor-verde); }
+.status-badge--rascunho   { background: var(--cor-bege-medio); color: var(--cor-cinza-medio); }
+
+/* ============================================================
+   13. MENSAGENS VAZIAS — Quando não há dados
+   ============================================================ */
+
+.admin-vazio {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--cor-cinza-medio);
+}
+
+.admin-vazio svg {
+  width: 64px;
+  height: 64px;
+  fill: var(--cor-cinza-claro);
+  margin-bottom: 1rem;
+}
+
+.admin-vazio__titulo {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--cor-texto);
+}
+
+.admin-vazio__texto {
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   14. SEÇÕES DO ADMIN — Visibilidade
+   ============================================================ */
+
+.admin-secao {
+  display: none;
+}
+
+.admin-secao.ativo {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Título de seção dentro do conteúdo */
+.admin-secao__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-secao__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-secundaria-dark);
+}
+
+/* ============================================================
+   15. RESPONSIVIDADE — Sidebar colapsa no mobile
+   ============================================================ */
+
+@media (max-width: 1023px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .admin-sidebar.ativo { transform: translateX(0); }
+
+  .admin-main { margin-left: 0; }
+
+  .admin-header { left: 0; }
+
+  .admin-hamburger { display: flex; }
+
+  .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .admin-campos-linha { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 767px) {
+  .admin-conteudo { padding: 1.25rem; }
+
+  .dashboard-grid { grid-template-columns: 1fr; }
+
+  .admin-tabela-header { flex-direction: column; align-items: flex-start; }
+
+  .admin-busca { width: 100%; }
+
+  .admin-tabela { font-size: 0.8rem; }
+
+  .admin-tabela th, .admin-tabela td { padding: 0.65rem 0.75rem; }
+
+  .admin-form-card { padding: 1.25rem; }
+
+  .admin-modal { padding: 1.5rem; }
+}
+
+/* ============================================================
+   16. DETALHES DE FICHA/VOLUNTÁRIO/MENSAGEM
+   ============================================================ */
+
+.detalhe-card {
+  background: var(--cor-branco);
+  border-radius: var(--raio-md);
+  padding: 2rem;
+  box-shadow: var(--sombra-sm);
+}
+
+.detalhe-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--cor-bege-medio);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.detalhe-campo {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--cor-bege);
+  font-size: 0.9rem;
+}
+
+.detalhe-campo:last-child { border-bottom: none; }
+
+.detalhe-campo__label {
+  font-weight: 700;
+  color: var(--cor-cinza-medio);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detalhe-campo__valor {
+  color: var(--cor-texto);
+}
+
+/* ============================================================
+   FIM DO ARQUIVO admin.css
+   ============================================================ */

@@ -6,7 +6,10 @@
 
 User-agent: *
 Allow: /
-Disallow: /pages/ficha-adocao.html
-Disallow: /pages/politica-privacidade.html
 
+# Não indexar página administrativa
+Disallow: /admin.html
+Disallow: /firebase-scripts.html
+
+# Sitemap para ajudar mecanismos de busca
 Sitemap: https://ongparaisodospets.org.br/sitemap.xml

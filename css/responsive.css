@@ -50,6 +50,11 @@
     border-bottom: 1px solid var(--cor-bege-medio);
   }
 
+  /* Submenu no mobile: ocupa largura total como os outros links */
+  .nav-item--submenu {
+    width: 100%;
+  }
+
   /* Submenu no mobile: aparece abaixo do link (não absoluto) */
   .submenu {
     position: static;

@@ -221,29 +221,54 @@ function enviarVoluntario(e) {
     return;
   }
 
-  const btn = document.getElementById('btn-enviar-voluntario');
-  if (!btn) return;
+  // Se Firebase está disponível, firebase-public.js já cuida do envio
+  if (typeof firebaseDisponivel !== 'undefined' && firebaseDisponivel) return;
 
-  btn.classList.add('btn-loading');
-  btn.disabled = true;
+  // Anti-spam: impede envio duplicado (60s cooldown)
+  if (typeof podeEnviarForm === 'function' && !podeEnviarForm('voluntario-wpp')) return;
 
-  setTimeout(() => {
-    btn.classList.remove('btn-loading');
-    btn.disabled = false;
+  // Sem Firebase — redireciona para WhatsApp
+  const nome = document.getElementById('vol-nome')?.value || '';
 
-    // Esconde form, mostra sucesso
-    const form = document.getElementById('form-voluntario');
-    const sucesso = document.getElementById('voluntario-sucesso');
-    if (form) form.style.display = 'none';
-    if (sucesso) {
-      sucesso.style.display = 'block';
-      sucesso.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+  const mensagem = encodeURIComponent(
+    `Olá! Meu nome é ${nome} e gostaria de me cadastrar como voluntário na ONG Paraíso dos Pets.` +
+    `\n\n(Enviado pelo site ongparaisodospets.org.br)`
+  );
 
-    if (typeof showToast === 'function') {
-      showToast('Cadastro enviado com sucesso! Bem-vindo à equipe!', 'sucesso');
-    }
-  }, 2000);
+  // Mostra sucesso e redireciona
+  const form = document.getElementById('form-voluntario');
+  const sucesso = document.getElementById('voluntario-sucesso');
+  if (form) form.style.display = 'none';
+  if (sucesso) {
+    SafeDOM.clear(sucesso);
+    const wrapper = SafeDOM.el('div');
+    wrapper.style.textAlign = 'center';
+    wrapper.style.padding = '2rem';
+    const title = SafeDOM.el('h2', { text: 'Obrigado pelo interesse!' });
+    title.style.color = 'var(--cor-sucesso)';
+    title.style.marginBottom = '1rem';
+    wrapper.appendChild(title);
+    const text = SafeDOM.el('p', {
+      text: 'Para completar seu cadastro como voluntário, fale com nossa equipe pelo WhatsApp.'
+    });
+    text.style.marginBottom = '1.5rem';
+    wrapper.appendChild(text);
+    const link = SafeDOM.el('a', {
+      className: 'btn btn--primario',
+      text: 'Falar pelo WhatsApp',
+      attrs: {
+        href: `https://wa.me/5516999999999?text=${mensagem}`,
+        target: '_blank',
+        rel: 'noopener noreferrer'
+      }
+    });
+    link.style.display = 'inline-flex';
+    link.style.gap = '0.5rem';
+    wrapper.appendChild(link);
+    sucesso.appendChild(wrapper);
+    sucesso.style.display = 'block';
+    sucesso.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 // Inicializa

@@ -433,8 +433,9 @@ function initBotaoTopo() {
 // ============================================================
 
 /**
- * Inicializa o botão flutuante de WhatsApp.
- * Aparece com fade-in + scale após 2 segundos do carregamento.
+ * Inicializa o botão flutuante de WhatsApp com mensagem inteligente.
+ * Detecta a página atual e monta uma mensagem contextualizada.
+ * Ex: na página de um animal, menciona o nome dele na mensagem.
  * @returns {void}
  */
 function initWhatsApp() {
@@ -445,6 +446,57 @@ function initWhatsApp() {
   setTimeout(() => {
     btnWhatsApp.classList.add('visivel');
   }, 2000);
+
+  // Detecta a página atual para mensagem contextualizada
+  const pagina = window.location.pathname.split('/').pop() || 'index.html';
+  let mensagem = 'Olá! Vim pelo site da ONG Paraíso dos Pets e gostaria de mais informações.';
+
+  switch (true) {
+    case pagina === 'adote.html':
+      mensagem = 'Olá! Estou no site e gostaria de saber sobre os animais disponíveis para adoção.';
+      break;
+    case pagina === 'adotados.html':
+      mensagem = 'Olá! Vi a página de Finais Felizes e gostaria de saber como posso adotar também!';
+      break;
+    case pagina === 'doar.html':
+      mensagem = 'Olá! Gostaria de saber mais sobre como posso ajudar a ONG com doações.';
+      break;
+    case pagina === 'voluntario.html':
+      mensagem = 'Olá! Tenho interesse em ser voluntário(a) na ONG Paraíso dos Pets.';
+      break;
+    case pagina === 'ficha-adocao.html':
+      // Tenta pegar o nome do animal da URL
+      const params = new URLSearchParams(window.location.search);
+      const animalId = params.get('animal');
+      mensagem = animalId
+        ? `Olá! Gostaria de saber mais sobre o processo de adoção. Estou preenchendo a ficha pelo site.`
+        : 'Olá! Gostaria de saber mais sobre o processo de adoção.';
+      break;
+    case pagina === 'transparencia.html':
+      mensagem = 'Olá! Gostaria de tirar dúvidas sobre a transparência financeira da ONG.';
+      break;
+    case pagina === 'contato.html':
+      mensagem = 'Olá! Entrei em contato pelo site e gostaria de falar com a equipe.';
+      break;
+    case pagina === 'blog.html' || pagina === 'post.html':
+      mensagem = 'Olá! Estava lendo o blog da ONG e gostaria de mais informações.';
+      break;
+  }
+
+  // Atualiza o link do WhatsApp com a mensagem
+  const urlBase = 'https://wa.me/5516999999999';
+  btnWhatsApp.href = `${urlBase}?text=${encodeURIComponent(mensagem)}`;
+}
+
+/**
+ * Abre o WhatsApp com mensagem sobre um animal específico.
+ * Usado nos cards de animais (botão compartilhar → WhatsApp).
+ * @param {string} nomeAnimal - Nome do animal
+ * @param {string} url - URL do animal (para compartilhar)
+ */
+function whatsAppAnimal(nomeAnimal, url) {
+  const mensagem = `Olá! Vi o(a) ${nomeAnimal} no site da ONG Paraíso dos Pets e gostaria de saber mais sobre ele(a)!`;
+  window.open(`https://wa.me/5516999999999?text=${encodeURIComponent(mensagem)}`, '_blank');
 }
 
 // ============================================================
@@ -473,31 +525,43 @@ function showToast(mensagem, tipo = 'info') {
     document.body.appendChild(container);
   }
 
-  // Ícones SVG por tipo de toast
   const icones = {
-    sucesso: '<svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>',
-    erro: '<svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>',
-    aviso: '<svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>',
-    info: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>'
+    sucesso: '✓',
+    erro: '!',
+    aviso: '⚠',
+    info: 'i'
   };
 
   // Cria o elemento do toast
   const toast = document.createElement('div');
   toast.classList.add('toast', `toast--${tipo}`);
-  toast.innerHTML = `
-    <span class="toast__icone">${icones[tipo] || icones.info}</span>
-    <span class="toast__msg">${mensagem}</span>
-    <button class="toast__fechar" aria-label="Fechar notificação">
-      <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-    </button>
-    <div class="toast__barra"></div>
-  `;
+  const icone = document.createElement('span');
+  icone.className = 'toast__icone';
+  icone.textContent = icones[tipo] || icones.info;
+
+  const texto = document.createElement('span');
+  texto.className = 'toast__msg';
+  texto.textContent = typeof SafeDOM !== 'undefined'
+    ? SafeDOM.toStringValue(mensagem)
+    : String(mensagem ?? '');
+
+  const btnFechar = document.createElement('button');
+  btnFechar.className = 'toast__fechar';
+  btnFechar.setAttribute('aria-label', 'Fechar notificação');
+  btnFechar.textContent = '×';
+
+  const barra = document.createElement('div');
+  barra.className = 'toast__barra';
+
+  toast.appendChild(icone);
+  toast.appendChild(texto);
+  toast.appendChild(btnFechar);
+  toast.appendChild(barra);
 
   // Adiciona ao container
   container.appendChild(toast);
 
   // Botão de fechar manual
-  const btnFechar = toast.querySelector('.toast__fechar');
   btnFechar.addEventListener('click', () => removerToast(toast));
 
   // Auto-fechar após 4 segundos
@@ -536,6 +600,11 @@ function initAll() {
   initHeader();
   initHamburger();
   initSubmenus();
+  initAccordions();
+  initDismissButtons();
+  initCopyButtons();
+  initScrollButtons();
+  initToastTriggers();
   initSmoothScroll();
   initAnimateOnScroll();
   initCounters();
@@ -546,6 +615,60 @@ function initAll() {
 
 // Aguarda o DOM estar completamente carregado
 document.addEventListener('DOMContentLoaded', initAll);
+
+function initAccordions() {
+  document.querySelectorAll('.accordion__header').forEach((header) => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.accordion__item');
+      if (!item) return;
+      item.classList.toggle('ativo');
+      header.setAttribute('aria-expanded', item.classList.contains('ativo') ? 'true' : 'false');
+    });
+  });
+}
+
+function initDismissButtons() {
+  document.querySelectorAll('[data-dismiss-target]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const target = document.querySelector(button.dataset.dismissTarget);
+      if (target) target.style.display = 'none';
+    });
+  });
+}
+
+function initCopyButtons() {
+  document.querySelectorAll('[data-copy-text]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyText || '');
+        showToast(button.dataset.copySuccess || 'Conteúdo copiado!', 'sucesso');
+      } catch (error) {
+        showToast('Não foi possível copiar.', 'erro');
+      }
+    });
+  });
+}
+
+function initScrollButtons() {
+  document.querySelectorAll('[data-scroll-target]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      const target = document.querySelector(button.dataset.scrollTarget);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+
+function initToastTriggers() {
+  document.querySelectorAll('[data-toast-message]').forEach((element) => {
+    element.addEventListener('click', (event) => {
+      event.preventDefault();
+      showToast(element.dataset.toastMessage || '', element.dataset.toastType || 'info');
+    });
+  });
+}
 
 // ============================================================
 // FIM DO ARQUIVO main.js

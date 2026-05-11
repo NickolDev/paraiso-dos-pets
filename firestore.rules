@@ -1,0 +1,222 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function requiredString(value, max) {
+      return value is string && value.size() > 0 && value.size() <= max;
+    }
+
+    function optionalString(value, max) {
+      return !(value is string) || value.size() <= max;
+    }
+
+    function validEmail(value) {
+      return requiredString(value, 254)
+        && value.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
+    }
+
+    function validPhone(value) {
+      return requiredString(value, 24)
+        && value.matches('^[0-9()+\\-\\s]+$');
+    }
+
+    function validBoolean(value) {
+      return value is bool;
+    }
+
+    function validNumber(value, max) {
+      return (value is int || value is float) && value >= 0 && value <= max;
+    }
+
+    function validStringList(value, maxItems, maxLength) {
+      return value is list
+        && value.size() <= maxItems
+        && value.size() >= 0;
+    }
+
+    function validAnimalData() {
+      return request.resource.data.keys().hasOnly([
+        'nome', 'foto', 'idade', 'porte', 'sexo', 'status',
+        'castrado', 'vacinado', 'novo', 'descricao', 'historico',
+        'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.nome, 80)
+      && optionalString(request.resource.data.foto, 2048)
+      && requiredString(request.resource.data.idade, 40)
+      && request.resource.data.porte in ['Pequeno', 'Médio', 'Grande']
+      && request.resource.data.sexo in ['Macho', 'Fêmea']
+      && request.resource.data.status in ['Disponível', 'Reservado', 'Em Tratamento', 'Adotado']
+      && validBoolean(request.resource.data.castrado)
+      && validBoolean(request.resource.data.vacinado)
+      && validBoolean(request.resource.data.novo)
+      && requiredString(request.resource.data.descricao, 1200)
+      && optionalString(request.resource.data.historico, 2000);
+    }
+
+    function validPostData() {
+      return request.resource.data.keys().hasOnly([
+        'titulo', 'resumo', 'conteudo', 'categoria', 'data',
+        'tempoLeitura', 'imagem', 'publicado', 'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.titulo, 160)
+      && requiredString(request.resource.data.resumo, 320)
+      && requiredString(request.resource.data.conteudo, 40000)
+      && requiredString(request.resource.data.categoria, 60)
+      && optionalString(request.resource.data.data, 30)
+      && optionalString(request.resource.data.tempoLeitura, 40)
+      && optionalString(request.resource.data.imagem, 2048)
+      && validBoolean(request.resource.data.publicado);
+    }
+
+    function validTransparenciaData() {
+      return request.resource.data.keys().hasOnly([
+        'label', 'resumo', 'gastos', 'receitas', 'criadoEm', 'atualizadoEm'
+      ])
+      && optionalString(request.resource.data.label, 80)
+      && request.resource.data.resumo is map
+      && validNumber(request.resource.data.resumo.recebido, 10000000)
+      && validNumber(request.resource.data.resumo.gasto, 10000000)
+      && validNumber(request.resource.data.resumo.saldo, 10000000)
+      && request.resource.data.gastos is list
+      && request.resource.data.receitas is list;
+    }
+
+    function validConfiguracaoData() {
+      return request.resource.data.keys().hasOnly([
+        'nomeOng', 'fundador', 'cidade', 'estado', 'cnpj', 'email',
+        'whatsapp', 'instagram', 'youtube', 'threads', 'chavePix',
+        'valorApadrinhar', 'valorAssociar', 'mercadoPagoLink', 'metaMensal',
+        'arrecadadoMensal', 'mesMeta', 'horarioSemana', 'horarioSabado',
+        'gaId', 'ativo', 'texto', 'icone', 'link', 'linkTexto',
+        'atualizadoEm'
+      ]);
+    }
+
+    function validContatoData() {
+      return request.resource.data.keys().hasOnly([
+        'nome', 'email', 'telefone', 'assunto', 'mensagem', 'status',
+        'lido', 'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.nome, 120)
+      && validEmail(request.resource.data.email)
+      && validPhone(request.resource.data.telefone)
+      && requiredString(request.resource.data.assunto, 120)
+      && requiredString(request.resource.data.mensagem, 4000);
+    }
+
+    function validVoluntarioData() {
+      return request.resource.data.keys().hasOnly([
+        'nome', 'email', 'whatsapp', 'cidade', 'dias', 'turnos',
+        'habilidades', 'habilidadeOutro', 'motivacao', 'comoConheceu',
+        'status', 'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.nome, 120)
+      && validEmail(request.resource.data.email)
+      && validPhone(request.resource.data.whatsapp)
+      && requiredString(request.resource.data.cidade, 120)
+      && validStringList(request.resource.data.dias, 7, 40)
+      && validStringList(request.resource.data.turnos, 4, 40)
+      && validStringList(request.resource.data.habilidades, 12, 80)
+      && optionalString(request.resource.data.habilidadeOutro, 120)
+      && requiredString(request.resource.data.motivacao, 2000)
+      && optionalString(request.resource.data.comoConheceu, 160);
+    }
+
+    function validFichaData() {
+      return request.resource.data.keys().hasOnly([
+        'nomeCompleto', 'cpf', 'nascimento', 'email', 'whatsapp', 'cidade',
+        'estado', 'endereco', 'tipoMoradia', 'quintal', 'criancas',
+        'outrosAnimais', 'outrosAnimaisDesc', 'tipoMoradiaPosse',
+        'proprietarioPermite', 'qtdMoradores', 'alergia', 'animalInteresse',
+        'motivacaoAdocao', 'experienciaPet', 'viagemPet', 'status',
+        'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.nomeCompleto, 160)
+      && requiredString(request.resource.data.cpf, 20)
+      && requiredString(request.resource.data.nascimento, 20)
+      && validEmail(request.resource.data.email)
+      && validPhone(request.resource.data.whatsapp)
+      && requiredString(request.resource.data.cidade, 120)
+      && requiredString(request.resource.data.estado, 8)
+      && requiredString(request.resource.data.endereco, 240)
+      && optionalString(request.resource.data.tipoMoradia, 40)
+      && optionalString(request.resource.data.quintal, 20)
+      && optionalString(request.resource.data.criancas, 20)
+      && optionalString(request.resource.data.outrosAnimais, 20)
+      && optionalString(request.resource.data.outrosAnimaisDesc, 500)
+      && optionalString(request.resource.data.tipoMoradiaPosse, 30)
+      && optionalString(request.resource.data.proprietarioPermite, 20)
+      && optionalString(request.resource.data.qtdMoradores, 20)
+      && optionalString(request.resource.data.alergia, 20)
+      && optionalString(request.resource.data.animalInteresse, 120)
+      && requiredString(request.resource.data.motivacaoAdocao, 3000)
+      && optionalString(request.resource.data.experienciaPet, 60)
+      && requiredString(request.resource.data.viagemPet, 1000);
+    }
+
+    match /animais/{docId} {
+      allow read: if resource.data.status in ['Disponível', 'Reservado', 'Em Tratamento', 'Adotado'];
+      allow create, update: if isAdmin() && validAnimalData();
+      allow delete: if isAdmin();
+    }
+
+    match /posts/{docId} {
+      allow read: if resource.data.publicado == true || isAdmin();
+      allow create, update: if isAdmin() && validPostData();
+      allow delete: if isAdmin();
+    }
+
+    match /transparencia/{docId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validTransparenciaData();
+      allow delete: if isAdmin();
+    }
+
+    match /configuracoes/{docId} {
+      allow read: if docId in ['geral', 'banner'];
+      allow create, update: if isAdmin() && validConfiguracaoData();
+      allow delete: if false;
+    }
+
+    match /galeria/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /depoimentos/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /doadores/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /mensagens/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if validContatoData();
+    }
+
+    match /voluntarios/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if validVoluntarioData();
+    }
+
+    match /fichas_adocao/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if validFichaData();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

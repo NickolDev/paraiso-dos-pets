@@ -16,21 +16,27 @@
   <meta property="og:site_name" content="ONG Paraíso dos Pets">
   <meta property="og:title" content="Nossa Missão | ONG Paraíso dos Pets">
   <meta property="og:description" content="Conheça a história da ONG Paraíso dos Pets, fundada por Luiz Moraes em Ribeirão Preto.">
-  <meta property="og:image" content="https://placedog.net/1200/630?r=40">
+  <meta property="og:image" content="../images/og-image.jpg">
   <meta property="og:url" content="https://ongparaisodospets.org.br/pages/nossa-missao.html">
   <meta property="og:locale" content="pt_BR">
   <title>Nossa Missão | ONG Paraíso dos Pets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://*.firebasestorage.googleapis.com https://firebasestorage.googleapis.com data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.google-analytics.com https://firestore.googleapis.com https://www.google.com; frame-src https://snapwidget.com https://www.google.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
 </head>
 <body>
 
   <!-- ======================== HEADER ======================== -->
   <header class="header" id="header" role="banner">
     <div class="header__inner">
-      <a href="../index.html" class="logo-link" aria-label="Página inicial – Paraíso dos Pets">
-        <svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg>
-        <span class="logo-texto">Paraíso dos <span>Pets</span></span>
+      <a href="../index.html" class="logo-link" aria-label="Página inicial – Paraíso dos Pets"><img src="../images/logo-header.png" alt="Logo ONG Paraíso dos Pets" class="logo-img" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span>
       </a>
       <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
         <a href="../index.html" class="nav-link">Home</a>
@@ -39,7 +45,7 @@
         <div class="nav-item--submenu">
           <a href="adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a>
           <div class="submenu" role="menu">
-            <a href="adote.html" class="submenu__link" role="menuitem">Adoção</a>
+            <a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="adotados.html" class="submenu__link" role="menuitem">Finais Felizes</a>
             <a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a>
             <a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a>
             <a href="doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a>
@@ -61,7 +67,7 @@
 
     <!-- =================== BANNER DA PÁGINA ================= -->
     <section class="banner-pagina" aria-label="Banner da página Nossa Missão">
-      <img src="https://placedog.net/1920/600?r=40" alt="Cães do abrigo Paraíso dos Pets" class="banner-pagina__bg" loading="eager">
+      <img src="" alt="Cães do abrigo Paraíso dos Pets" class="banner-pagina__bg" loading="eager" style="display:none;">
       <div class="banner-pagina__overlay" aria-hidden="true"></div>
       <div class="banner-pagina__conteudo">
         <h1 class="banner-pagina__titulo">Nossa Missão</h1>
@@ -101,14 +107,14 @@
                 comunidade ribeirão-pretana, que se mobilizou com doações e apoio.
               </p>
               <p>
-                Hoje, o Paraíso dos Pets abriga <strong>mais de 130 cães</strong> resgatados de situações
+                Hoje, o Paraíso dos Pets abriga <strong>dezenas de cães</strong> resgatados de situações
                 de abandono, maus-tratos e negligência. Cada animal recebe alimentação diária, acompanhamento
                 veterinário, vacinas e, acima de tudo, amor. Nosso maior sonho é que um dia não haja mais
                 animais abandonados em nossas ruas — mas, enquanto houver, estaremos aqui.
               </p>
             </div>
             <div class="quem-somos__imagem">
-              <img src="https://placedog.net/500/500?r=41" alt="Luiz Moraes com cães do abrigo Paraíso dos Pets" loading="lazy">
+              <img src="../images/logo-300.png" style="object-fit:contain;padding:2rem;background:var(--cor-bege);" alt="Luiz Moraes com cães do abrigo Paraíso dos Pets" loading="lazy">
             </div>
           </div>
         </article>
@@ -204,8 +210,8 @@
             </div>
             <div class="timeline__conteudo">
               <div class="timeline__ano">2023</div>
-              <h3 class="timeline__titulo">500 adoções e 200 voluntários</h3>
-              <p class="timeline__texto">Alcançamos 500 adoções responsáveis e contamos com mais de 200 voluntários ativos na causa.</p>
+              <h3 class="timeline__titulo">Marco de centenas de adoções</h3>
+              <p class="timeline__texto">A ONG alcançou centenas de adoções responsáveis e hoje conta com uma equipe crescente de voluntários dedicados à causa.</p>
             </div>
           </div>
 
@@ -216,8 +222,8 @@
             </div>
             <div class="timeline__conteudo">
               <div class="timeline__ano">2025</div>
-              <h3 class="timeline__titulo">+130 cães no abrigo</h3>
-              <p class="timeline__texto">Nosso maior desafio e nossa maior conquista: mais de 130 vidas sob nossos cuidados diários. O sonho de um abrigo maior começa a ganhar forma.</p>
+              <h3 class="timeline__titulo">Abrigo em expansão</h3>
+              <p class="timeline__texto">Nosso maior desafio e nossa maior conquista: dezenas de vidas sob nossos cuidados diários. O sonho de um abrigo maior começa a ganhar forma.</p>
             </div>
           </div>
 
@@ -319,7 +325,7 @@
 
           <!-- Luiz Moraes — Fundador -->
           <div class="card-equipe">
-            <img src="https://placedog.net/300/300?r=50" alt="Luiz Moraes, fundador da ONG" class="card-equipe__foto" loading="lazy">
+            <img src="../images/logo-300.png" style="object-fit:contain;padding:1rem;background:var(--cor-bege);" alt="Luiz Moraes, fundador da ONG" class="card-equipe__foto" loading="lazy">
             <h3 class="card-equipe__nome">Luiz Moraes</h3>
             <p class="card-equipe__funcao">Fundador e Presidente</p>
             <p class="card-equipe__frase">"Cada cão que resgatamos me lembra por que comecei."</p>
@@ -327,7 +333,7 @@
 
           <!-- Carla Mendes — Coord. de Resgates -->
           <div class="card-equipe">
-            <img src="https://placedog.net/300/300?r=51" alt="Carla Mendes, coordenadora de resgates" class="card-equipe__foto" loading="lazy">
+            <img src="../images/logo-300.png" style="object-fit:contain;padding:1rem;background:var(--cor-bege);" alt="Carla Mendes, coordenadora de resgates" class="card-equipe__foto" loading="lazy">
             <h3 class="card-equipe__nome">Carla Mendes</h3>
             <p class="card-equipe__funcao">Coordenadora de Resgates</p>
             <p class="card-equipe__frase">"Não existe hora para salvar uma vida."</p>
@@ -335,7 +341,7 @@
 
           <!-- Dr. Rafael Costa — Veterinário Parceiro -->
           <div class="card-equipe">
-            <img src="https://placedog.net/300/300?r=52" alt="Dr. Rafael Costa, veterinário parceiro" class="card-equipe__foto" loading="lazy">
+            <img src="../images/logo-300.png" style="object-fit:contain;padding:1rem;background:var(--cor-bege);" alt="Dr. Rafael Costa, veterinário parceiro" class="card-equipe__foto" loading="lazy">
             <h3 class="card-equipe__nome">Dr. Rafael Costa</h3>
             <p class="card-equipe__funcao">Veterinário Parceiro</p>
             <p class="card-equipe__frase">"Cuidar desses animais é minha missão de vida."</p>
@@ -343,7 +349,7 @@
 
           <!-- Patrícia Ribeiro — Coord. de Voluntários -->
           <div class="card-equipe">
-            <img src="https://placedog.net/300/300?r=53" alt="Patrícia Ribeiro, coordenadora de voluntários" class="card-equipe__foto" loading="lazy">
+            <img src="../images/logo-300.png" style="object-fit:contain;padding:1rem;background:var(--cor-bege);" alt="Patrícia Ribeiro, coordenadora de voluntários" class="card-equipe__foto" loading="lazy">
             <h3 class="card-equipe__nome">Patrícia Ribeiro</h3>
             <p class="card-equipe__funcao">Coordenadora de Voluntários</p>
             <p class="card-equipe__frase">"Cada voluntário novo é mais amor multiplicado."</p>
@@ -351,7 +357,7 @@
 
           <!-- Bruno Almeida — Comunicação e Redes -->
           <div class="card-equipe">
-            <img src="https://placedog.net/300/300?r=54" alt="Bruno Almeida, responsável pela comunicação" class="card-equipe__foto" loading="lazy">
+            <img src="../images/logo-300.png" style="object-fit:contain;padding:1rem;background:var(--cor-bege);" alt="Bruno Almeida, responsável pela comunicação" class="card-equipe__foto" loading="lazy">
             <h3 class="card-equipe__nome">Bruno Almeida</h3>
             <p class="card-equipe__funcao">Comunicação e Redes Sociais</p>
             <p class="card-equipe__frase">"Uma boa foto pode encontrar um lar para um cão."</p>
@@ -359,7 +365,7 @@
 
           <!-- Fernanda Santos — Financeiro e Transparência -->
           <div class="card-equipe">
-            <img src="https://placedog.net/300/300?r=55" alt="Fernanda Santos, responsável pelo financeiro" class="card-equipe__foto" loading="lazy">
+            <img src="../images/logo-300.png" style="object-fit:contain;padding:1rem;background:var(--cor-bege);" alt="Fernanda Santos, responsável pelo financeiro" class="card-equipe__foto" loading="lazy">
             <h3 class="card-equipe__nome">Fernanda Santos</h3>
             <p class="card-equipe__funcao">Financeiro e Transparência</p>
             <p class="card-equipe__frase">"Transparência é respeito com quem confia na gente."</p>
@@ -373,7 +379,7 @@
 
     <!-- ============= CTA FINAL ============================== -->
     <section class="cta-doacao" aria-label="Chamada para ação">
-      <img src="https://placedog.net/1920/600?r=42" alt="Cão esperando por um lar" class="cta-doacao__bg" loading="lazy">
+      <img src="" alt="Cão esperando por um lar" class="cta-doacao__bg" loading="lazy" style="display:none;">
       <div class="cta-doacao__overlay" aria-hidden="true"></div>
       <div class="cta-doacao__conteudo container">
         <h2 data-animate="fade-up">Faça parte dessa história</h2>
@@ -393,7 +399,7 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <a href="../index.html" class="logo-link"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px;"><ellipse cx="20" cy="14" rx="8" ry="10"/><ellipse cx="44" cy="14" rx="8" ry="10"/><ellipse cx="10" cy="32" rx="7" ry="9"/><ellipse cx="54" cy="32" rx="7" ry="9"/><path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/></svg><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+          <a href="../index.html" class="logo-link"><img src="../images/logo-header.png" alt="Logo ONG Paraíso dos Pets" class="logo-img" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
           <p class="footer__slogan">Ajudando quem não tem voz desde 2017.<br>Ribeirão Preto, SP — Brasil.</p>
           <div class="footer__redes">
             <a href="https://www.instagram.com/ongparaisodospets" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></a>
@@ -451,7 +457,9 @@
     </div>
   </div>
 
+  <script src="../js/dompurify.min.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/cookies.js"></script>
+  <script src="../js/ga4.js"></script>
 </body>
 </html>

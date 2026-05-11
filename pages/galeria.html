@@ -1,0 +1,227 @@
+<!-- ============================================================
+     ARQUIVO: galeria.html
+     DESCRIÇÃO: Galeria de fotos do abrigo — imagens do espaço,
+                dos animais e da equipe, gerenciáveis pelo admin.
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça o espaço da ONG Paraíso dos Pets em Ribeirão Preto. Galeria de fotos do abrigo, dos animais e da equipe.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ongparaisodospets.org.br/pages/galeria.html">
+  <meta property="og:title" content="Galeria | ONG Paraíso dos Pets">
+  <meta property="og:description" content="Fotos do abrigo, dos animais e da equipe da ONG Paraíso dos Pets.">
+  <meta property="og:image" content="../images/og-image.jpg">
+  <meta property="og:locale" content="pt_BR">
+  <title>Galeria de Fotos | ONG Paraíso dos Pets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+  <style>
+    /* Grid responsivo tipo masonry para galeria */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 768px) { .galeria-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .galeria-grid { grid-template-columns: 1fr; } }
+
+    .galeria-item {
+      border-radius: var(--raio-md);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .galeria-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sombra-md);
+    }
+    .galeria-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .galeria-item:hover img { transform: scale(1.05); }
+
+    .galeria-item__legenda {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(6,42,77,0.85));
+      color: #fff;
+      padding: 2rem 1rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Filtros de categoria */
+    .galeria-filtros {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .galeria-filtro-btn {
+      padding: 0.45rem 1.2rem;
+      border-radius: 50px;
+      border: 2px solid var(--cor-cinza-claro);
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--fonte-corpo);
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--cor-cinza-medio);
+      transition: all 0.3s ease;
+    }
+    .galeria-filtro-btn:hover, .galeria-filtro-btn.ativo {
+      background: var(--cor-primaria);
+      border-color: var(--cor-primaria);
+      color: #fff;
+    }
+
+    /* Lightbox da galeria */
+    .galeria-lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1rem;
+    }
+    .galeria-lightbox.ativo { display: flex; }
+    .galeria-lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: var(--raio-md);
+      object-fit: contain;
+    }
+    .galeria-lightbox__legenda {
+      color: #fff;
+      margin-top: 1rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .galeria-lightbox__fechar {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://*.firebasestorage.googleapis.com https://firebasestorage.googleapis.com data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.google-analytics.com https://firestore.googleapis.com https://www.google.com; frame-src https://snapwidget.com https://www.google.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+</head>
+<body>
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo-link" aria-label="Página inicial"><img src="../images/logo-header.png" alt="Logo ONG Paraíso dos Pets" class="logo-img" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span></a>
+      <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
+        <a href="../index.html" class="nav-link">Home</a><a href="nossa-missao.html" class="nav-link">Nossa Missão</a><a href="transparencia.html" class="nav-link">Transparência</a>
+        <div class="nav-item--submenu"><a href="adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a><div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="adotados.html" class="submenu__link" role="menuitem">Finais Felizes</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a><a href="doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a><a href="contato.html" class="submenu__link" role="menuitem">Parcerias</a></div></div>
+        <a href="blog.html" class="nav-link">Blog</a><a href="contato.html" class="nav-link">Contato</a>
+        <a href="doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      </nav>
+      <a href="doar.html" class="btn-doar-header" id="btn-doar-desktop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span class="hamburger__linha"></span><span class="hamburger__linha"></span><span class="hamburger__linha"></span></button>
+    </div>
+  </header>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <main role="main">
+    <section class="banner-pagina" aria-label="Banner Galeria">
+      <div class="banner-pagina__overlay" aria-hidden="true"></div>
+      <div class="banner-pagina__conteudo">
+        <h1 class="banner-pagina__titulo">Galeria de Fotos</h1>
+        <p style="color:rgba(255,255,255,0.85);font-size:1.1rem;margin-top:0.5rem;">Conheça nosso espaço, nossos pets e nossa equipe</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb__separador">›</span><span>Galeria</span></nav>
+      </div>
+    </section>
+
+    <section class="secao" aria-label="Galeria de fotos">
+      <div class="container">
+
+        <!-- Filtros -->
+        <div class="galeria-filtros" id="galeria-filtros" data-animate="fade-up">
+          <button class="galeria-filtro-btn ativo" data-categoria="todos">Todas</button>
+          <button class="galeria-filtro-btn" data-categoria="abrigo">O Abrigo</button>
+          <button class="galeria-filtro-btn" data-categoria="animais">Animais</button>
+          <button class="galeria-filtro-btn" data-categoria="equipe">Equipe</button>
+          <button class="galeria-filtro-btn" data-categoria="eventos">Eventos</button>
+        </div>
+
+        <!-- Grid de fotos -->
+        <div class="galeria-grid" id="galeria-grid" data-animate="fade-up">
+          <!-- Populado pelo JS -->
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="galeria-lightbox" id="galeria-lightbox">
+    <button class="galeria-lightbox__fechar" aria-label="Fechar">×</button>
+    <img id="galeria-lightbox-img" src="" alt="">
+    <p class="galeria-lightbox__legenda" id="galeria-lightbox-legenda"></p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="logo-link"><img src="../images/logo-footer.png" alt="Logo" class="logo-img" style="width:32px;height:32px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span></a><p class="footer__slogan">Ajudando quem não tem voz desde 2017.</p></div>
+        <div><h4 class="footer__titulo">Links Rápidos</h4><a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="transparencia.html" class="footer__link">Transparência</a><a href="blog.html" class="footer__link">Blog</a><a href="galeria.html" class="footer__link">Galeria</a></div>
+        <div><h4 class="footer__titulo">Como Ajudar</h4><a href="doar.html" class="footer__link">Apadrinhar</a><a href="voluntario.html" class="footer__link">Voluntariar</a><a href="adotados.html" class="footer__link">Finais Felizes</a></div>
+        <div><h4 class="footer__titulo">Contato</h4><a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a><a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a></div>
+      </div>
+      <div class="footer__bottom"><p>ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br><a href="politica-privacidade.html">Política de Privacidade</a> | <a href="termos-de-uso.html">Termos de Uso</a></p></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5516999999999" class="btn-whatsapp" id="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg><span class="btn-whatsapp__tooltip">Fale conosco</span></a>
+  <button class="btn-topo" id="btn-topo" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <div class="cookie-banner" id="cookie-banner" role="dialog"><div class="cookie-banner__inner"><p class="cookie-banner__texto">Usamos cookies para melhorar sua experiência. <a href="politica-privacidade.html">Política de Privacidade</a>.</p><div class="cookie-banner__btns"><button class="btn btn--primario btn--sm" id="cookie-aceitar-todos">Aceitar todos</button><button class="btn btn--branco btn--sm" id="cookie-aceitar-essenciais" style="color:var(--cor-branco);border-color:rgba(255,255,255,0.4);">Apenas essenciais</button></div></div></div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/dompurify.min.js"></script>
+  <script src="../js/sanitizer.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/cookies.js"></script>
+
+  <script src="../js/galeria-page.js"></script>
+
+  <script src="../js/ga4.js"></script>
+</body>
+</html>

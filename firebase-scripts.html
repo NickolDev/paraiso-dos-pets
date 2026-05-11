@@ -1,0 +1,105 @@
+<!-- ============================================================
+     ARQUIVO: firebase-scripts.html
+     DESCRIÇÃO: Referência dos scripts Firebase que devem ser
+                incluídos nas páginas HTML. NÃO é uma página
+                do site — é apenas um guia para os desenvolvedores.
+
+     COMO USAR:
+       Copie os <script> abaixo para o final do <body> de cada
+       página que precisa do Firebase, ANTES dos scripts do site.
+
+     ÚLTIMA ATUALIZAÇÃO: 2025
+     ============================================================ -->
+
+<!-- ============================================================
+     SCRIPTS FIREBASE — CDN (modo compat)
+     Carregados via CDN do Google. Não requer npm nem build.
+     A versão "compat" funciona com <script> tags normais.
+     ============================================================ -->
+
+<!-- 1. Firebase App (obrigatório — base de tudo) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+
+<!-- 2. Firestore (banco de dados) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<!-- 3. Authentication (login — necessário apenas em páginas com admin ou formulários) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+<!-- 4. Storage (upload de fotos — necessário apenas no admin) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+
+<!-- 5. Configuração do projeto (nosso arquivo) -->
+<script src="js/firebase-config.js"></script>
+<!-- Ou se estiver em /pages/: -->
+<script src="../js/firebase-config.js"></script>
+
+
+<!-- ============================================================
+     QUAIS SCRIPTS CADA PÁGINA PRECISA:
+     ============================================================
+
+     PÁGINAS PÚBLICAS (site):
+     ─────────────────────────
+     index.html           → app + firestore + firebase-config
+     pages/adote.html      → app + firestore + firebase-config
+     pages/blog.html       → app + firestore + firebase-config
+     pages/post.html       → app + firestore + firebase-config
+     pages/transparencia.html → app + firestore + firebase-config
+     pages/doar.html       → app + firestore + firebase-config
+     pages/ficha-adocao.html → app + firestore + firebase-config
+     pages/voluntario.html → app + firestore + firebase-config
+     pages/contato.html    → app + firestore + firebase-config
+
+     PÁGINAS QUE NÃO PRECISAM DE FIREBASE:
+     ──────────────────────────────────────
+     pages/nossa-missao.html      → conteúdo estático
+     pages/faq.html               → conteúdo estático
+     pages/redes-sociais.html     → conteúdo estático
+     pages/politica-privacidade.html → conteúdo estático
+     pages/termos-de-uso.html     → conteúdo estático
+     404.html                     → conteúdo estático
+
+     PAINEL ADMIN:
+     ─────────────
+     admin.html → app + firestore + auth + storage + firebase-config
+
+     ============================================================ -->
+
+
+<!-- ============================================================
+     EXEMPLO COMPLETO — Como fica o final do <body> de uma página:
+     ============================================================ -->
+
+<!--
+  Para index.html:
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cookies.js"></script>
+  <script src="js/adote.js"></script>
+  <script src="js/blog.js"></script>
+
+
+  Para pages/adote.html:
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/cookies.js"></script>
+  <script src="../js/adote.js"></script>
+
+
+  Para admin.html:
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/admin.js"></script>
+
+-->

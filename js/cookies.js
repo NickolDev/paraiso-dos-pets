@@ -31,13 +31,21 @@ const COOKIE_STORAGE_KEY = 'cookies_preferencia';
  * @returns {void}
  */
 function verificarPreferencia() {
-  const preferencia = localStorage.getItem(COOKIE_STORAGE_KEY);
+  let preferencia = null;
+  try { preferencia = localStorage.getItem(COOKIE_STORAGE_KEY); } catch(e) {}
 
   if (!preferencia) {
     // Sem preferência salva — exibir o banner após um breve delay
     setTimeout(exibirBanner, 1000);
+  } else {
+    // Já tem preferência — se aceitou todos, carrega GA
+    try {
+      const dados = JSON.parse(preferencia);
+      if (dados.tipo === 'todos') {
+        carregarGoogleAnalytics();
+      }
+    } catch (e) { /* preferência corrupta — ignora */ }
   }
-  // Se já tem preferência, não faz nada (banner permanece oculto)
 }
 
 // ============================================================
@@ -73,8 +81,42 @@ function aceitarTodos() {
     data: new Date().toISOString()
   };
 
-  localStorage.setItem(COOKIE_STORAGE_KEY, JSON.stringify(preferencia));
+  try { localStorage.setItem(COOKIE_STORAGE_KEY, JSON.stringify(preferencia)); } catch(e) {}
+  try { localStorage.setItem('cookies-consentimento', 'todos'); } catch(e) {}
+
+  // Carrega Google Analytics SOMENTE após consentimento (LGPD)
+  carregarGoogleAnalytics();
+
+  // Dispara evento para outros scripts
+  document.dispatchEvent(new CustomEvent('cookies-aceitos'));
+
   ocultarBanner();
+}
+
+/**
+ * Carrega o Google Analytics GA4 dinamicamente.
+ * Só é chamado após o usuário aceitar todos os cookies.
+ * Substitua 'G-XXXXXXXXXX' pelo seu Measurement ID real.
+ */
+function carregarGoogleAnalytics() {
+  const GA_ID = 'G-XXXXXXXXXX'; // Substituir pelo ID real
+  if (GA_ID === 'G-XXXXXXXXXX') return; // Não carrega se não configurado
+
+  // Evita carregar duas vezes
+  if (document.querySelector('script[src*="googletagmanager"]')) return;
+
+  const script = document.createElement('script');
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  script.async = true;
+  document.head.appendChild(script);
+
+  script.onload = () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  };
 }
 
 // ============================================================
@@ -93,7 +135,8 @@ function aceitarEssenciais() {
     data: new Date().toISOString()
   };
 
-  localStorage.setItem(COOKIE_STORAGE_KEY, JSON.stringify(preferencia));
+  try { localStorage.setItem(COOKIE_STORAGE_KEY, JSON.stringify(preferencia)); } catch(e) {}
+  try { localStorage.setItem('cookies-consentimento', 'essenciais'); } catch(e) {}
   ocultarBanner();
 }
 

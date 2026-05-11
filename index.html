@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO — descrição da página para mecanismos de busca -->
-  <meta name="description" content="ONG Paraíso dos Pets — Resgatamos, cuidamos e encontramos lares para cães abandonados em Ribeirão Preto, SP. Mais de 130 vidas precisam do seu amor.">
+  <meta name="description" content="ONG Paraíso dos Pets — Resgatamos, cuidamos e encontramos lares para cães abandonados em Ribeirão Preto, SP. Resgatamos e cuidamos de cães em busca de um lar.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://ongparaisodospets.org.br/">
 
@@ -20,41 +20,25 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ONG Paraíso dos Pets">
   <meta property="og:title" content="ONG Paraíso dos Pets — Ajudando quem não tem voz">
-  <meta property="og:description" content="Resgatamos, cuidamos e encontramos lares para cães abandonados em Ribeirão Preto, SP. Mais de 130 vidas precisam do seu amor.">
-  <meta property="og:image" content="https://placedog.net/1200/630?r=99">
+  <meta property="og:description" content="Resgatamos, cuidamos e encontramos lares para cães abandonados em Ribeirão Preto, SP. Resgatamos e cuidamos de cães em busca de um lar.">
+  <meta property="og:image" content="images/og-image.jpg">
   <meta property="og:url" content="https://ongparaisodospets.org.br/">
   <meta property="og:locale" content="pt_BR">
-
-  <!-- Schema.org — dados estruturados para o Google -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NGO",
-    "name": "ONG Paraíso dos Pets",
-    "description": "ONG de proteção animal em Ribeirão Preto, SP. Resgate, cuidado e adoção de cães abandonados.",
-    "foundingDate": "2017",
-    "founder": { "@type": "Person", "name": "Luiz Moraes" },
-    "email": "contato@ongparaisodospets.org.br",
-    "url": "https://ongparaisodospets.org.br",
-    "sameAs": [
-      "https://www.instagram.com/ongparaisodospets",
-      "https://www.youtube.com/@ONGParaísodosPets",
-      "https://www.threads.com/@ongparaisodospets"
-    ],
-    "areaServed": {
-      "@type": "City",
-      "name": "Ribeirão Preto",
-      "containedInPlace": { "@type": "State", "name": "São Paulo" }
-    }
-  }
-  </script>
 
   <title>ONG Paraíso dos Pets — Ajudando quem não tem voz</title>
 
   <!-- Estilos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/print.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://*.firebasestorage.googleapis.com https://firebasestorage.googleapis.com data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.google-analytics.com https://firestore.googleapis.com https://www.google.com; frame-src https://snapwidget.com https://www.google.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
 </head>
 <body>
 
@@ -64,16 +48,7 @@
     <div class="header__inner">
 
       <!-- Logo: ícone de patinha SVG + nome da ONG -->
-      <a href="index.html" class="logo-link" aria-label="Página inicial – Paraíso dos Pets">
-        <!-- SVG inline: ícone de patinha de cachorro -->
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <ellipse cx="20" cy="14" rx="8" ry="10"/>
-          <ellipse cx="44" cy="14" rx="8" ry="10"/>
-          <ellipse cx="10" cy="32" rx="7" ry="9"/>
-          <ellipse cx="54" cy="32" rx="7" ry="9"/>
-          <path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/>
-        </svg>
-        <span class="logo-texto">Paraíso dos <span>Pets</span></span>
+      <a href="index.html" class="logo-link" aria-label="Página inicial – Paraíso dos Pets"><img src="images/logo-header.png" alt="Logo ONG Paraíso dos Pets" class="logo-img" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span>
       </a>
 
       <!-- Navegação principal — links do menu central -->
@@ -94,7 +69,7 @@
           </a>
           <!-- Submenu com sublinks de Adote -->
           <div class="submenu" role="menu">
-            <a href="pages/adote.html" class="submenu__link" role="menuitem">Adoção</a>
+            <a href="pages/adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="pages/adotados.html" class="submenu__link" role="menuitem">Finais Felizes</a>
             <a href="pages/doar.html" class="submenu__link" role="menuitem">Apadrinhar</a>
             <a href="pages/voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a>
             <a href="pages/doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a>
@@ -140,12 +115,25 @@
   <!-- ======================== MAIN ========================== -->
   <main role="main">
 
+    <!-- ============ BANNER DE AVISOS (configurável pelo admin) ========== -->
+    <!-- Carregado do Firebase: coleção "banners" → doc "ativo" -->
+    <!-- Se não houver banner ativo, esta seção fica invisível -->
+    <div id="banner-aviso" class="banner-aviso" style="display:none;" role="alert">
+      <div class="container" style="display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap;">
+        <span id="banner-aviso-icone" style="font-size:1.2rem;">📢</span>
+        <p id="banner-aviso-texto" style="font-weight:600;font-size:0.9rem;margin:0;"></p>
+        <a id="banner-aviso-link" href="#" style="font-weight:700;font-size:0.85rem;color:inherit;text-decoration:underline;display:none;">Saiba mais</a>
+        <button data-dismiss-target="#banner-aviso" aria-label="Fechar aviso" style="background:none;border:none;color:inherit;font-size:1.2rem;cursor:pointer;padding:0.25rem;margin-left:auto;opacity:0.7;">×</button>
+      </div>
+    </div>
+    <!-- ============ FIM BANNER DE AVISOS ========================= -->
+
     <!-- ======================== HERO ======================== -->
     <!-- Banner principal com imagem de fundo, frase emocional e CTAs -->
     <section class="hero" aria-label="Banner principal">
 
-      <!-- Imagem de fundo (placeholder placedog.net) -->
-      <img src="https://placedog.net/1920/900?r=1" alt="Cão feliz correndo em um gramado" class="hero__bg" loading="eager">
+      <!-- Imagem de fundo (configurável pelo admin) -->
+      <img src="" alt="Cão feliz correndo em um gramado" class="hero__bg" loading="eager" style="display:none;">
 
       <!-- Overlay gradiente escuro sobre a imagem -->
       <div class="hero__overlay" aria-hidden="true"></div>
@@ -167,7 +155,7 @@
         <!-- Parágrafo descritivo -->
         <p class="hero__texto">
           Somos a ONG Paraíso dos Pets. Resgatamos, cuidamos e encontramos
-          lares para cães abandonados em Ribeirão Preto (SP). Mais de 130 vidas
+          lares para cães abandonados em Ribeirão Preto (SP). Dezenas de vidas
           dependem do seu amor todos os dias.
         </p>
 
@@ -195,32 +183,32 @@
 
 
     <!-- ============== SEÇÃO 2: NÚMEROS DE IMPACTO =========== -->
-    <!-- 4 contadores animados sobre fundo laranja -->
+    <!-- Contadores — Populados pelo Firebase via admin → Configurações -->
     <section class="numeros-impacto" aria-label="Números de impacto da ONG">
       <div class="container">
         <div class="numeros-impacto__grid">
 
           <!-- Contador 1: Animais no abrigo -->
           <div class="numero-item">
-            <div class="numero-item__valor" data-valor="130">0</div>
+            <div class="numero-item__valor" data-valor="0" id="counter-animais">—</div>
             <div class="numero-item__label">animais no abrigo</div>
           </div>
 
           <!-- Contador 2: Adoções realizadas -->
           <div class="numero-item">
-            <div class="numero-item__valor" data-valor="500">0</div>
+            <div class="numero-item__valor" data-valor="0" id="counter-adocoes">—</div>
             <div class="numero-item__label">adoções realizadas</div>
           </div>
 
           <!-- Contador 3: Voluntários envolvidos -->
           <div class="numero-item">
-            <div class="numero-item__valor" data-valor="200">0</div>
+            <div class="numero-item__valor" data-valor="0" id="counter-voluntarios">—</div>
             <div class="numero-item__label">voluntários envolvidos</div>
           </div>
 
           <!-- Contador 4: Anos de história -->
           <div class="numero-item">
-            <div class="numero-item__valor" data-valor="8">0</div>
+            <div class="numero-item__valor" data-valor="8" id="counter-anos">8</div>
             <div class="numero-item__label">anos de história</div>
           </div>
 
@@ -243,7 +231,7 @@
               A ONG Paraíso dos Pets foi fundada por <strong>Luiz Moraes</strong>
               em Ribeirão Preto (SP). O que começou como uma ação individual —
               resgatar um cão aqui, outro ali — transformou-se em uma causa
-              coletiva que hoje abriga <strong>mais de 130 cães</strong> vítimas
+              coletiva que hoje abriga <strong>dezenas de cães</strong> vítimas
               de abandono.
             </p>
             <p>
@@ -259,7 +247,7 @@
 
           <!-- Coluna de imagem -->
           <div class="quem-somos__imagem" data-animate="fade-up" data-animate-delay="2">
-            <img src="https://placedog.net/500/400?r=2" alt="Cão resgatado pela ONG Paraíso dos Pets descansando no abrigo">
+            <img src="images/logo-300.png" style="object-fit:contain;padding:2rem;background:var(--cor-bege);" alt="Cão resgatado pela ONG Paraíso dos Pets descansando no abrigo">
           </div>
 
         </div>
@@ -380,7 +368,7 @@
 
 
     <!-- ======== SEÇÃO 6: HISTÓRIAS DE ADOÇÃO (CARROSSEL) ==== -->
-    <!-- Carrossel automático com depoimentos de adotantes -->
+    <!-- Carrossel de depoimentos — Populado pelo Firebase via admin -->
     <section class="secao secao--bege" aria-label="Histórias de adoção">
       <div class="container">
 
@@ -389,62 +377,22 @@
           Veja o que dizem as famílias que adotaram nossos cãezinhos
         </p>
 
-        <!-- Componente de carrossel -->
-        <div class="carrossel" data-animate="fade-up">
+        <!-- Componente de carrossel — slides são carregados do Firebase -->
+        <div class="carrossel" data-animate="fade-up" id="carrossel-depoimentos">
 
-          <!-- Trilha de slides -->
-          <div class="carrossel__trilha">
+          <!-- Trilha de slides (populada pelo JS quando Firebase tiver dados) -->
+          <div class="carrossel__trilha" id="carrossel-trilha">
 
-            <!-- Slide 1 -->
-            <div class="carrossel__slide">
-              <div class="carrossel__aspas">"</div>
-              <img src="https://placedog.net/200/200?r=20" alt="Bob, cão adotado por Maria" class="carrossel__foto">
-              <p class="carrossel__texto">
-                Adotei o Bob há 6 meses e ele mudou minha vida completamente.
-                Ele chegou assustado, mas hoje é o cão mais alegre e carinhoso
-                que já conheci. Obrigada, Paraíso dos Pets!
+            <!-- Mensagem padrão quando não há depoimentos cadastrados -->
+            <div class="carrossel__slide" id="carrossel-vazio">
+              <div class="carrossel__aspas" style="color:var(--cor-cinza-claro);">❤</div>
+              <p class="carrossel__texto" style="color:var(--cor-cinza-medio);">
+                Em breve você poderá ler as histórias das famílias que adotaram
+                nossos cãezinhos. Cada adoção é uma transformação!
               </p>
-              <p class="carrossel__autor">Maria Silva — Ribeirão Preto</p>
-              <p class="carrossel__data">Adoção em janeiro/2025</p>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="carrossel__slide">
-              <div class="carrossel__aspas">"</div>
-              <img src="https://placedog.net/200/200?r=21" alt="Luna, cã adotada por Carlos" class="carrossel__foto">
-              <p class="carrossel__texto">
-                A Luna é a melhor companheira que eu poderia ter. Ela veio
-                debilitada, mas com muito amor e cuidado se recuperou totalmente.
-                Adotar é o ato mais bonito que existe.
+              <p class="carrossel__autor" style="color:var(--cor-primaria);">
+                Quer compartilhar sua história? Fale conosco!
               </p>
-              <p class="carrossel__autor">Carlos Oliveira — Ribeirão Preto</p>
-              <p class="carrossel__data">Adoção em março/2025</p>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="carrossel__slide">
-              <div class="carrossel__aspas">"</div>
-              <img src="https://placedog.net/200/200?r=22" alt="Thor, cão adotado pela família Lima" class="carrossel__foto">
-              <p class="carrossel__texto">
-                O Thor conquistou toda a família em minutos. Nossos filhos
-                adoram brincar com ele no quintal. Ele trouxe ainda mais alegria
-                para nossa casa. Recomendo a todos que considerem a adoção!
-              </p>
-              <p class="carrossel__autor">Família Lima — Sertãozinho</p>
-              <p class="carrossel__data">Adoção em novembro/2024</p>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="carrossel__slide">
-              <div class="carrossel__aspas">"</div>
-              <img src="https://placedog.net/200/200?r=23" alt="Mel, cã adotada por Ana" class="carrossel__foto">
-              <p class="carrossel__texto">
-                A Mel era tão tímida que quase não saía da casinha. Hoje ela
-                corre pela casa inteira, dorme na minha cama e me espera na
-                porta todo dia. Gratidão por essa ONG incrível!
-              </p>
-              <p class="carrossel__autor">Ana Paula Mendes — Ribeirão Preto</p>
-              <p class="carrossel__data">Adoção em setembro/2024</p>
             </div>
 
           </div>
@@ -465,7 +413,7 @@
 
           <!-- Dots indicadores de posição -->
           <div class="carrossel__dots" aria-label="Indicadores de slide">
-            <!-- Dots são criados dinamicamente pelo JS (main.js) -->
+            <!-- Dots são criados dinamicamente pelo JS -->
           </div>
 
         </div>
@@ -507,7 +455,7 @@
     <section class="cta-doacao" aria-label="Faça uma doação">
 
       <!-- Imagem de fundo -->
-      <img src="https://placedog.net/1920/800?r=3" alt="Cão olhando para a câmera com olhar carinhoso" class="cta-doacao__bg" loading="lazy">
+      <img src="" alt="Cão olhando para a câmera com olhar carinhoso" class="cta-doacao__bg" loading="lazy" style="display:none;">
 
       <!-- Overlay escuro laranja/marrom -->
       <div class="cta-doacao__overlay" aria-hidden="true"></div>
@@ -543,15 +491,7 @@
 
         <!-- Coluna 1: Logo + slogan + redes -->
         <div class="footer__brand">
-          <a href="index.html" class="logo-link">
-            <svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px;">
-              <ellipse cx="20" cy="14" rx="8" ry="10"/>
-              <ellipse cx="44" cy="14" rx="8" ry="10"/>
-              <ellipse cx="10" cy="32" rx="7" ry="9"/>
-              <ellipse cx="54" cy="32" rx="7" ry="9"/>
-              <path d="M32 56c-12 0-22-10-20-20 1-6 6-12 12-14a12 12 0 0 1 16 0c6 2 11 8 12 14 2 10-8 20-20 20z"/>
-            </svg>
-            <span class="logo-texto">Paraíso dos <span>Pets</span></span>
+          <a href="index.html" class="logo-link"><img src="images/logo-header.png" alt="Logo ONG Paraíso dos Pets" class="logo-img" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span>
           </a>
           <p class="footer__slogan">
             Ajudando quem não tem voz desde 2017.<br>
@@ -618,7 +558,7 @@
       <div class="footer__bottom">
         <p>
           ONG Paraíso dos Pets &copy; 2025 &mdash; CNPJ: XX.XXX.XXX/0001-XX<br>
-          Este site respeita sua privacidade.
+          Este site respeita a sua privacidade.
           <a href="pages/politica-privacidade.html">Política de Privacidade</a> |
           <a href="pages/termos-de-uso.html">Termos de Uso</a>
         </p>
@@ -670,8 +610,18 @@
   <!-- =========== FIM BANNER DE COOKIES (LGPD) =============== -->
 
 
+  <!-- Firebase SDKs (CDN) — carrega dados do banco de dados -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/app-check.js"></script>
+
   <!-- ======================== SCRIPTS ======================== -->
   <!-- main.js: funcionalidades globais (header, menu, animações, etc.) -->
+  <script src="js/dompurify.min.js"></script>
+  <script src="js/sanitizer.js"></script>
+  <script src="js/index-schema.js"></script>
   <script src="js/main.js"></script>
   <!-- cookies.js: banner LGPD -->
   <script src="js/cookies.js"></script>
@@ -679,121 +629,12 @@
   <script src="js/adote.js"></script>
   <!-- blog.js: dados dos posts (para renderizar os 3 mais recentes na home) -->
   <script src="js/blog.js"></script>
+  <!-- firebase-public.js: carrega dados do Firebase e atualiza o site -->
+  <script src="js/firebase-public.js"></script>
 
   <!-- Script inline: renderiza animais e posts em destaque na home -->
-  <script>
-    // ============================================================
-    // RENDERIZAÇÃO DA HOME — Animais em destaque e posts recentes
-    // Este bloco depende dos dados exportados por adote.js e blog.js
-    // ============================================================
+  <script src="js/home-page.js"></script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-
-      // --- ANIMAIS EM DESTAQUE ---
-      // Verifica se os dados de animais e a função existem
-      if (typeof ANIMAIS !== 'undefined') {
-        const gridDestaque = document.getElementById('grid-animais-destaque');
-        if (gridDestaque) {
-          // Seleciona 3 animais disponíveis para destaque
-          const destaques = ANIMAIS.filter(a => a.status === 'Disponível').slice(0, 3);
-          destaques.forEach(animal => {
-            gridDestaque.appendChild(criarCardAnimalHome(animal));
-          });
-        }
-      }
-
-      // --- POSTS RECENTES ---
-      // Verifica se os dados de posts existem
-      if (typeof POSTS !== 'undefined') {
-        const gridPosts = document.getElementById('grid-posts-home');
-        if (gridPosts) {
-          // Seleciona os 3 primeiros posts (mais recentes por data)
-          const recentes = POSTS.slice(0, 3);
-          recentes.forEach(post => {
-            gridPosts.appendChild(criarCardPostHome(post));
-          });
-        }
-      }
-    });
-
-    /**
-     * Cria um card simplificado de animal para a home.
-     * @param {Object} animal - Dados do animal
-     * @returns {HTMLElement} Card HTML do animal
-     */
-    function criarCardAnimalHome(animal) {
-      const card = document.createElement('div');
-      card.classList.add('card-animal');
-
-      // Determina a classe do badge de status
-      const statusClasse = {
-        'Disponível': 'badge--disponivel',
-        'Reservado': 'badge--reservado',
-        'Em Tratamento': 'badge--tratamento'
-      };
-
-      card.innerHTML = `
-        <div class="card-animal__foto-wrapper">
-          <img src="${animal.foto}" alt="${animal.nome}, ${animal.idade}, ${animal.porte}" class="card-animal__foto" loading="lazy">
-          <div class="card-animal__badges">
-            <span class="badge ${statusClasse[animal.status] || 'badge--disponivel'}">${animal.status}</span>
-            ${animal.novo ? '<span class="badge badge--novo">Novo</span>' : ''}
-          </div>
-        </div>
-        <div class="card-animal__info">
-          <h3 class="card-animal__nome">${animal.nome}</h3>
-          <div class="card-animal__detalhes">
-            <span class="card-animal__detalhe">${animal.idade}</span>
-            <span class="card-animal__detalhe">•</span>
-            <span class="card-animal__detalhe">${animal.porte}</span>
-            <span class="card-animal__detalhe">•</span>
-            <span class="card-animal__detalhe">${animal.sexo}</span>
-          </div>
-          <div class="card-animal__icones">
-            ${animal.vacinado ? '<span class="card-animal__icone-info"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Vacinado</span>' : ''}
-            ${animal.castrado ? '<span class="card-animal__icone-info"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Castrado</span>' : ''}
-          </div>
-          <p class="card-animal__descricao">${animal.descricao}</p>
-          <a href="pages/ficha-adocao.html?animal=${animal.id}" class="btn btn--primario btn--sm card-animal__btn">Quero adotar</a>
-        </div>
-      `;
-
-      return card;
-    }
-
-    /**
-     * Cria um card de post simplificado para a home.
-     * @param {Object} post - Dados do post
-     * @returns {HTMLElement} Card HTML do post
-     */
-    function criarCardPostHome(post) {
-      const card = document.createElement('div');
-      card.classList.add('card-post');
-
-      card.innerHTML = `
-        <div class="card-post__imagem-wrapper">
-          <img src="${post.imagem}" alt="${post.titulo}" class="card-post__imagem" loading="lazy">
-        </div>
-        <div class="card-post__corpo">
-          <div class="card-post__meta">
-            <span class="badge badge--categoria">${post.categoria}</span>
-            <span>${post.data}</span>
-            <span>•</span>
-            <span>${post.tempoLeitura}</span>
-          </div>
-          <a href="pages/post.html?id=${post.id}">
-            <h3 class="card-post__titulo">${post.titulo}</h3>
-          </a>
-          <p class="card-post__resumo">${post.resumo}</p>
-          <div class="card-post__footer">
-            <a href="pages/post.html?id=${post.id}" class="btn btn--primario btn--sm">Ler Mais</a>
-          </div>
-        </div>
-      `;
-
-      return card;
-    }
-  </script>
-
+  <script src="js/ga4.js"></script>
 </body>
 </html>

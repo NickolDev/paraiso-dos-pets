@@ -1,0 +1,683 @@
+╔══════════════════════════════════════════════════════════════╗
+║       GUIA COMPLETO — CONFIGURAÇÃO DO FIREBASE              ║
+║       ONG Paraíso dos Pets                                   ║
+╚══════════════════════════════════════════════════════════════╝
+
+Este guia explica passo a passo como criar e configurar o
+Firebase para o site da ONG Paraíso dos Pets. Siga cada etapa
+na ordem. Tempo estimado: 15 a 20 minutos.
+
+
+══════════════════════════════════════════════════════════════
+PASSO 1 — CRIAR UMA CONTA GOOGLE (se não tiver)
+══════════════════════════════════════════════════════════════
+
+Se a ONG já tem uma conta Google (Gmail), use ela.
+Se não tem, crie uma em: https://accounts.google.com
+
+Recomendamos criar um email exclusivo para a ONG:
+  Ex: ongparaisodospets@gmail.com
+
+Esse email será o "dono" do projeto Firebase.
+
+
+══════════════════════════════════════════════════════════════
+PASSO 2 — CRIAR O PROJETO NO FIREBASE
+══════════════════════════════════════════════════════════════
+
+1. Acesse: https://console.firebase.google.com
+2. Clique em "Criar um projeto" (ou "Add project")
+3. Nome do projeto: paraiso-dos-pets
+4. Google Analytics: pode DESATIVAR (não é necessário agora)
+5. Clique em "Criar projeto"
+6. Aguarde a criação (alguns segundos)
+7. Clique em "Continuar"
+
+Pronto! Seu projeto Firebase foi criado.
+
+
+══════════════════════════════════════════════════════════════
+PASSO 3 — REGISTRAR O APP WEB
+══════════════════════════════════════════════════════════════
+
+1. Na página inicial do projeto, clique no ícone "</>" (Web)
+2. Apelido do app: "Site Paraíso dos Pets"
+3. NÃO marque "Firebase Hosting" por enquanto
+4. Clique em "Registrar app"
+5. Vai aparecer um bloco de código com suas credenciais:
+
+   const firebaseConfig = {
+     apiKey: "AIzaSy...",
+     authDomain: "paraiso-dos-pets.firebaseapp.com",
+     projectId: "paraiso-dos-pets",
+     storageBucket: "paraiso-dos-pets.appspot.com",
+     messagingSenderId: "123456789",
+     appId: "1:123456789:web:abc123"
+   };
+
+6. COPIE esses valores
+7. Abra o arquivo js/firebase-config.js do projeto
+8. Substitua os valores em "firebaseConfig" pelos seus
+9. Clique em "Continuar para o console"
+
+
+══════════════════════════════════════════════════════════════
+PASSO 4 — ATIVAR O FIRESTORE (Banco de Dados)
+══════════════════════════════════════════════════════════════
+
+1. No menu lateral esquerdo, clique em "Firestore Database"
+   (ou "Cloud Firestore")
+2. Clique em "Criar banco de dados"
+3. Localização: escolha "southamerica-east1" (São Paulo)
+   — isso garante que os dados ficam no Brasil, mais rápido
+4. Regras de segurança: selecione "Iniciar no modo de TESTE"
+   (vamos configurar as regras corretas a seguir)
+5. Clique em "Criar"
+6. Aguarde a criação (alguns segundos)
+
+IMPORTANTE — CONFIGURAR AS REGRAS DE SEGURANÇA:
+
+1. No Firestore, clique na aba "Regras"
+2. Apague tudo que estiver lá
+3. Cole as regras abaixo:
+
+- - - COPIE DAQUI - - -
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function requiredString(value, max) {
+      return value is string && value.size() > 0 && value.size() <= max;
+    }
+
+    function optionalString(value, max) {
+      return !(value is string) || value.size() <= max;
+    }
+
+    function validEmail(value) {
+      return requiredString(value, 254)
+        && value.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
+    }
+
+    function validPhone(value) {
+      return requiredString(value, 24)
+        && value.matches('^[0-9()+\\-\\s]+$');
+    }
+
+    function validBoolean(value) {
+      return value is bool;
+    }
+
+    function validNumber(value, max) {
+      return (value is int || value is float) && value >= 0 && value <= max;
+    }
+
+    function validStringList(value, maxItems, maxLength) {
+      return value is list
+        && value.size() <= maxItems
+        && value.size() >= 0;
+    }
+
+    function validAnimalData() {
+      return request.resource.data.keys().hasOnly([
+        'nome', 'foto', 'idade', 'porte', 'sexo', 'status',
+        'castrado', 'vacinado', 'novo', 'descricao', 'historico',
+        'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.nome, 80)
+      && optionalString(request.resource.data.foto, 2048)
+      && requiredString(request.resource.data.idade, 40)
+      && request.resource.data.porte in ['Pequeno', 'Médio', 'Grande']
+      && request.resource.data.sexo in ['Macho', 'Fêmea']
+      && request.resource.data.status in ['Disponível', 'Reservado', 'Em Tratamento', 'Adotado']
+      && validBoolean(request.resource.data.castrado)
+      && validBoolean(request.resource.data.vacinado)
+      && validBoolean(request.resource.data.novo)
+      && requiredString(request.resource.data.descricao, 1200)
+      && optionalString(request.resource.data.historico, 2000);
+    }
+
+    function validPostData() {
+      return request.resource.data.keys().hasOnly([
+        'titulo', 'resumo', 'conteudo', 'categoria', 'data',
+        'tempoLeitura', 'imagem', 'publicado', 'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.titulo, 160)
+      && requiredString(request.resource.data.resumo, 320)
+      && requiredString(request.resource.data.conteudo, 40000)
+      && requiredString(request.resource.data.categoria, 60)
+      && optionalString(request.resource.data.data, 30)
+      && optionalString(request.resource.data.tempoLeitura, 40)
+      && optionalString(request.resource.data.imagem, 2048)
+      && validBoolean(request.resource.data.publicado);
+    }
+
+    function validTransparenciaData() {
+      return request.resource.data.keys().hasOnly([
+        'label', 'resumo', 'gastos', 'receitas', 'criadoEm', 'atualizadoEm'
+      ])
+      && optionalString(request.resource.data.label, 80)
+      && request.resource.data.resumo is map
+      && validNumber(request.resource.data.resumo.recebido, 10000000)
+      && validNumber(request.resource.data.resumo.gasto, 10000000)
+      && validNumber(request.resource.data.resumo.saldo, 10000000)
+      && request.resource.data.gastos is list
+      && request.resource.data.receitas is list;
+    }
+
+    function validConfiguracaoData() {
+      return request.resource.data.keys().hasOnly([
+        'nomeOng', 'fundador', 'cidade', 'estado', 'cnpj', 'email',
+        'whatsapp', 'instagram', 'youtube', 'threads', 'chavePix',
+        'valorApadrinhar', 'valorAssociar', 'mercadoPagoLink', 'metaMensal',
+        'arrecadadoMensal', 'mesMeta', 'horarioSemana', 'horarioSabado',
+        'gaId', 'ativo', 'texto', 'icone', 'link', 'linkTexto',
+        'atualizadoEm'
+      ]);
+    }
+
+    function validContatoData() {
+      return request.resource.data.keys().hasOnly([
+        'nome', 'email', 'telefone', 'assunto', 'mensagem', 'status',
+        'lido', 'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.nome, 120)
+      && validEmail(request.resource.data.email)
+      && validPhone(request.resource.data.telefone)
+      && requiredString(request.resource.data.assunto, 120)
+      && requiredString(request.resource.data.mensagem, 4000);
+    }
+
+    function validVoluntarioData() {
+      return request.resource.data.keys().hasOnly([
+        'nome', 'email', 'whatsapp', 'cidade', 'dias', 'turnos',
+        'habilidades', 'habilidadeOutro', 'motivacao', 'comoConheceu',
+        'status', 'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.nome, 120)
+      && validEmail(request.resource.data.email)
+      && validPhone(request.resource.data.whatsapp)
+      && requiredString(request.resource.data.cidade, 120)
+      && validStringList(request.resource.data.dias, 7, 40)
+      && validStringList(request.resource.data.turnos, 4, 40)
+      && validStringList(request.resource.data.habilidades, 12, 80)
+      && optionalString(request.resource.data.habilidadeOutro, 120)
+      && requiredString(request.resource.data.motivacao, 2000)
+      && optionalString(request.resource.data.comoConheceu, 160);
+    }
+
+    function validFichaData() {
+      return request.resource.data.keys().hasOnly([
+        'nomeCompleto', 'cpf', 'nascimento', 'email', 'whatsapp', 'cidade',
+        'estado', 'endereco', 'tipoMoradia', 'quintal', 'criancas',
+        'outrosAnimais', 'outrosAnimaisDesc', 'tipoMoradiaPosse',
+        'proprietarioPermite', 'qtdMoradores', 'alergia', 'animalInteresse',
+        'motivacaoAdocao', 'experienciaPet', 'viagemPet', 'status',
+        'criadoEm', 'atualizadoEm'
+      ])
+      && requiredString(request.resource.data.nomeCompleto, 160)
+      && requiredString(request.resource.data.cpf, 20)
+      && requiredString(request.resource.data.nascimento, 20)
+      && validEmail(request.resource.data.email)
+      && validPhone(request.resource.data.whatsapp)
+      && requiredString(request.resource.data.cidade, 120)
+      && requiredString(request.resource.data.estado, 8)
+      && requiredString(request.resource.data.endereco, 240)
+      && optionalString(request.resource.data.tipoMoradia, 40)
+      && optionalString(request.resource.data.quintal, 20)
+      && optionalString(request.resource.data.criancas, 20)
+      && optionalString(request.resource.data.outrosAnimais, 20)
+      && optionalString(request.resource.data.outrosAnimaisDesc, 500)
+      && optionalString(request.resource.data.tipoMoradiaPosse, 30)
+      && optionalString(request.resource.data.proprietarioPermite, 20)
+      && optionalString(request.resource.data.qtdMoradores, 20)
+      && optionalString(request.resource.data.alergia, 20)
+      && optionalString(request.resource.data.animalInteresse, 120)
+      && requiredString(request.resource.data.motivacaoAdocao, 3000)
+      && optionalString(request.resource.data.experienciaPet, 60)
+      && requiredString(request.resource.data.viagemPet, 1000);
+    }
+
+    match /animais/{docId} {
+      allow read: if resource.data.status in ['Disponível', 'Reservado', 'Em Tratamento', 'Adotado'];
+      allow create, update: if isAdmin() && validAnimalData();
+      allow delete: if isAdmin();
+    }
+
+    match /posts/{docId} {
+      allow read: if resource.data.publicado == true || isAdmin();
+      allow create, update: if isAdmin() && validPostData();
+      allow delete: if isAdmin();
+    }
+
+    match /transparencia/{docId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validTransparenciaData();
+      allow delete: if isAdmin();
+    }
+
+    match /configuracoes/{docId} {
+      allow read: if docId in ['geral', 'banner'];
+      allow create, update: if isAdmin() && validConfiguracaoData();
+      allow delete: if false;
+    }
+
+    match /galeria/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /depoimentos/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /doadores/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /mensagens/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if validContatoData();
+    }
+
+    match /voluntarios/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if validVoluntarioData();
+    }
+
+    match /fichas_adocao/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if validFichaData();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+- - - ATÉ AQUI - - -
+
+4. Clique em "Publicar"
+
+O QUE ESSAS REGRAS FAZEM:
+- Visitantes PODEM ler animais disponíveis, posts publicados,
+  transparência, galeria, depoimentos e mural de doadores
+- Visitantes PODEM enviar fichas, voluntários e mensagens
+  (apenas create, com validação de campos obrigatórios)
+- Visitantes NÃO PODEM editar nem deletar nada
+- Só o admin (com custom claim "admin: true") pode criar,
+  editar, deletar e gerenciar todo o conteúdo
+- Posts não publicados (rascunhos) ficam invisíveis para o público
+- Configurações: apenas os documentos "geral" e "banner"
+  são lidos publicamente — os demais ficam bloqueados
+- Qualquer coleção não listada acima é bloqueada por padrão
+
+
+══════════════════════════════════════════════════════════════
+PASSO 4B — PREPARAR A LISTA DE ADMINS NO FIRESTORE
+══════════════════════════════════════════════════════════════
+
+⚠️ IMPORTANTE: Faça este passo ANTES de criar o usuário admin
+   no Authentication (Passo 5). A Cloud Function só define a
+   permissão no momento em que o usuário é CRIADO.
+
+O projeto inclui uma Cloud Function (functions/index.js) que
+concede a permissão de admin automaticamente — sem precisar
+de nenhum script manual ou computador próprio.
+
+Para que ela funcione, informe quais emails são admins:
+
+1. No Firestore, clique em "Iniciar coleção"
+2. ID da coleção: configuracoes
+3. ID do documento: admins
+4. Adicione um campo:
+     Nome:  emails
+     Tipo:  array
+     Valor: seuemail@ong.com.br (o email que usará para login)
+5. Clique em "Salvar"
+
+Para adicionar mais admins depois, basta adicionar o email
+ao array "emails" neste documento e criar o novo usuário no
+Authentication. A function cuida do resto automaticamente.
+
+⚠️ ATENÇÃO — PLANO NECESSÁRIO:
+   Cloud Functions exigem o plano Blaze (pay-as-you-go).
+   Faça o upgrade em: Console → Spark → Mudar plano → Blaze.
+   O uso dentro do plano gratuito (125 mil invocações/mês)
+   é mais que suficiente para uma ONG e não gera custo.
+
+
+══════════════════════════════════════════════════════════════
+PASSO 5 — ATIVAR O AUTHENTICATION (Login)
+══════════════════════════════════════════════════════════════
+
+⚠️ IMPORTANTE: Só crie o usuário admin APÓS o deploy do site
+   (Passo 8), que inclui a Cloud Function responsável por
+   definir a permissão automaticamente.
+
+1. No menu lateral, clique em "Authentication"
+2. Clique em "Vamos começar" (ou "Get started")
+3. Na aba "Método de login", clique em "E-mail/senha"
+4. Ative a primeira opção: "E-mail/senha" → ATIVADO
+5. NÃO ative "Link de e-mail" (não é necessário)
+6. Clique em "Salvar"
+
+CRIAR O PRIMEIRO USUÁRIO ADMIN:
+
+1. Ainda no Authentication, clique na aba "Usuários"
+2. Clique em "Adicionar usuário"
+3. E-mail: o mesmo que você adicionou no Passo 4B
+4. Senha: crie uma senha FORTE (mínimo 8 caracteres,
+   com letras maiúsculas, minúsculas, números e símbolos)
+5. Clique em "Adicionar usuário"
+
+COMO FUNCIONA A PERMISSÃO DE ADMIN:
+
+Quando o usuário é criado, a Cloud Function "setAdminOnCreate"
+(functions/index.js) verifica se o email está na lista do
+documento configuracoes/admins. Se sim, define a custom claim
+"admin: true" automaticamente — sem nenhum script extra.
+
+O usuário já fará o primeiro login com permissão total.
+
+PRONTO! Este é o login para o painel admin.
+Para adicionar outros admins: adicione o email ao array
+"emails" em configuracoes/admins (Firestore) e crie o
+usuário no Authentication — a function cuida do resto.
+
+
+══════════════════════════════════════════════════════════════
+PASSO 6 — ATIVAR O STORAGE (Armazenamento de Fotos)
+══════════════════════════════════════════════════════════════
+
+1. No menu lateral, clique em "Storage"
+2. Clique em "Vamos começar"
+3. Regras: aceite as regras padrão por enquanto
+4. Localização: já estará definida (southamerica-east1)
+5. Clique em "Concluído"
+
+CONFIGURAR AS REGRAS DO STORAGE:
+
+1. Clique na aba "Regras"
+2. Apague tudo e cole:
+
+- - - COPIE DAQUI - - -
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function validImageUpload() {
+      return request.resource != null
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    match /animais/{allPaths=**} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validImageUpload();
+      allow delete: if isAdmin();
+    }
+
+    match /blog/{allPaths=**} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validImageUpload();
+      allow delete: if isAdmin();
+    }
+
+    match /galeria/{allPaths=**} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validImageUpload();
+      allow delete: if isAdmin();
+    }
+
+    match /depoimentos/{allPaths=**} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validImageUpload();
+      allow delete: if isAdmin();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+- - - ATÉ AQUI - - -
+
+3. Clique em "Publicar"
+
+O QUE ESSAS REGRAS FAZEM:
+- Qualquer pessoa pode VER as fotos (necessário para o site)
+- Só o admin (com custom claim "admin: true") pode fazer
+  upload ou deletar fotos
+- Limite de 5MB por arquivo (proteção contra abuso)
+- Só aceita arquivos de IMAGEM (não permite PDF, EXE, etc.)
+- Qualquer pasta não listada acima é completamente bloqueada
+
+
+══════════════════════════════════════════════════════════════
+PASSO 7 — TESTAR A CONEXÃO
+══════════════════════════════════════════════════════════════
+
+1. Certifique-se que os valores em js/firebase-config.js
+   foram preenchidos com suas credenciais (Passo 3)
+
+2. Abra o arquivo admin.html no navegador
+   (precisa estar hospedado — veja Passo 8)
+
+3. Tente fazer login com o email e senha criados no Passo 5
+
+4. Se funcionar, você verá o painel administrativo!
+
+5. Se der erro, verifique:
+   - As credenciais em firebase-config.js estão corretas?
+   - O Authentication está ativado com E-mail/senha?
+   - O usuário foi criado corretamente?
+   - A custom claim "admin: true" foi definida (Passo 5)?
+   - O usuário fez logout e login novamente após a custom claim?
+   - Tem conexão com a internet?
+
+
+══════════════════════════════════════════════════════════════
+PASSO 7B — CONFIGURAR FIREBASE APP CHECK (ANTI-SPAM)
+══════════════════════════════════════════════════════════════
+
+O App Check impede que bots e scripts automatizados enviem
+formulários para o seu Firestore. Sem isso, qualquer pessoa
+pode abrir o Console do navegador e enviar milhares de fichas.
+
+1. No Firebase Console, vá em "App Check" no menu lateral
+2. Clique em "Register" para sua aplicação Web
+3. Escolha "reCAPTCHA Enterprise" como provedor
+4. O Firebase vai gerar uma SITE KEY — copie ela
+5. Defina a chave antes de js/app-check.js ser carregado.
+   A forma mais simples é adicionar no HTML, antes dos scripts:
+
+   <script>
+     window.APP_CHECK_SITE_KEY = "SUA_SITE_KEY_AQUI";
+   </script>
+
+6. Garanta que js/app-check.js está carregado nas páginas
+   públicas com formulários
+7. Volte ao App Check e clique "Enforce" para Firestore e Storage
+
+ATENÇÃO: As regras do Firestore e Storage ficam nos arquivos
+firestore.rules e storage.rules na pasta do projeto.
+Para publicar atualizações nas regras, use o Firebase CLI:
+  firebase deploy --only firestore:rules,storage
+
+
+══════════════════════════════════════════════════════════════
+PASSO 8 — HOSPEDAR O SITE (Gratuito)
+══════════════════════════════════════════════════════════════
+
+O site precisa estar na internet para o Firebase funcionar
+(não funciona via file:// para autenticação e banco de dados).
+
+OPÇÃO A — NETLIFY (mais fácil, recomendado):
+
+1. Acesse: https://app.netlify.com
+2. Crie uma conta gratuita (pode usar o Google)
+3. Arraste a pasta "paraiso-dos-pets" inteira para a tela
+4. Pronto! O site estará online em segundos
+5. URL gerada: algo como paraiso-dos-pets.netlify.app
+6. Depois, configure seu domínio personalizado nas configurações
+
+OPÇÃO B — FIREBASE HOSTING (recomendado, inclui Functions):
+
+⚠️ Esta opção é OBRIGATÓRIA se você quer usar as Cloud
+   Functions (permissão de admin automática). Netlify e
+   GitHub Pages hospedam apenas o site — as functions
+   precisam ser publicadas pelo Firebase CLI.
+
+1. Instale o Node.js: https://nodejs.org
+2. Abra o terminal/prompt de comando
+3. Execute: npm install -g firebase-tools
+4. Execute: firebase login
+5. Na pasta do projeto, instale as dependências das functions:
+     cd functions
+     npm install
+     cd ..
+6. Execute: firebase deploy
+   (publica o site, as regras e as Cloud Functions de uma vez)
+7. Pronto! URL: paraiso-dos-pets.web.app
+
+Após o deploy, crie o usuário admin no Authentication (Passo 5).
+A Cloud Function estará ativa e concederá a permissão
+automaticamente no momento da criação do usuário.
+
+OPÇÃO C — GITHUB PAGES:
+
+1. Crie uma conta no GitHub
+2. Crie um repositório "paraiso-dos-pets"
+3. Faça upload de todos os arquivos
+4. Vá em Settings → Pages → Branch: main → Save
+5. URL: seuusuario.github.io/paraiso-dos-pets
+
+
+══════════════════════════════════════════════════════════════
+PASSO 9 — ADICIONAR DOMÍNIO PERSONALIZADO (Opcional)
+══════════════════════════════════════════════════════════════
+
+Para usar ongparaisodospets.org.br:
+
+1. Registre o domínio em um provedor brasileiro
+   (Registro.br, HostGator, Locaweb — custa ~R$ 40/ano)
+
+2. Na plataforma de hospedagem (Netlify, Firebase ou GitHub):
+   - Vá em configurações de domínio
+   - Adicione seu domínio personalizado
+   - Siga as instruções para apontar o DNS
+
+3. O SSL (HTTPS/cadeado verde) é ativado automaticamente
+
+
+══════════════════════════════════════════════════════════════
+PASSO 10 — CONFIGURAR ENVIO DE EMAIL (Opcional)
+══════════════════════════════════════════════════════════════
+
+Para receber emails quando alguém preenche um formulário:
+
+OPÇÃO: EmailJS (mais simples, sem servidor)
+
+1. Acesse: https://www.emailjs.com
+2. Crie uma conta gratuita (200 emails/mês grátis)
+3. Conecte seu email (Gmail da ONG)
+4. Crie um "template" de email para cada formulário
+5. Copie o Service ID, Template ID e Public Key
+6. Cole nos arquivos JS dos formulários (ficha-adocao.js,
+   voluntario.js, contato.js) — os campos já estarão
+   preparados para receber esses IDs
+
+
+══════════════════════════════════════════════════════════════
+RESUMO DO QUE FOI CONFIGURADO
+══════════════════════════════════════════════════════════════
+
+✅ Projeto Firebase criado (plano Blaze ativado)
+✅ Documento configuracoes/admins criado no Firestore
+✅ Firestore (banco de dados) ativado com regras de segurança
+✅ Storage (fotos) ativado com regras de segurança
+✅ Authentication (login) ativado
+✅ Credenciais copiadas para firebase-config.js
+✅ Site + Cloud Functions publicados via firebase deploy
+✅ Usuário admin criado no Authentication
+✅ Custom claim "admin: true" definida automaticamente pela Cloud Function
+✅ (Opcional) Domínio personalizado configurado
+✅ (Opcional) Envio de email configurado
+
+
+══════════════════════════════════════════════════════════════
+DÚVIDAS FREQUENTES
+══════════════════════════════════════════════════════════════
+
+P: Preciso pagar algo?
+R: Para usar as Cloud Functions (permissão de admin automática),
+   é necessário o plano Blaze (pay-as-you-go). O plano tem
+   uma cota gratuita generosa — 125 mil invocações de function
+   por mês e 50 mil leituras de Firestore por dia. Para uma
+   ONG, dificilmente haverá custo. O único custo esperado é
+   o domínio (~R$ 40/ano).
+
+P: E se o site crescer muito?
+R: O plano gratuito suporta 50.000 leituras/dia. Se passar
+   disso, o Firebase cobra sob demanda (pay as you go),
+   mas para uma ONG, dificilmente vai ultrapassar.
+
+P: Meus dados estão seguros?
+R: Sim. Ficam nos servidores do Google, com criptografia,
+   backups automáticos e as regras de segurança que
+   configuramos impedem acesso não autorizado.
+
+P: Posso ter mais de um admin?
+R: Sim. No Firebase Console → Authentication → Usuários,
+   crie o novo usuário e repita o Passo 5 (custom claim)
+   para cada um. Cada admin terá seu próprio email e senha.
+
+P: E se eu esquecer a senha?
+R: Na tela de login do admin, tem o botão "Esqueci minha
+   senha" que envia um link de redefinição por email.
+
+P: Posso acessar o admin pelo celular?
+R: Sim! O painel admin é responsivo e funciona em qualquer
+   dispositivo com navegador e internet.
+
+P: O admin faz login mas não consegue salvar nada. Por quê?
+R: Provavelmente a custom claim "admin: true" não foi
+   definida, ou o usuário não fez logout/login após a
+   definição. Repita o Passo 5 e faça login novamente.
+
+
+══════════════════════════════════════════════════════════════
+SUPORTE
+══════════════════════════════════════════════════════════════
+
+Documentação oficial do Firebase:
+  https://firebase.google.com/docs
+
+Qualquer dúvida técnica sobre o projeto:
+  Consulte os comentários nos arquivos JavaScript —
+  cada função está documentada com seu propósito e uso.
+
+══════════════════════════════════════════════════════════════
