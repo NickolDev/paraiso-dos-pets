@@ -1,8 +1,296 @@
 'use strict';
 
-const ANIMAIS = [];
+const ANIMAIS = [
+  {
+    id: 'macho-01',
+    nome: 'Thor',
+    idade: '2 anos',
+    porte: 'Grande',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho.png',
+    vacinado: true,
+    castrado: true,
+    novo: true,
+    descricao: 'Carinhoso, brincalhão e cheio de energia para acompanhar uma nova família.',
+    historico: 'Foi resgatado em uma praça e hoje está pronto para ganhar um lar.'
+  },
+  {
+    id: 'macho-02',
+    nome: 'Chico',
+    idade: '1 ano',
+    porte: 'Médio',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho2.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Dócil, esperto e adora receber carinho na barriga.',
+    historico: 'Chegou ao abrigo ainda filhote e se adaptou muito bem com outros cães.'
+  },
+  {
+    id: 'macho-03',
+    nome: 'Bob',
+    idade: '3 anos',
+    porte: 'Médio',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho3.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Companheiro tranquilo, ideal para quem busca um amigo fiel.',
+    historico: 'Foi acolhido após ser encontrado perto de uma avenida movimentada.'
+  },
+  {
+    id: 'macho-04',
+    nome: 'Tobias',
+    idade: '4 anos',
+    porte: 'Grande',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho4.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Protetor, calmo e muito obediente depois que cria confiança.',
+    historico: 'Resgatado em situação de abandono, recebeu cuidados e se recuperou bem.'
+  },
+  {
+    id: 'macho-05',
+    nome: 'Paçoca',
+    idade: '8 meses',
+    porte: 'Pequeno',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho5.png',
+    vacinado: true,
+    castrado: false,
+    novo: true,
+    descricao: 'Filhote curioso, alegre e pronto para aprender com muito amor.',
+    historico: 'Foi deixado próximo ao abrigo e está crescendo saudável.'
+  },
+  {
+    id: 'macho-06',
+    nome: 'Bento',
+    idade: '5 anos',
+    porte: 'Médio',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho6.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Muito carinhoso, gosta de passeios leves e de ficar por perto.',
+    historico: 'Chegou debilitado, recebeu tratamento e hoje está recuperado.'
+  },
+  {
+    id: 'macho-07',
+    nome: 'Nino',
+    idade: '2 anos',
+    porte: 'Pequeno',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho7.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Pequeno no tamanho, enorme na vontade de brincar e fazer amizade.',
+    historico: 'Foi resgatado durante uma campanha de atendimento no bairro.'
+  },
+  {
+    id: 'macho-08',
+    nome: 'Fred',
+    idade: '6 anos',
+    porte: 'Grande',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho8.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Um grandão amoroso, tranquilo e muito grato por atenção.',
+    historico: 'Vivia nas ruas há algum tempo antes de ser acolhido pela ONG.'
+  },
+  {
+    id: 'macho-09',
+    nome: 'Zeca',
+    idade: '1 ano',
+    porte: 'Médio',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho9.png',
+    vacinado: true,
+    castrado: false,
+    novo: true,
+    descricao: 'Ativo, simpático e ótimo para uma família que goste de brincar.',
+    historico: 'Foi encontrado em uma feira de adoção e ficou sob cuidados da equipe.'
+  },
+  {
+    id: 'macho-10',
+    nome: 'Apolo',
+    idade: '3 anos',
+    porte: 'Grande',
+    sexo: 'Macho',
+    status: 'Disponível',
+    foto: 'images/assets/cão_macho10.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Forte, elegante e muito dócil com pessoas.',
+    historico: 'Após o resgate, passou por avaliação veterinária e está saudável.'
+  },
+  {
+    id: 'femea-01',
+    nome: 'Mel',
+    idade: '2 anos',
+    porte: 'Médio',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea.png',
+    vacinado: true,
+    castrado: true,
+    novo: true,
+    descricao: 'Meiga, carinhosa e sempre pronta para ganhar colo.',
+    historico: 'Foi resgatada com seus filhotes e agora espera sua própria família.'
+  },
+  {
+    id: 'femea-02',
+    nome: 'Nina',
+    idade: '1 ano',
+    porte: 'Pequeno',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea2.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Delicada, alegre e muito companheira.',
+    historico: 'Chegou assustada, mas ganhou confiança com carinho diário.'
+  },
+  {
+    id: 'femea-03',
+    nome: 'Luna',
+    idade: '3 anos',
+    porte: 'Grande',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea3.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Tranquila, observadora e muito amorosa.',
+    historico: 'Foi encontrada em um terreno e recebeu todos os cuidados necessários.'
+  },
+  {
+    id: 'femea-04',
+    nome: 'Amora',
+    idade: '4 anos',
+    porte: 'Médio',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea4.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Doce, calma e perfeita para um lar cheio de afeto.',
+    historico: 'Foi acolhida após uma denúncia de abandono.'
+  },
+  {
+    id: 'femea-05',
+    nome: 'Belinha',
+    idade: '7 meses',
+    porte: 'Pequeno',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea5.png',
+    vacinado: true,
+    castrado: false,
+    novo: true,
+    descricao: 'Filhote esperta, brincalhona e cheia de charme.',
+    historico: 'Chegou bem pequena e está crescendo com acompanhamento veterinário.'
+  },
+  {
+    id: 'femea-06',
+    nome: 'Pipoca',
+    idade: '2 anos',
+    porte: 'Médio',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea6.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Animada, sociável e apaixonada por passeios.',
+    historico: 'Foi resgatada durante uma ação voluntária em Ribeirão Preto.'
+  },
+  {
+    id: 'femea-07',
+    nome: 'Maya',
+    idade: '5 anos',
+    porte: 'Grande',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea7.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Serena, leal e muito carinhosa com quem se aproxima devagar.',
+    historico: 'Recebeu tratamento no abrigo e hoje está pronta para adoção.'
+  },
+  {
+    id: 'femea-08',
+    nome: 'Sofia',
+    idade: '1 ano',
+    porte: 'Médio',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea8.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Muito dócil, adora companhia e aprende comandos rapidamente.',
+    historico: 'Foi acolhida por voluntários e encaminhada para adoção responsável.'
+  },
+  {
+    id: 'femea-09',
+    nome: 'Jade',
+    idade: '3 anos',
+    porte: 'Pequeno',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea9.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Pequena, esperta e muito apegada depois que confia.',
+    historico: 'Foi resgatada em uma área comercial e se recuperou muito bem.'
+  },
+  {
+    id: 'femea-10',
+    nome: 'Lola',
+    idade: '4 anos',
+    porte: 'Grande',
+    sexo: 'Fêmea',
+    status: 'Disponível',
+    foto: 'images/assets/cão_femea10.png',
+    vacinado: true,
+    castrado: true,
+    novo: false,
+    descricao: 'Companheira, tranquila e pronta para uma segunda chance.',
+    historico: 'Foi entregue ao abrigo por uma família que não podia mais cuidar dela.'
+  }
+];
 const FAVORITOS_KEY = 'paraiso_favoritos';
 const ADOTE_IMAGE_FALLBACK = '../images/logo-300.png';
+
+function resolverFotoAnimal(animal) {
+  const foto = animal?.foto || '';
+  if (!foto || /^(https?:|data:|\/)/i.test(foto)) return foto;
+  const emSubpastaPages = window.location.pathname.includes('/pages/');
+  return emSubpastaPages && foto.startsWith('images/') ? `../${foto}` : foto;
+}
 
 function renderAnimais(lista) {
   const container = document.getElementById('grid-animais');
@@ -16,39 +304,10 @@ function renderAnimais(lista) {
     empty.style.gridColumn = '1 / -1';
     empty.style.padding = '3rem 1rem';
 
-    if (ANIMAIS.length === 0) {
-      empty.appendChild(SafeDOM.el('svg', {
-        attrs: { viewBox: '0 0 24 24', width: '64', height: '64', 'aria-hidden': 'true' },
-        html: '<path d="M4.5 9.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm15 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-7-3a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>'
-      }));
-      empty.querySelector('svg').style.fill = 'var(--cor-cinza-claro)';
-      empty.querySelector('svg').style.marginBottom = '1rem';
-      empty.appendChild(SafeDOM.el('h3', { text: 'Em breve nossos pets estarão aqui' }));
-      empty.querySelector('h3').style.color = 'var(--cor-texto)';
-      empty.querySelector('h3').style.marginBottom = '0.5rem';
-      const message = SafeDOM.el('p', {
-        text: 'Estamos preparando tudo para você conhecer nossos animais disponíveis para adoção. Enquanto isso, entre em contato pelo WhatsApp!'
-      });
-      message.style.color = 'var(--cor-cinza-medio)';
-      empty.appendChild(message);
-      const contactLink = SafeDOM.el('a', {
-        className: 'btn btn--primario',
-        text: 'Falar pelo WhatsApp',
-        attrs: {
-          href: 'https://wa.me/5516999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20animais%20dispon%C3%ADveis%20para%20ado%C3%A7%C3%A3o.',
-          target: '_blank',
-          rel: 'noopener noreferrer'
-        }
-      });
-      contactLink.style.marginTop = '1.5rem';
-      contactLink.style.display = 'inline-flex';
-      empty.appendChild(contactLink);
-    } else {
-      const text = SafeDOM.el('p', { text: 'Nenhum animal encontrado com esses filtros.' });
-      text.style.color = 'var(--cor-cinza-medio)';
-      text.style.padding = '2rem';
-      empty.appendChild(text);
-    }
+    const text = SafeDOM.el('p', { text: 'Nenhum animal encontrado com esses filtros.' });
+    text.style.color = 'var(--cor-cinza-medio)';
+    text.style.padding = '2rem';
+    empty.appendChild(text);
 
     container.appendChild(empty);
     return;
@@ -84,6 +343,60 @@ function createAnimalFeature(text) {
   ]);
 }
 
+function createAnimalDescricao(animal) {
+  const descricao = animal.descricao || '';
+  const wrap = SafeDOM.el('div', { className: 'card-animal__descricao-wrap' });
+  wrap.appendChild(SafeDOM.el('p', { className: 'card-animal__descricao', text: descricao }));
+
+  if (descricao.length > 95) {
+    wrap.appendChild(SafeDOM.el('button', {
+      className: 'card-animal__toggle-descricao',
+      text: 'Ver mais',
+      attrs: { type: 'button', 'aria-expanded': 'false' },
+      listeners: {
+        click: (event) => {
+          event.stopPropagation();
+          const expanded = wrap.classList.toggle('expandido');
+          event.currentTarget.textContent = expanded ? 'Ver menos' : 'Ver mais';
+          event.currentTarget.setAttribute('aria-expanded', String(expanded));
+        }
+      }
+    }));
+  }
+
+  return wrap;
+}
+
+function createAnimalActions(animal, options = {}) {
+  const hrefPrefix = options.hrefPrefix || '';
+  const actions = SafeDOM.el('div', { className: 'card-animal__acoes' });
+
+  actions.appendChild(SafeDOM.el('a', {
+    className: 'btn btn--primario btn--sm card-animal__btn',
+    text: 'Quero adotar',
+    attrs: { href: `${hrefPrefix}ficha-adocao.html?animal=${encodeURIComponent(String(animal.id))}` }
+  }));
+
+  actions.appendChild(SafeDOM.el('button', {
+    className: 'btn btn--sm card-animal__btn-compartilhar',
+    attrs: { type: 'button', 'aria-label': `Compartilhar ${animal.nome || 'animal'}`, title: 'Compartilhar' },
+    listeners: {
+      click: (event) => {
+        event.stopPropagation();
+        compartilharAnimal(animal.nome || 'Animal', animal.id);
+      }
+    }
+  }, [
+    SafeDOM.el('svg', {
+      attrs: { viewBox: '0 0 24 24', 'aria-hidden': 'true' },
+      html: '<path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>'
+    }),
+    document.createTextNode(' Compartilhar')
+  ]));
+
+  return actions;
+}
+
 function criarCard(animal) {
   const favoritos = carregarFavoritos();
   const isFavorito = favoritos.includes(animal.id);
@@ -97,7 +410,7 @@ function criarCard(animal) {
     className: 'card-animal__foto',
     attrs: { alt: animal.nome || 'Animal para adoção', loading: 'lazy' }
   });
-  SafeDOM.setImageSource(foto, animal.foto, { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
+  SafeDOM.setImageSource(foto, resolverFotoAnimal(animal), { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
   fotoWrapper.appendChild(foto);
 
   const badges = SafeDOM.el('div', { className: 'card-animal__badges' }, [
@@ -142,65 +455,19 @@ function criarCard(animal) {
   ]);
   info.appendChild(icones);
 
-  info.appendChild(SafeDOM.el('p', { className: 'card-animal__descricao', text: animal.descricao || '' }));
-
-  const actions = SafeDOM.el('div');
-  actions.style.display = 'flex';
-  actions.style.gap = '0.5rem';
-  actions.style.alignItems = 'center';
-  actions.style.flexWrap = 'wrap';
-
-  actions.appendChild(SafeDOM.el('a', {
-    className: 'btn btn--primario btn--sm card-animal__btn',
-    text: 'Quero adotar',
-    attrs: { href: `ficha-adocao.html?animal=${encodeURIComponent(String(animal.id))}` }
-  }));
-
-  const shareButton = SafeDOM.el('button', {
-    className: 'btn btn--sm card-animal__btn-compartilhar',
-    attrs: { type: 'button', 'aria-label': 'Compartilhar', title: 'Compartilhar' },
-    listeners: {
-      click: (event) => {
-        event.stopPropagation();
-        compartilharAnimal(animal.nome || 'Animal', animal.id);
-      }
-    }
-  }, [
-    SafeDOM.el('svg', {
-      attrs: { viewBox: '0 0 24 24', 'aria-hidden': 'true' },
-      html: '<path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>'
-    }),
-    document.createTextNode(' Compartilhar')
-  ]);
-  shareButton.style.padding = '0.5rem 0.75rem';
-  shareButton.style.background = 'var(--cor-bege)';
-  shareButton.style.border = '2px solid var(--cor-cinza-claro)';
-  shareButton.style.borderRadius = '50px';
-  shareButton.style.cursor = 'pointer';
-  shareButton.style.display = 'flex';
-  shareButton.style.alignItems = 'center';
-  shareButton.style.gap = '0.3rem';
-  shareButton.style.fontSize = '0.8rem';
-  shareButton.style.fontWeight = '600';
-  shareButton.style.color = 'var(--cor-cinza-medio)';
-  actions.appendChild(shareButton);
-
-  info.appendChild(actions);
+  info.appendChild(createAnimalDescricao(animal));
+  info.appendChild(createAnimalActions(animal));
   card.appendChild(info);
 
   return card;
 }
 
 function filtrarAnimais() {
-  const porteAtivo = document.querySelector('[data-filtro="porte"].ativo')?.dataset.valor || 'Todos';
   const sexoAtivo = document.querySelector('[data-filtro="sexo"].ativo')?.dataset.valor || 'Todos';
-  const statusAtivo = document.querySelector('[data-filtro="status"].ativo')?.dataset.valor || 'Todos';
   const busca = (document.getElementById('busca-animal')?.value || '').toLowerCase().trim();
 
   const resultado = ANIMAIS.filter((animal) => {
-    if (porteAtivo !== 'Todos' && animal.porte !== porteAtivo) return false;
     if (sexoAtivo !== 'Todos' && animal.sexo !== sexoAtivo) return false;
-    if (statusAtivo !== 'Todos' && animal.status !== statusAtivo) return false;
     if (busca && !SafeDOM.toStringValue(animal.nome).toLowerCase().includes(busca)) return false;
     return true;
   });
@@ -239,7 +506,7 @@ function abrirLightbox(id) {
     className: 'lightbox__imagem',
     attrs: { alt: animal.nome || 'Animal para adoção' }
   });
-  SafeDOM.setImageSource(image, animal.foto, { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
+  SafeDOM.setImageSource(image, resolverFotoAnimal(animal), { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
   conteudo.appendChild(image);
 
   const info = SafeDOM.el('div', { className: 'lightbox__info' });
@@ -360,7 +627,7 @@ function renderFavoritos() {
     img.style.height = '50px';
     img.style.borderRadius = 'var(--raio-sm)';
     img.style.objectFit = 'cover';
-    SafeDOM.setImageSource(img, animal.foto, { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
+    SafeDOM.setImageSource(img, resolverFotoAnimal(animal), { fallback: ADOTE_IMAGE_FALLBACK, allowRelative: true });
     item.appendChild(img);
 
     const textWrap = SafeDOM.el('div', {}, [

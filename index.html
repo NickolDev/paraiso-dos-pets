@@ -31,8 +31,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/responsive.css?v=6">
   <link rel="stylesheet" href="css/print.css" media="print">
 
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
@@ -53,41 +53,14 @@
 
       <!-- Navegação principal — links do menu central -->
       <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
-
         <a href="index.html" class="nav-link ativo">Home</a>
         <a href="pages/nossa-missao.html" class="nav-link">Nossa Missão</a>
-        <a href="pages/transparencia.html" class="nav-link">Transparência</a>
-
-        <!-- Link com submenu dropdown: "Adote" -->
         <div class="nav-item--submenu">
-          <a href="pages/adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">
-            Adote
-            <!-- Seta indicando submenu -->
-            <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 10l5 5 5-5z" fill="currentColor"/>
-            </svg>
-          </a>
-          <!-- Submenu com sublinks de Adote -->
-          <div class="submenu" role="menu">
-            <a href="pages/adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="pages/adotados.html" class="submenu__link" role="menuitem">Finais Felizes</a>
-            <a href="pages/doar.html" class="submenu__link" role="menuitem">Apadrinhar</a>
-            <a href="pages/voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a>
-            <a href="pages/doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a>
-            <a href="pages/contato.html" class="submenu__link" role="menuitem">Parcerias</a>
-          </div>
+          <a href="pages/adote.html" class="nav-link nav-link--submenu-trigger" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a>
+          <div class="submenu" role="menu"><a href="pages/adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="pages/doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="pages/voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a><a href="pages/doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a><a href="pages/contato.html" class="submenu__link" role="menuitem">Parcerias</a></div>
         </div>
-
-        <a href="pages/blog.html" class="nav-link">Blog</a>
         <a href="pages/contato.html" class="nav-link">Contato</a>
-
-        <!-- Botão DOAR dentro do menu mobile -->
-        <a href="pages/doar.html" class="btn-doar-header">
-          <!-- SVG: ícone de coração -->
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-          DOAR
-        </a>
+        <a href="pages/doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
       </nav>
 
       <!-- Botão DOAR no desktop (fora do nav mobile) -->
@@ -133,7 +106,7 @@
     <section class="hero" aria-label="Banner principal">
 
       <!-- Imagem de fundo (configurável pelo admin) -->
-      <img src="" alt="Cão feliz correndo em um gramado" class="hero__bg" loading="eager" style="display:none;">
+      <img src="images/assets/foto_home.jpg" alt="Cão feliz correndo em um gramado" class="hero__bg" loading="eager">
 
       <!-- Overlay gradiente escuro sobre a imagem -->
       <div class="hero__overlay" aria-hidden="true"></div>
@@ -367,89 +340,6 @@
     <!-- ======== FIM SEÇÃO 5: ANIMAIS EM DESTAQUE ============ -->
 
 
-    <!-- ======== SEÇÃO 6: HISTÓRIAS DE ADOÇÃO (CARROSSEL) ==== -->
-    <!-- Carrossel de depoimentos — Populado pelo Firebase via admin -->
-    <section class="secao secao--bege" aria-label="Histórias de adoção">
-      <div class="container">
-
-        <h2 class="secao__titulo" data-animate="fade-up">Histórias que aquecem o coração</h2>
-        <p class="secao__subtitulo" data-animate="fade-up">
-          Veja o que dizem as famílias que adotaram nossos cãezinhos
-        </p>
-
-        <!-- Componente de carrossel — slides são carregados do Firebase -->
-        <div class="carrossel" data-animate="fade-up" id="carrossel-depoimentos">
-
-          <!-- Trilha de slides (populada pelo JS quando Firebase tiver dados) -->
-          <div class="carrossel__trilha" id="carrossel-trilha">
-
-            <!-- Mensagem padrão quando não há depoimentos cadastrados -->
-            <div class="carrossel__slide" id="carrossel-vazio">
-              <div class="carrossel__aspas" style="color:var(--cor-cinza-claro);">❤</div>
-              <p class="carrossel__texto" style="color:var(--cor-cinza-medio);">
-                Em breve você poderá ler as histórias das famílias que adotaram
-                nossos cãezinhos. Cada adoção é uma transformação!
-              </p>
-              <p class="carrossel__autor" style="color:var(--cor-primaria);">
-                Quer compartilhar sua história? Fale conosco!
-              </p>
-            </div>
-
-          </div>
-
-          <!-- Seta de navegação: anterior -->
-          <button class="carrossel__seta carrossel__seta--esq" aria-label="História anterior">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-            </svg>
-          </button>
-
-          <!-- Seta de navegação: próximo -->
-          <button class="carrossel__seta carrossel__seta--dir" aria-label="Próxima história">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-            </svg>
-          </button>
-
-          <!-- Dots indicadores de posição -->
-          <div class="carrossel__dots" aria-label="Indicadores de slide">
-            <!-- Dots são criados dinamicamente pelo JS -->
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-    <!-- ==== FIM SEÇÃO 6: HISTÓRIAS DE ADOÇÃO (CARROSSEL) ==== -->
-
-
-    <!-- ============= SEÇÃO 7: ÚLTIMAS DO BLOG =============== -->
-    <!-- Grid de 3 posts mais recentes -->
-    <section class="secao" aria-label="Últimas novidades do blog">
-      <div class="container">
-
-        <h2 class="secao__titulo" data-animate="fade-up">Novidades e Histórias</h2>
-        <p class="secao__subtitulo" data-animate="fade-up">
-          Fique por dentro de tudo que acontece no Paraíso dos Pets
-        </p>
-
-        <!-- Grid de 3 posts — preenchido por JavaScript (blog.js) -->
-        <div class="grid-posts" id="grid-posts-home" style="grid-template-columns: repeat(3, 1fr);" data-animate="fade-up">
-          <!-- Os cards de posts serão inseridos aqui pelo JS -->
-        </div>
-
-        <!-- Botão para ver todos os posts -->
-        <div style="text-align: center; margin-top: var(--espaco-xl);">
-          <a href="pages/blog.html" class="btn btn--secundario" data-animate="fade-up">
-            Ver todos os posts →
-          </a>
-        </div>
-
-      </div>
-    </section>
-    <!-- ========== FIM SEÇÃO 7: ÚLTIMAS DO BLOG ============== -->
-
-
     <!-- ============= SEÇÃO 8: CTA DE DOAÇÃO ================= -->
     <!-- Chamada para ação com imagem de fundo e overlay -->
     <section class="cta-doacao" aria-label="Faça uma doação">
@@ -523,8 +413,8 @@
         <div>
           <h4 class="footer__titulo">Links Rápidos</h4>
           <a href="pages/nossa-missao.html" class="footer__link">Nossa Missão</a>
-          <a href="pages/transparencia.html" class="footer__link">Transparência</a>
-          <a href="pages/blog.html" class="footer__link">Blog</a>
+          
+          
           <a href="pages/faq.html" class="footer__link">FAQ</a>
           <a href="pages/politica-privacidade.html" class="footer__link">Política de Privacidade</a>
           <a href="pages/termos-de-uso.html" class="footer__link">Termos de Uso</a>
@@ -626,14 +516,12 @@
   <!-- cookies.js: banner LGPD -->
   <script src="js/cookies.js"></script>
   <!-- adote.js: dados dos animais (para renderizar destaques na home) -->
-  <script src="js/adote.js"></script>
-  <!-- blog.js: dados dos posts (para renderizar os 3 mais recentes na home) -->
-  <script src="js/blog.js"></script>
+  <script src="js/adote.js?v=4"></script>
   <!-- firebase-public.js: carrega dados do Firebase e atualiza o site -->
   <script src="js/firebase-public.js"></script>
 
-  <!-- Script inline: renderiza animais e posts em destaque na home -->
-  <script src="js/home-page.js"></script>
+  <!-- Script inline: renderiza animais em destaque na home -->
+  <script src="js/home-page.js?v=4"></script>
 
   <script src="js/ga4.js"></script>
 </body>

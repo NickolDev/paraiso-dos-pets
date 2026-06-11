@@ -455,9 +455,6 @@ function initWhatsApp() {
     case pagina === 'adote.html':
       mensagem = 'Olá! Estou no site e gostaria de saber sobre os animais disponíveis para adoção.';
       break;
-    case pagina === 'adotados.html':
-      mensagem = 'Olá! Vi a página de Finais Felizes e gostaria de saber como posso adotar também!';
-      break;
     case pagina === 'doar.html':
       mensagem = 'Olá! Gostaria de saber mais sobre como posso ajudar a ONG com doações.';
       break;
@@ -472,14 +469,8 @@ function initWhatsApp() {
         ? `Olá! Gostaria de saber mais sobre o processo de adoção. Estou preenchendo a ficha pelo site.`
         : 'Olá! Gostaria de saber mais sobre o processo de adoção.';
       break;
-    case pagina === 'transparencia.html':
-      mensagem = 'Olá! Gostaria de tirar dúvidas sobre a transparência financeira da ONG.';
-      break;
     case pagina === 'contato.html':
       mensagem = 'Olá! Entrei em contato pelo site e gostaria de falar com a equipe.';
-      break;
-    case pagina === 'blog.html' || pagina === 'post.html':
-      mensagem = 'Olá! Estava lendo o blog da ONG e gostaria de mais informações.';
       break;
   }
 

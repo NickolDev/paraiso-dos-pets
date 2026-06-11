@@ -211,6 +211,14 @@
   .timeline::before {
     left: 20px;
   }
+
+  .timeline__foto,
+  .timeline__foto--direita,
+  .timeline__foto--esquerda {
+    width: calc(100% - 60px);
+    margin-left: 60px;
+    margin-right: 0;
+  }
 }
 
 /* ============================================================
@@ -312,6 +320,19 @@
   .grid-animais {
     grid-template-columns: 1fr;
     gap: var(--espaco-md);
+  }
+
+  .card-animal {
+    min-height: 500px;
+  }
+
+  .card-animal__acoes {
+    flex-wrap: nowrap;
+  }
+
+  .card-animal__btn-compartilhar {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.75rem;
   }
 
   .favoritos-secao__grid {
@@ -488,6 +509,18 @@
   .timeline__marker svg {
     width: 14px;
     height: 14px;
+  }
+
+  .timeline__foto,
+  .timeline__foto--direita,
+  .timeline__foto--esquerda {
+    width: calc(100% - 50px);
+    margin-left: 50px;
+    margin-right: 0;
+  }
+
+  .timeline__foto img {
+    height: 210px;
   }
 
   /* --- BANNER PÁGINA INTERNA --- */

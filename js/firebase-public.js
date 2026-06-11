@@ -8,19 +8,15 @@
 //            SE NÃO → mantém dados estáticos originais.
 //
 // DEPENDÊNCIAS: firebase-config.js (opcional),
-//               adote.js, blog.js, transparencia.js, doar.js
+//               adote.js, doar.js
 // ÚLTIMA ATUALIZAÇÃO: 2025
 //
 // ÍNDICE DE FUNÇÕES:
 //   - initFirebasePublico()       → Detecta e inicializa
 //   - carregarAnimaisPublico()    → Substitui ANIMAIS
-//   - carregarPostsPublico()      → Substitui POSTS
-//   - carregarTransparenciaPubl() → Substitui dados financeiros
 //   - carregarConfigPublico()     → Carrega config (meta, PIX)
 //   - reRenderizarHome()          → Atualiza home
 //   - reRenderizarAdote()         → Atualiza grid de animais
-//   - reRenderizarBlog()          → Atualiza grid de posts
-//   - reRenderizarTransparencia() → Atualiza gráficos/tabela
 //   - reRenderizarDoar()          → Atualiza meta e PIX
 //   - conectarFormularios()       → Formulários salvam no Firebase
 //   - coletarDadosFicha()         → Coleta campos ficha adoção
@@ -65,20 +61,11 @@ function initFirebasePublico() {
 
   if (pagina === 'index.html' || pagina === '' || pagina === '/') {
     carregarAnimaisPublico().then(reRenderizarHome);
-    carregarPostsPublico().then(reRenderizarHome);
     carregarConfigPublico();
     carregarBannerAviso();
     carregarDepoimentosPublico();
   } else if (pagina === 'adote.html') {
     carregarAnimaisPublico().then(reRenderizarAdote);
-  } else if (pagina === 'blog.html') {
-    carregarPostsPublico().then(reRenderizarBlog);
-  } else if (pagina === 'post.html') {
-    carregarPostsPublico().then(() => {
-      if (typeof carregarPost === 'function') carregarPost();
-    });
-  } else if (pagina === 'transparencia.html') {
-    carregarTransparenciaPublico();
   } else if (pagina === 'doar.html') {
     carregarConfigPublico().then(reRenderizarDoar);
   } else if (pagina === 'ficha-adocao.html') {
@@ -103,43 +90,6 @@ async function carregarAnimaisPublico() {
     }
   } catch (e) {
     console.warn('  ⚠️ Erro animais, usando estáticos:', e);
-  }
-}
-
-// ============================================================
-// CARREGAR POSTS
-// ============================================================
-
-async function carregarPostsPublico() {
-  if (!firebaseDisponivel) return;
-  try {
-    const lista = await buscarPosts(true);
-    if (lista.length > 0 && typeof POSTS !== 'undefined') {
-      POSTS.length = 0;
-      lista.forEach(p => POSTS.push(p));
-      console.log(`  ✅ ${lista.length} posts do Firebase`);
-    }
-  } catch (e) {
-    console.warn('  ⚠️ Erro posts, usando estáticos:', e);
-  }
-}
-
-// ============================================================
-// CARREGAR TRANSPARÊNCIA
-// ============================================================
-
-async function carregarTransparenciaPublico() {
-  if (!firebaseDisponivel) return;
-  try {
-    const periodos = await buscarTodosTransparencia();
-    if (periodos.length > 0 && typeof DADOS_FINANCEIROS !== 'undefined') {
-      Object.keys(DADOS_FINANCEIROS).forEach(k => delete DADOS_FINANCEIROS[k]);
-      periodos.forEach(p => { DADOS_FINANCEIROS[p.id] = p; });
-      console.log(`  ✅ ${periodos.length} períodos do Firebase`);
-      reRenderizarTransparencia();
-    }
-  } catch (e) {
-    console.warn('  ⚠️ Erro transparência, usando estáticos:', e);
   }
 }
 
@@ -174,14 +124,6 @@ function reRenderizarHome() {
     }
   }
 
-  // Posts recentes
-  if (typeof POSTS !== 'undefined') {
-    const grid = document.getElementById('grid-posts-home');
-    if (grid && typeof criarCardPostHome === 'function') {
-      SafeDOM.clear(grid);
-      POSTS.slice(0, 3).forEach(p => grid.appendChild(criarCardPostHome(p)));
-    }
-  }
 }
 
 // ============================================================
@@ -196,48 +138,6 @@ function reRenderizarAdote() {
       if (typeof atualizarContadorFav === 'function') atualizarContadorFav();
       if (typeof renderFavoritos === 'function') renderFavoritos();
     }
-  }
-}
-
-// ============================================================
-// RE-RENDERIZAR — BLOG
-// ============================================================
-
-function reRenderizarBlog() {
-  if (typeof POSTS !== 'undefined' && typeof renderPosts === 'function') {
-    const grid = document.getElementById('grid-posts');
-    if (grid) {
-      renderPosts(POSTS);
-      if (typeof renderSidebar === 'function') renderSidebar();
-    }
-  }
-}
-
-// ============================================================
-// RE-RENDERIZAR — TRANSPARÊNCIA
-// ============================================================
-
-function reRenderizarTransparencia() {
-  if (typeof DADOS_FINANCEIROS === 'undefined') return;
-
-  // Atualiza botões de período
-  const selector = document.querySelector('.periodo-selector');
-  if (selector) {
-    SafeDOM.clear(selector);
-    Object.keys(DADOS_FINANCEIROS).forEach(key => {
-      const d = DADOS_FINANCEIROS[key];
-      const btn = document.createElement('button');
-      btn.className = 'filtro-btn periodo-btn';
-      btn.dataset.periodo = key;
-      btn.textContent = d.label || key;
-      btn.addEventListener('click', () => {
-        if (typeof selecionarPeriodo === 'function') selecionarPeriodo(key);
-      });
-      selector.appendChild(btn);
-    });
-    // Ativa o primeiro
-    const primeiro = Object.keys(DADOS_FINANCEIROS)[0];
-    if (primeiro && typeof selecionarPeriodo === 'function') selecionarPeriodo(primeiro);
   }
 }
 

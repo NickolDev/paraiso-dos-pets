@@ -3,8 +3,8 @@
   Sitemap XML — ONG Paraíso dos Pets
   Gerado em: 2025
   Atualize quando adicionar novas páginas estáticas.
-  Animais individuais e posts do blog são indexados dinamicamente pelo Google
-  a partir das listagens em /pages/adote.html e /pages/blog.html.
+  Animais disponíveis são indexados dinamicamente pelo Google
+  a partir da listagem em /pages/adote.html.
 
   Como enviar ao Google:
   1. Acesse https://search.google.com/search-console
@@ -36,13 +36,6 @@
     <priority>0.8</priority>
   </url>
 
-  <url>
-    <loc>https://ongparaisodospets.org.br/pages/adotados.html</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
   <!-- DOAÇÃO (importante para sustento da ONG) -->
   <url>
     <loc>https://ongparaisodospets.org.br/pages/doar.html</loc>
@@ -64,21 +57,6 @@
     <loc>https://ongparaisodospets.org.br/pages/nossa-missao.html</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://ongparaisodospets.org.br/pages/transparencia.html</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- CONTEÚDO -->
-  <url>
-    <loc>https://ongparaisodospets.org.br/pages/blog.html</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 

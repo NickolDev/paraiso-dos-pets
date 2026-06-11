@@ -23,8 +23,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/style.css?v=6">
+  <link rel="stylesheet" href="../css/responsive.css?v=6">
 
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
@@ -40,12 +40,10 @@
       <nav class="nav-principal" id="nav-principal" role="navigation" aria-label="Menu principal">
         <a href="../index.html" class="nav-link">Home</a>
         <a href="nossa-missao.html" class="nav-link">Nossa Missão</a>
-        <a href="transparencia.html" class="nav-link">Transparência</a>
         <div class="nav-item--submenu">
           <a href="adote.html" class="nav-link nav-link--submenu-trigger ativo" aria-expanded="false" aria-haspopup="true">Adote <svg class="nav-link__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg></a>
-          <div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="adotados.html" class="submenu__link" role="menuitem">Finais Felizes</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a><a href="doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a><a href="contato.html" class="submenu__link" role="menuitem">Parcerias</a></div>
+          <div class="submenu" role="menu"><a href="adote.html" class="submenu__link" role="menuitem">Adoção</a><a href="doar.html" class="submenu__link" role="menuitem">Apadrinhar</a><a href="voluntario.html" class="submenu__link" role="menuitem">Voluntariar</a><a href="doar.html#associar" class="submenu__link" role="menuitem">Associar-se</a><a href="contato.html" class="submenu__link" role="menuitem">Parcerias</a></div>
         </div>
-        <a href="blog.html" class="nav-link">Blog</a>
         <a href="contato.html" class="nav-link">Contato</a>
         <a href="doar.html" class="btn-doar-header"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> DOAR</a>
       </nav>
@@ -59,7 +57,7 @@
 
     <!-- =================== BANNER =========================== -->
     <section class="banner-pagina" aria-label="Banner da página de adoção">
-      <img src="" alt="Cães esperando por adoção" class="banner-pagina__bg" loading="eager" style="display:none;">
+      <img src="../images/assets/foto_adote.jpg" alt="Cães esperando por adoção" class="banner-pagina__bg" loading="eager">
       <div class="banner-pagina__overlay" aria-hidden="true"></div>
       <div class="banner-pagina__conteudo">
         <h1 class="banner-pagina__titulo">Adote um Amor</h1>
@@ -116,14 +114,6 @@
 
         <!-- Filtros de animais -->
         <div class="filtros" data-animate="fade-up">
-          <!-- Filtro de porte -->
-          <div class="filtros__grupo">
-            <label>Porte:</label>
-            <button class="filtro-btn ativo" data-filtro="porte" data-valor="Todos">Todos</button>
-            <button class="filtro-btn" data-filtro="porte" data-valor="Pequeno">Pequeno</button>
-            <button class="filtro-btn" data-filtro="porte" data-valor="Médio">Médio</button>
-            <button class="filtro-btn" data-filtro="porte" data-valor="Grande">Grande</button>
-          </div>
           <!-- Filtro de sexo -->
           <div class="filtros__grupo">
             <label>Sexo:</label>
@@ -131,18 +121,10 @@
             <button class="filtro-btn" data-filtro="sexo" data-valor="Macho">Macho</button>
             <button class="filtro-btn" data-filtro="sexo" data-valor="Fêmea">Fêmea</button>
           </div>
-          <!-- Filtro de status -->
-          <div class="filtros__grupo">
-            <label>Status:</label>
-            <button class="filtro-btn ativo" data-filtro="status" data-valor="Todos">Todos</button>
-            <button class="filtro-btn" data-filtro="status" data-valor="Disponível">Disponível</button>
-            <button class="filtro-btn" data-filtro="status" data-valor="Reservado">Reservado</button>
-            <button class="filtro-btn" data-filtro="status" data-valor="Em Tratamento">Em Tratamento</button>
-          </div>
           <!-- Busca por nome -->
           <input type="text" class="filtros__busca" id="busca-animal" placeholder="Buscar por nome..." aria-label="Buscar animal por nome">
           <!-- Contador de resultados -->
-          <div class="filtros__contador" id="filtros-contador" aria-live="polite">Exibindo 12 de 12 animais</div>
+          <div class="filtros__contador" id="filtros-contador" aria-live="polite">Exibindo 20 de 20 animais</div>
         </div>
 
         <!-- Grid de animais — preenchido por adote.js -->
@@ -229,7 +211,7 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand"><a href="../index.html" class="logo-link"><img src="../images/logo-header.png" alt="Logo ONG Paraíso dos Pets" class="logo-img" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"><span class="logo-texto">Paraíso dos <span>Pets</span></span></a><p class="footer__slogan">Ajudando quem não tem voz desde 2017.<br>Ribeirão Preto, SP — Brasil.</p><div class="footer__redes"><a href="https://www.instagram.com/ongparaisodospets" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></a><a href="https://wa.me/5516999999999" class="footer__rede-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg></a></div></div>
-        <div><h4 class="footer__titulo">Links Rápidos</h4><a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="transparencia.html" class="footer__link">Transparência</a><a href="blog.html" class="footer__link">Blog</a><a href="faq.html" class="footer__link">FAQ</a><a href="politica-privacidade.html" class="footer__link">Política de Privacidade</a></div>
+        <div><h4 class="footer__titulo">Links Rápidos</h4><a href="nossa-missao.html" class="footer__link">Nossa Missão</a><a href="faq.html" class="footer__link">FAQ</a><a href="politica-privacidade.html" class="footer__link">Política de Privacidade</a></div>
         <div><h4 class="footer__titulo">Como Ajudar</h4><a href="doar.html" class="footer__link">Apadrinhar</a><a href="voluntario.html" class="footer__link">Voluntariar</a><a href="doar.html#associar" class="footer__link">Associar-se</a><a href="contato.html" class="footer__link">Parcerias</a></div>
         <div><h4 class="footer__titulo">Contato</h4><a href="mailto:contato@ongparaisodospets.org.br" class="footer__link">contato@ongparaisodospets.org.br</a><a href="https://wa.me/5516999999999" class="footer__link" target="_blank" rel="noopener noreferrer">(16) 99999-9999</a><p class="footer__link" style="cursor:default;margin-top:0.5rem;">Seg a Sex: 9h–18h<br>Sábado: 9h–13h</p></div>
       </div>
@@ -249,7 +231,7 @@
   <script src="../js/sanitizer.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/cookies.js"></script>
-  <script src="../js/adote.js"></script>
+  <script src="../js/adote.js?v=4"></script>
   <script src="../js/firebase-public.js"></script>
   <script src="../js/ga4.js"></script>
 </body>
