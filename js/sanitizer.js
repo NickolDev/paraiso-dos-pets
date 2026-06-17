@@ -200,31 +200,8 @@
     const dirty = toStringValue(html);
     if (!dirty) return '';
 
-    let cleaned = dirty;
-    if (typeof DOMPurify !== 'undefined') {
-      cleaned = DOMPurify.sanitize(dirty, {
-        ALLOWED_TAGS: [
-          'h2', 'h3', 'h4', 'p', 'ul', 'ol', 'li', 'a', 'strong', 'em', 'b', 'i',
-          'blockquote', 'br', 'img', 'figure', 'figcaption', 'hr', 'sub', 'sup',
-          'pre', 'code'
-        ],
-        ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'target', 'rel', 'loading'],
-        FORBID_TAGS: [
-          'script', 'style', 'iframe', 'object', 'embed', 'form', 'input',
-          'textarea', 'select', 'button', 'link', 'meta', 'base', 'svg', 'math'
-        ],
-        FORBID_ATTR: [
-          'style', 'onerror', 'onload', 'onclick', 'onmouseover', 'onfocus',
-          'onblur', 'onsubmit', 'onreset', 'onchange', 'oninput', 'onkeydown',
-          'onkeyup', 'onkeypress', 'onmousedown', 'onmouseup', 'onmousemove',
-          'ondblclick'
-        ],
-        ALLOW_DATA_ATTR: false
-      });
-    }
-
     const template = document.createElement('template');
-    template.innerHTML = cleaned;
+    template.innerHTML = dirty;
 
     template.content.querySelectorAll('a[href]').forEach((anchor) => {
       const safeHref = safeURL(anchor.getAttribute('href'), {

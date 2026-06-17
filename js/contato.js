@@ -272,14 +272,10 @@ function enviarFormulario(e) {
     }
     return;
   }
-
-  // Se Firebase está disponível, firebase-public.js já cuida do envio
-  if (typeof firebaseDisponivel !== 'undefined' && firebaseDisponivel) return;
-
   // Anti-spam: impede envio duplicado (60s cooldown)
   if (typeof podeEnviarForm === 'function' && !podeEnviarForm('contato-wpp')) return;
 
-  // Sem Firebase — redireciona para WhatsApp
+  // Redireciona para WhatsApp sem salvar dados em banco
   const nome = document.getElementById('contato-nome')?.value || '';
   const assunto = document.getElementById('contato-assunto')?.value || 'Contato pelo site';
   const mensagem = document.getElementById('contato-mensagem')?.value || '';

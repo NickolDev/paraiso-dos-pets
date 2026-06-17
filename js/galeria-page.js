@@ -2,6 +2,26 @@
 
 let fotosGaleria = [];
 const GALERIA_FALLBACK = '../images/logo-300.png';
+const GALERIA_LOCAL = [
+  {
+    id: 'foto1',
+    url: '../images/assets/foto1.jpg',
+    legenda: 'Momentos de cuidado no Paraiso dos Pets',
+    categoria: 'abrigo'
+  },
+  {
+    id: 'foto2',
+    url: '../images/assets/foto2.jpg',
+    legenda: 'Animais recebendo carinho da equipe',
+    categoria: 'animais'
+  },
+  {
+    id: 'foto3',
+    url: '../images/assets/foto3.jpg',
+    legenda: 'Voluntarios ajudando na rotina da ONG',
+    categoria: 'voluntarios'
+  }
+];
 
 function renderGaleriaMensagem(grid, title, text = '') {
   SafeDOM.clear(grid);
@@ -117,27 +137,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (event.key === 'Escape') fecharLightboxGaleria();
   });
 
-  if (typeof db === 'undefined' || typeof firebaseConfig === 'undefined' || firebaseConfig.apiKey === 'SUA_API_KEY_AQUI') {
-    renderGaleriaMensagem(grid, 'Galeria em breve', 'Estamos preparando fotos do nosso abrigo, dos animais e da equipe.');
-    return;
-  }
-
-  try {
-    const snapshot = await db.collection('galeria').orderBy('criadoEm', 'desc').get();
-    fotosGaleria = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    if (fotosGaleria.length === 0) {
-      renderGaleriaMensagem(grid, 'Galeria vazia', 'As fotos serão adicionadas pela equipe da ONG em breve.');
-      return;
-    }
-    renderGaleria(fotosGaleria);
-  } catch (erro) {
-    console.error('Erro galeria:', erro);
-    SafeDOM.clear(grid);
-    const msg = SafeDOM.el('p', { text: 'Erro ao carregar galeria.' });
-    msg.style.textAlign = 'center';
-    msg.style.color = 'var(--cor-cinza-medio)';
-    msg.style.gridColumn = '1 / -1';
-    msg.style.padding = '2rem';
-    grid.appendChild(msg);
-  }
+  fotosGaleria = GALERIA_LOCAL;
+  renderGaleria(fotosGaleria);
 });

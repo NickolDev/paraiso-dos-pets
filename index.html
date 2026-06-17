@@ -38,7 +38,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://*.firebasestorage.googleapis.com https://firebasestorage.googleapis.com data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.google-analytics.com https://firestore.googleapis.com https://www.google.com; frame-src https://snapwidget.com https://www.google.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-src 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
 </head>
 <body>
 
@@ -501,15 +501,9 @@
 
 
   <!-- Firebase SDKs (CDN) — carrega dados do banco de dados -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check-compat.js"></script>
-  <script src="js/firebase-config.js"></script>
-  <script src="js/app-check.js"></script>
 
   <!-- ======================== SCRIPTS ======================== -->
   <!-- main.js: funcionalidades globais (header, menu, animações, etc.) -->
-  <script src="js/dompurify.min.js"></script>
   <script src="js/sanitizer.js"></script>
   <script src="js/index-schema.js"></script>
   <script src="js/main.js"></script>
@@ -517,12 +511,8 @@
   <script src="js/cookies.js"></script>
   <!-- adote.js: dados dos animais (para renderizar destaques na home) -->
   <script src="js/adote.js?v=4"></script>
-  <!-- firebase-public.js: carrega dados do Firebase e atualiza o site -->
-  <script src="js/firebase-public.js"></script>
 
   <!-- Script inline: renderiza animais em destaque na home -->
   <script src="js/home-page.js?v=4"></script>
-
-  <script src="js/ga4.js"></script>
 </body>
 </html>

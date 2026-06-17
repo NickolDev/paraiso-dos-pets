@@ -448,13 +448,11 @@ function carregarAnimais() {
 }
 
 // ============================================================
-// ENVIAR FICHA — Envia via Firebase ou redireciona ao WhatsApp
+// ENVIAR FICHA - Redireciona ao WhatsApp
 // ============================================================
 
 /**
- * Envia a ficha de adoção. Se Firebase estiver configurado,
- * o firebase-public.js intercepta e salva no banco.
- * Se NÃO estiver, redireciona para WhatsApp com os dados.
+ * Envia a ficha de adocao via WhatsApp, sem salvar dados em banco.
  * @param {Event} e - Evento de click
  */
 function enviarFicha(e) {
@@ -462,14 +460,10 @@ function enviarFicha(e) {
 
   // Valida a última etapa
   if (!validarEtapa(TOTAL_ETAPAS)) return;
-
-  // Se Firebase está disponível, firebase-public.js já cuida do envio
-  if (typeof firebaseDisponivel !== 'undefined' && firebaseDisponivel) return;
-
   // Anti-spam: impede envio duplicado (60s cooldown)
   if (typeof podeEnviarForm === 'function' && !podeEnviarForm('ficha-wpp')) return;
 
-  // Sem Firebase — redireciona para WhatsApp com dados resumidos
+  // Redireciona para WhatsApp com dados resumidos
   const nome = document.getElementById('nome-completo')?.value || '';
   const animal = document.getElementById('animal-interesse')?.value || 'Sem preferência';
   const cidade = document.getElementById('cidade')?.value || '';
